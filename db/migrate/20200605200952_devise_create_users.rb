@@ -14,6 +14,14 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       ## Rememberable
       t.datetime :remember_created_at
 
+      t.string :name,               null: false
+      t.date :birthday
+      t.integer :notice_before,     null: false, default: 3
+      t.integer :term,              null: false, default: 1
+      t.boolean :has_done,          null: false, default: false
+      t.boolean :require_notice,    null: false, default: true
+
+
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false
       # t.datetime :current_sign_in_at
