@@ -43,6 +43,7 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano3-puma'
   gem 'capistrano-rbenv'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -84,8 +85,6 @@ gem 'pry-byebug'
 gem 'dotenv-rails'
 
 gem 'rubocop-airbnb'
-
-gem 'rspec-rails'
 
 gem 'acts-as-taggable-on'
 
