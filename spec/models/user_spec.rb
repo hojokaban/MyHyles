@@ -15,6 +15,10 @@ RSpec.describe User, type: :model do
             @user.name = ""
             expect(@user).not_to be_valid
         end
+        it "名前が20字以上の場合" do
+            @user.name = "a"*21
+            expect(@user).not_to be_valid
+        end
         it "メールアドレスが空の場合" do
             @user.email = ""
             expect(@user).not_to be_valid
