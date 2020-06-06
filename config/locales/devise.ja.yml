@@ -1,0 +1,101 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        confirmation_sent_at: パスワード確認送信時刻
+        confirmation_token: パスワード確認用トークン
+        confirmed_at: パスワード確認時刻
+        created_at: 作成日
+        current_password: 現在のパスワード
+        current_sign_in_at: 現在のログイン時刻
+        current_sign_in_ip: 現在のログインIPアドレス
+        email: Eメール
+        encrypted_password: 暗号化パスワード
+        failed_attempts: 失敗したログイン試行回数
+        last_sign_in_at: 最終ログイン時刻
+        last_sign_in_ip: 最終ログインIPアドレス
+        locked_at: ロック時刻
+        password: パスワード
+        password_confirmation: パスワード（確認用）
+        remember_created_at: ログイン記憶時刻
+        remember_me: ログインを記憶する
+        reset_password_sent_at: パスワードリセット送信時刻
+        reset_password_token: パスワードリセット用トークン
+        sign_in_count: ログイン回数
+        unconfirmed_email: 未確認Eメール
+        unlock_token: ロック解除用トークン
+        updated_at: 更新日
+    models:
+  #     user: ユーザー
+  devise:
+    confirmations:
+      confirmed: メールアドレスが承認されました
+      send_instructions: メールアドレスの認証方法が記されたメールが送信されます
+      send_paranoid_instructions: メールアドレスが登録されていた場合、メールアドレスの認証方法が記されたメールが送信されます
+    failure:
+      already_authenticated: すでにログインしています
+      inactive: アカウントが有効ではありません
+      invalid: "%{authentication_keys}又はパスワードが不当です"
+      locked: アカウントが停止されています
+      last_attempt: もう一度失敗するとアカウントが停止されます
+      not_found_in_database: "%{authentication_keys}又はパスワードが不当です"
+      timeout: セッションが期限切れです。もう一度ログインしてください
+      unauthenticated: 作業を続行するためにはログイン又は新規登録が必要です
+      unconfirmed: 作業を続行するにはメールアドレスを確認する必要があります。
+    mailer:
+      confirmation_instructions:
+        subject: メールアドレスの確認について
+      reset_password_instructions:
+        subject: パスワード再設定について
+      unlock_instructions:
+        subject: アカウント再開について
+      email_changed:
+        subject: メールアドレスが変更されました
+      password_change:
+        subject: パスワードが変更されました
+    omniauth_callbacks:
+      failure: "(%{reason})の為、%{kind}から認証を得られませんでした"
+      success: "%{kind}から認証されました"
+    passwords:
+      no_token: パスワード再設定メールからのリンク出なければこのページはアクセスできません。もしパスワード再設定メールからアクセスされている場合は、完全なURLをご利用かご確認ください。"
+      send_instructions: パスワード再設定についてのメールが送信されます
+      send_paranoid_instructions: メールアドレスが登録されている場合、パスワード再開リンクがメールに送信されます
+      updated: パスワードが変更されました。ログイン済みです。
+      updated_not_active: パスワードが変更されました
+    registrations:
+      destroyed: ご利用ありがとうございました。アカウントは破棄されました。又のご利用お待ちしています。
+      signed_up: 新規登録いただきありがとうございます！このアプリケーションをお楽しみいただけることを心より願っております！
+      signed_up_but_inactive: アカウントが登録されましたが、有効でない為ログインができていません
+      signed_up_but_locked: アカウントが登録されましたが、アカウントが停止されている為ログインができません
+      signed_up_but_unconfirmed: メールアドレス確認のリンクがメールで送信されています。その手順にしたがってアカウントの有効かを行ってください
+      update_needs_confirmation: アカウントが更新されましたが、新しいメールアドレスを認証する必要があります。メールを確認し、その手順に従ってメールアドレスの認証を行ってください
+      updated: アカウントが更新されました
+      updated_but_not_signed_in: アカウントが更新されましたが、パスワードが変更された為、もう一度ログインをしてください
+    sessions:
+      signed_in: ログインしました!
+      signed_out: ログアウトしました!
+      already_signed_out: ログアウトしました!
+    shared:
+      links:
+        back: 戻る
+        didn_t_receive_confirmation_instructions: アカウント確認のメールを受け取っていませんか?
+        didn_t_receive_unlock_instructions: アカウントの凍結解除方法のメールを受け取っていませんか?
+        forgot_your_password: パスワードを忘れましたか?
+        sign_in: ログイン
+        sign_in_with_provider: "%{provider}でログイン"
+        sign_up: アカウント登録
+      minimum_password_length: "（%{count}字以上）"
+    unlocks:
+      send_instructions: アカウントを再開する為のメールが送信されます
+      send_paranoid_instructions: アカウントが登録されている場合、アカウントを再開する為のメールが送信されます
+      unlocked: アカウントが再開されました。作業を続けるには、ログインしてください。
+  errors:
+    messages:
+      already_confirmed: すでに認証されています。ログインしてみてください。
+      confirmation_period_expired: "%{period}以内に認証されませんでした。新しいリクエストを送ってください。"
+      expired: 期限が切れています。新しいリクエストを送ってください
+      not_found: 見つかりませんでした
+      not_locked: 停止されていません
+      not_saved:
+         one: １件のエラーが検出されました
+         other: "%{count}件のエラーが%{resource}から検出されました"
