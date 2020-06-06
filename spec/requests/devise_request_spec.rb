@@ -1,22 +1,20 @@
 require 'rails_helper'
 
-describe "devise関連の画面" do
-    context "新規登録画面が表示される" do
-        it 'リクエストは200 OKとなること' do
+describe "devise関連" do
+
+    context "画面に遷移する" do
+        it '新規登録画面が表示される' do
             get new_user_registration_path
             expect(response.status).to eq 200
         end
-    end
-    context "ログイン画面が表示される" do
-        it 'リクエストは200 OKとなること' do
+
+        it 'ログイン画面が表示される' do
             get new_user_session_path
             expect(response.status).to eq 200
         end
     end
-end
 
-describe "devise機能" do
-    context "新規ユーザーが登録される" do
+    context "新規ユーザーが登録機能" do
         it '正しく登録される' do
              expect{
                   post user_registration_path, params: {user: attributes_for(:user)}
