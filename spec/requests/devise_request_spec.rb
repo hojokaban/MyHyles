@@ -25,7 +25,7 @@ describe "devise機能" do
              expect(response).to redirect_to(root_path)
         end
     end
-    context "ログインできる" do
+    context "ログイン機能" do
         before do
             @user = create(:user)
         end
@@ -36,6 +36,10 @@ describe "devise機能" do
             expect(response.status).to eq 302
             expect(response).to redirect_to(root_path)
         end
+        it '正しくログアウトされる' do
+            sign_in @user
+            delete destroy_user_session_path(@user)
+            expect(response.status).to eq 204
+        end
     end
-    #Devise::Encryptor.digest(User, @user.password)
 end
