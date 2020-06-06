@@ -12,6 +12,10 @@ describe "devise関連" do
             get new_user_session_path
             expect(response.status).to eq 200
         end
+        it 'パスワード再設定メール送信画面が表示される' do
+            get new_user_password_path
+            expect(response.status).to eq 200            
+        end
     end
 
     context "新規ユーザーが登録機能" do
