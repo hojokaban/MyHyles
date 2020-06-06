@@ -6,6 +6,10 @@ describe 'ヘッダーのテスト', type: :system do
     end
 
     context "ログインしていない状態" do
+        it 'トップページに遷移' do
+            find('.navbar-brand').click
+            expect(page).to have_selector 'h2', text: 'トップページです！'
+        end
         it 'このサイトについてに遷移' do
             click_link 'このサイトについて'
             expect(page).to have_selector 'h2', text: 'アバウトページ'
