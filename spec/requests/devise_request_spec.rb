@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'devise関連の画面' do
+describe "devise関連の画面" do
     context "新規登録画面が表示される" do
         it 'リクエストは200 OKとなること' do
             get new_user_registration_path
@@ -15,7 +15,7 @@ describe 'devise関連の画面' do
     end
 end
 
-describe 'devise機能' do
+describe "devise機能" do
     context "新規ユーザーが登録される" do
         it '正しく登録される' do
              expect{
@@ -25,4 +25,17 @@ describe 'devise機能' do
              expect(response).to redirect_to(root_path)
         end
     end
+    context "ログインできる" do
+        before do
+            @user = create(:user)
+        end
+        it '正しくログインされる' do
+            post user_session_path, params: {user: {email: @user.email,
+                                                    password: @user.password}}
+            #トップページへリダイレクトされる
+            expect(response.status).to eq 302
+            expect(response).to redirect_to(root_path)
+        end
+    end
+    #Devise::Encryptor.digest(User, @user.password)
 end
