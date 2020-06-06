@@ -1,6 +1,5 @@
 require 'rails_helper'
 describe 'deviseの統合テスト', type: :system do
-#describe 'deviseの統合テスト' do
 
     before do
         @user = build(:user)
