@@ -21,6 +21,8 @@ describe 'devise機能' do
              expect{
                   post user_registration_path, params: {user: attributes_for(:user)}
              }.to change(User, :count).by(1)
+             #登録後はトップページへリダイレクトされる
+             expect(response).to redirect_to(root_path)
         end
     end
 end
