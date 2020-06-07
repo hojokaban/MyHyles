@@ -14,7 +14,7 @@ describe "devise関連" do
         end
         it 'パスワード再設定メール送信画面が表示される' do
             get new_user_password_path
-            expect(response.status).to eq 200            
+            expect(response.status).to eq 200
         end
     end
 
@@ -29,7 +29,7 @@ describe "devise関連" do
     end
     context "ログイン機能" do
         before do
-            @user = create(:user)
+            @user = create(:user, :confirmed)
         end
         it '正しくログインされる' do
             post user_session_path, params: {user: {email: @user.email,
