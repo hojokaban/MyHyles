@@ -14,11 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     build_resource(sign_up_params)
     resource.save
     if resource.errors.any?
-      error_message = ""
-        resource.errors.full_messages.each do |message|
-          error_message += message + "<br>"
-        end
-      flash[:danger] = error_message.html_safe
+        flash[:danger] = resource.set_devise_error.html_safe
     end
     yield resource if block_given?
     if resource.persisted?
