@@ -52,7 +52,15 @@ describe 'deviseの統合テスト', type: :system do
             fill_in 'user_password', with: "password"
             fill_in 'user_password_confirmation', with: "password"
             click_button '新規登録'
-            #expect(page).to have_content '作業を続行するにはアカウントを有効化する必要があります。'
+            expect(page).to have_selector 'li', text: '名前を入力してください'
+            expect(page).to have_selector 'li', text: 'メールアドレスを入力してください'
+            #パスワードが一致せず失敗
+            fill_in 'user_name', with: "test"
+            fill_in 'user_email', with: "test@example.com"
+            fill_in 'user_password', with: "password"
+            fill_in 'user_password_confirmation', with: "other_password"
+            click_button '新規登録'
+            expect(page).to have_selector 'li', text: 'パスワード（確認用）とパスワードの入力が一致しません'
         end
     end
 

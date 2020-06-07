@@ -13,9 +13,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     build_resource(sign_up_params)
     resource.save
-    if resource.errors.any?
-        flash[:danger] = resource.set_devise_error.html_safe
-    end
+    #この一行を追加
+    flash[:danger] = resource.set_error_flash if resource.errors.any?
     yield resource if block_given?
     if resource.persisted?
       if resource.active_for_authentication?

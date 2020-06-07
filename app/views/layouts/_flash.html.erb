@@ -6,9 +6,9 @@
 
 <%# if flash[:notice] %>
     <p class="notice"><%= flash[:notice] %></p>
-<%# elsif flash[:danger] %>
-    <p class="alert"><%= flash[:danger] %></p>
-<%# end %>
+<% if flash[:danger] %>
+    <p class="alert"><%= flash[:danger].html_safe %></p>
+<% end %>
 
 <%# flash.each do |key, value| %>
   <%#= content_tag(:div, value, class: "#{key}") %>
