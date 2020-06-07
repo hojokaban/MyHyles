@@ -78,6 +78,13 @@ describe 'deviseの統合テスト', type: :system do
             expect(page).to have_content 'ログインしました!'
             expect(page).to have_selector 'a', text: '追加'
         end
+        it 'ログインに失敗' do
+            #情報が空で失敗
+            fill_in 'user_email', with: "  "
+            fill_in 'user_password', with: "  "
+            click_button 'ログイン'
+            expect(page).to have_content 'メールアドレス又はパスワードが不当です'
+        end
         it 'パスワード再設定' do
             click_link 'パスワードを忘れた方はこちら'
             expect(page).to have_selector 'h2', text: 'パスワードをお忘れですか？'
