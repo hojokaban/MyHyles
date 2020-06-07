@@ -13,15 +13,33 @@ describe 'deviseの統合テスト', type: :system do
             fill_in 'user_email', with: user.email
             fill_in 'user_password', with: user.password
             fill_in 'user_password_confirmation', with: user.password
+            #新規登録ボタンを押すとメールが送られる
             expect{click_button '新規登録'}.to change { ActionMailer::Base.deliveries.size }.by(1)
+            #トップページへの遷移
             expect(page).to have_content 'アカウント有効化用のメールが送信されています'
 
+            #ログインをすると失敗する
+            click_link 'ログイン'
+            fill_in 'user_email', with: user.email
+            fill_in 'user_password', with: user.password
+            click_button 'ログイン'
+            expect(page).to have_content '作業を続行するにはアカウントを有効化する必要があります。'
+            expect(page).not_to have_selector 'a', text: "#{user.name}さん"
+
             signed_up_user = User.last
-            token = user.confirmation_token
             mail = open_email(signed_up_user.email)
+            #メールの表示
             mail.should have_body_text "#{signed_up_user.name}さん、ようこそ!"
             click_email_link_matching(/http/, mail)
+            #アカウントの有効化
             expect(page).to have_content 'メールアドレスが承認されました'
+
+            #ログインが成功する
+            fill_in 'user_email', with: user.email
+            fill_in 'user_password', with: user.password
+            click_button 'ログイン'
+            expect(page).to have_content 'ログインしました'
+            expect(page).to have_selector 'a', text: "#{user.name}さん"
         end
     end
 
