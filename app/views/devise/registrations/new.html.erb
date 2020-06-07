@@ -19,7 +19,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :password, "パスワード(6文字以上)" %>
+    <%= f.label :password, "パスワード(6字以上)" %>
     <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
   </div>
 
@@ -32,3 +32,6 @@
     <%= f.submit "新規登録" %>
   </div>
 <% end %>
+
+
+<%= render "devise/shared/links" %>
