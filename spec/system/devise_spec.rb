@@ -44,6 +44,16 @@ describe 'deviseの統合テスト', type: :system do
             expect(page).to have_content 'ログインしました!'
             expect(page).to have_selector 'a', text: "#{user.name}さん"
         end
+        it "新規登録に失敗" do
+            visit new_user_registration_path
+            #名前とメールアドレスが空で失敗
+            fill_in 'user_name', with: "  "
+            fill_in 'user_email', with: "  "
+            fill_in 'user_password', with: "password"
+            fill_in 'user_password_confirmation', with: "password"
+            click_button '新規登録'
+            #expect(page).to have_content '作業を続行するにはアカウントを有効化する必要があります。'
+        end
     end
 
     context "新規登録後の動き" do
