@@ -92,11 +92,11 @@ ja:
       unlocked: アカウントが再開されました。作業を続けるには、ログインしてください。
   errors:
     messages:
-      already_confirmed: すでに認証されています。ログインしてみてください。
+      already_confirmed: はすでに認証されています。ログインしてみてください。
       confirmation_period_expired: "%{period}以内に認証されませんでした。新しいリクエストを送ってください。"
-      expired: 期限が切れています。新しいリクエストを送ってください
-      not_found: 見つかりませんでした
-      not_locked: 停止されていません
+      expired: は期限が切れています。新しいリクエストを送ってください
+      not_found: が見つかりませんでした
+      not_locked: は停止されていません
       not_saved:
          one: １件のエラーが検出されました
          other: "%{count}件のエラーが検出されました"
