@@ -34,6 +34,7 @@ describe 'ヘッダーのテスト', type: :system do
         it 'ログアウトができる' do
             click_link "#{user.name}さん"
             click_link 'ログアウト'
+            expect(page).to have_content 'ログアウトしました!'
             expect(page).not_to have_selector 'a', text: "#{user.name}さん"
         end
     end

@@ -38,7 +38,7 @@ describe 'deviseの統合テスト', type: :system do
             fill_in 'user_email', with: user.email
             fill_in 'user_password', with: user.password
             click_button 'ログイン'
-            expect(page).to have_content 'ログインしました'
+            expect(page).to have_content 'ログインしました!'
             expect(page).to have_selector 'a', text: "#{user.name}さん"
         end
     end
@@ -60,6 +60,9 @@ describe 'deviseの統合テスト', type: :system do
         it 'パスワード再設定' do
             click_link 'パスワードを忘れた方はこちら'
             expect(page).to have_selector 'h2', text: 'パスワードをお忘れですか？'
+            fill_in 'user_email', with: user.email
+            #ボタンを押すとメールが送られる
+            expect{click_button 'パスワード再設定用のメールを送信'}.to change { ActionMailer::Base.deliveries.size }.by(1)
         end
     end
 end
