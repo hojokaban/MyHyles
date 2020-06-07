@@ -99,3 +99,5 @@ gem 'bullet'
 gem 'font-awesome-sass'
 
 gem 'rails-i18n'
+
+gem 'database_rewinder'

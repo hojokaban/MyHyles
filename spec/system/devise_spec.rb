@@ -2,6 +2,7 @@ require 'rails_helper'
 describe 'deviseの統合テスト', type: :system do
 
     before do
+        ActionMailer::Base.deliveries.clear
         @user = build(:user)
     end
 
@@ -12,9 +13,14 @@ describe 'deviseの統合テスト', type: :system do
         fill_in 'user_email', with: @user.email
         fill_in 'user_password', with: @user.password
         fill_in 'user_password_confirmation', with: @user.password
-        expect{click_button '新規登録'}.to change(User, :count).by(1)
+        expect{click_button '新規登録'}.to change { ActionMailer::Base.deliveries.size }.by(1)
+        expect(page).to have_content 'アカウント有効化用のメールが送信されています'
 
+        user = User.last
+        post user_confirmation_url(user, confirmation_token: user.confirmation_token)
+        expect(page).to have_content 'ゴツゴツのあはん'
     end
+
     context "ログイン機構" do
         before do
             @user.save!
@@ -25,8 +31,8 @@ describe 'deviseの統合テスト', type: :system do
             fill_in 'user_email', with: @user.email
             fill_in 'user_password', with: @user.password
             click_button 'ログイン'
-            visit current_path
             #ログインすると追加ボタンが表示される
+            expect(page).to have_content 'ログインしました!'
             expect(page).to have_selector 'a', text: '追加'
         end
         it 'パスワード再設定' do

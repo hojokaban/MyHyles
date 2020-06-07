@@ -25,17 +25,16 @@ describe 'ヘッダーのテスト', type: :system do
     end
 
     context "ログインしている状態" do
+        let(:user) { create(:user, :confirmed) }
         before do
-            @user = create(:user)
-            login_as @user, scope: :user
+            login_as user, scope: :user
             visit current_path
         end
 
         it 'ログアウトができる' do
-            expect(page).not_to have_selector 'a', text: 'このサイトについて'
-            click_link "#{@user.name}さん"
+            click_link "#{user.name}さん"
             click_link 'ログアウト'
-            expect(page).to have_selector 'a', text: 'このサイトについて'
+            expect(page).not_to have_selector 'a', text: "#{user.name}さん"
         end
     end
 
