@@ -24,6 +24,9 @@ ActiveRecord::Schema.define(version: 2020_06_05_200952) do
     t.integer "term", default: 1, null: false
     t.boolean "has_done", default: false, null: false
     t.boolean "require_notice", default: true, null: false
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
