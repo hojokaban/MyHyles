@@ -1,5 +1,15 @@
-<% if notice %>
+<%# if :notice %>
     <p class="notice"><%= notice %></p>
-<% else %>
+<%# else %>
     <p class="alert"><%= alert %></p>
-<% end %>
+<%# end %>
+
+<%# if flash[:notice] %>
+    <p class="notice"><%= flash[:notice] %></p>
+<%# elsif flash[:danger] %>
+    <p class="alert"><%= flash[:danger] %></p>
+<%# end %>
+
+<%# flash.each do |key, value| %>
+  <%#= content_tag(:div, value, class: "#{key}") %>
+<%# end %>
