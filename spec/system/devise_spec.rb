@@ -17,8 +17,11 @@ describe 'deviseの統合テスト', type: :system do
         expect(page).to have_content 'アカウント有効化用のメールが送信されています'
 
         user = User.last
-        post user_confirmation_url(user, confirmation_token: user.confirmation_token)
-        expect(page).to have_content 'ゴツゴツのあはん'
+        token = user.confirmation_token
+        mail = open_email(user.email)
+        mail.should have_body_text "#{user.name}さん、ようこそ!"
+        click_email_link_matching(/http/, mail)
+        expect(page).to have_content 'メールアドレスが承認されました'
     end
 
     context "ログイン機構" do

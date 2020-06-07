@@ -58,13 +58,15 @@ group :development do
 end
 
 group :test do
-# Adds support for Capybara system testing and selenium driver
-gem 'capybara', '>= 2.15'
-gem 'selenium-webdriver'
-gem 'webdrivers'
-# Easy installation and use of chromedriver to run system tests with Chrome
-#gem 'chromedriver-helper'
-gem 'rails-controller-testing'
+    # Adds support for Capybara system testing and selenium driver
+    gem 'capybara', '>= 2.15'
+    gem 'selenium-webdriver'
+    gem 'webdrivers'
+    # Easy installation and use of chromedriver to run system tests with Chrome
+    #gem 'chromedriver-helper'
+    gem 'rails-controller-testing'
+    gem 'capybara-email'
+    gem 'email_spec'
 end
 
 group :production do
@@ -95,9 +97,9 @@ gem 'acts-as-taggable-on'
 gem 'ransack'
 
 gem 'bullet'
-
+#アイコン
 gem 'font-awesome-sass'
-
+#多言語化
 gem 'rails-i18n'
-
+#テスト
 gem 'database_rewinder'
