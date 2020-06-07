@@ -31,8 +31,8 @@ ja:
   devise:
     confirmations:
       confirmed: メールアドレスが承認されました
-      send_instructions: メールアドレスの認証方法が記されたメールが送信されます
-      send_paranoid_instructions: メールアドレスが登録されていた場合、メールアドレスの認証方法が記されたメールが送信されます
+      send_instructions: アカウント有効化のメールが送信されます
+      send_paranoid_instructions: メールアドレスが登録されていた場合、アカウント有効化のメールが送信されます
     failure:
       already_authenticated: すでにログインしています
       inactive: アカウントが有効ではありません
@@ -42,10 +42,10 @@ ja:
       not_found_in_database: "%{authentication_keys}又はパスワードが不当です"
       timeout: セッションが期限切れです。もう一度ログインしてください
       unauthenticated: 作業を続行するためにはログイン又は新規登録が必要です
-      unconfirmed: 作業を続行するにはメールアドレスを確認する必要があります。
+      unconfirmed: 作業を続行するにはアカウントを有効化する必要があります。
     mailer:
       confirmation_instructions:
-        subject: メールアドレスの確認について
+        subject: アカウントの有効化について
       reset_password_instructions:
         subject: パスワード再設定について
       unlock_instructions:
@@ -68,7 +68,7 @@ ja:
       signed_up: 新規登録いただきありがとうございます！このアプリケーションをお楽しみいただけることを心より願っております！
       signed_up_but_inactive: アカウントが登録されましたが、有効でない為ログインができていません
       signed_up_but_locked: アカウントが登録されましたが、アカウントが停止されている為ログインができません
-      signed_up_but_unconfirmed: メールアドレス確認のリンクがメールで送信されています。その手順にしたがってアカウントの有効かを行ってください
+      signed_up_but_unconfirmed: アカウント有効化用のメールが送信されています。メールの内容に従ってアカウントの有効化を行ってください
       update_needs_confirmation: アカウントが更新されましたが、新しいメールアドレスを認証する必要があります。メールを確認し、その手順に従ってメールアドレスの認証を行ってください
       updated: アカウントが更新されました
       updated_but_not_signed_in: アカウントが更新されましたが、パスワードが変更された為、もう一度ログインをしてください
