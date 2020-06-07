@@ -17,3 +17,11 @@
 
 @import "font-awesome-sprockets";
 @import "font-awesome";
+
+body .container{
+    min-height: 90vh;
+}
+
+footer{
+    background-color: green;
+}
