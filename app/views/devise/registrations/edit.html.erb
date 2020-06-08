@@ -1,31 +1,10 @@
 <h2>設定画面</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class:"form-group", id:"edit-user" }) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name),
+        html: { method: :put, class:"form-group", id:"edit-user" }) do |f| %>
 <h3>ユーザー情報</h3>
-  <div class="field">
-    <%= f.label :name, "名前" %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "email", class:"form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :birthday, "生年月日" %><br />
-    <%= f.date_select :birthday, {}, autofocus: true, autocomplete: "birthday", class:"form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email, "メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password, "新しいパスワード" %><br />
-    <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, "新しいパスワード(確認用)" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
-  </div>
+  <%= render 'devise/shared/user_info', f:f %>
+  <%= render 'devise/shared/password_form', f:f %>
 
   <div class="field">
     <%= f.label :current_password, "現在のパスワード" %><br />
@@ -37,7 +16,8 @@
   </div>
 <% end %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class:"form-group", id:"edit-birthday" }) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name),
+        html: { method: :put, class:"form-group", id:"edit-birthday" }) do |f| %>
     <h3>誕生日の通知</h3>
     <%= f.radio_button :require_notice, false, class:"form-check-input" %>
     <%= f.label :require_notice_false, "通知を出さない", class:"form-check-label" %><br>
@@ -47,7 +27,8 @@
     <%= f.submit "変更を保存する" %>
 <% end %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class:"form-group", id:"edit-frequency" }) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name),
+    html: { method: :put, class:"form-group", id:"edit-frequency" }) do |f| %>
     <h3>どのくらいの期間でヒュレーとの関わりを計算する？</h3>
     <%= f.number_field :term , autocomplete: "current-password", class:"form-control" %> ヶ月以内での関わりを計算
     <%= f.submit "変更を保存する" %>

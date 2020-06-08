@@ -11,12 +11,10 @@
     <%= f.password_field :password, autocomplete: "current-password", class:"form-control" %>
   </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me, "アカウントを保持する" %>
-    </div>
-  <% end %>
+  <div class="field">
+    <%= f.check_box :remember_me %>
+    <%= f.label :remember_me, "アカウントを保持する" %>
+  </div>
 
   <%= render "devise/shared/links" %>
 
