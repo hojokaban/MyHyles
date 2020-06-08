@@ -129,15 +129,48 @@ describe 'deviseの統合テスト', type: :system do
         end
         it '設定画面' do
             visit edit_user_registration_path
+            #ユーザー情報の編集に成功
             within '.edit-user' do
                 fill_in 'user_name', with: "変更した名前"
                 fill_in 'user_email', with: "changed@mail.com"
                 fill_in 'user_password', with: "different"
                 fill_in 'user_password_confirmation', with: "different"
-                fill_in 'user_current_password', with: "password"
+                #fill_in 'user_current_password', with: "password"
                 click_button '変更を保存する'
             end
             expect(page).to have_content 'アカウントが更新されました'
+            #ユーザー情報の編集、パスワードが合っていない
+            within '.edit-user' do
+                fill_in 'user_name', with: "変更した名前"
+                fill_in 'user_email', with: "changed@mail.com"
+                fill_in 'user_password', with: "different"
+                fill_in 'user_password_confirmation', with: "difficult"
+                #fill_in 'user_current_password', with: "password"
+                click_button '変更を保存する'
+            end
+            expect(page).to have_selector 'li', text: 'パスワード（確認用）とパスワードの入力が一致しません'
+            #ユーザー情報の編集、片方のパスワードのみ入力されている
+            within '.edit-user' do
+                fill_in 'user_name', with: "変更した名前"
+                fill_in 'user_email', with: "changed@mail.com"
+                fill_in 'user_password', with: "different"
+                fill_in 'user_password_confirmation', with: "  "
+                #fill_in 'user_current_password', with: "password"
+                click_button '変更を保存する'
+            end
+            expect(page).to have_selector 'li', text: 'パスワード（確認用）とパスワードの入力が一致しません'
+            #誕生日の通知情報の編集に成功
+            within '.edit-birthday' do
+                fill_in 'user_notice_before', with: 12
+                click_button '変更を保存する'
+            end
+            expect(page).to have_content 'アカウントが更新されました'
+            #誕生日の通知情報の編集に失敗
+            # within '.edit-birthday' do
+            #     fill_in 'user_notice_before', with: 12
+            #     click_button '変更を保存する'
+            # end
+            # expect(page).to have_content 'アカウントが更新されました'
         end
     end
 end
