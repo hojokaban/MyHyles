@@ -140,7 +140,7 @@ describe 'deviseの統合テスト', type: :system do
                 fill_in 'user_email', with: "changed@mail.com"
                 fill_in 'user_password', with: "different"
                 fill_in 'user_password_confirmation', with: "different"
-                #fill_in 'user_current_password', with: "password"
+                fill_in 'user_current_password', with: "password"
                 click_button '変更を保存する'
             end
             expect(page).to have_content 'アカウントが更新されました'
@@ -150,7 +150,7 @@ describe 'deviseの統合テスト', type: :system do
                 fill_in 'user_email', with: "changed@mail.com"
                 fill_in 'user_password', with: "different"
                 fill_in 'user_password_confirmation', with: "difficult"
-                #fill_in 'user_current_password', with: "password"
+                fill_in 'user_current_password', with: "password"
                 click_button '変更を保存する'
             end
             expect(page).to have_selector 'li', text: 'パスワード（確認用）とパスワードの入力が一致しません'
@@ -163,6 +163,15 @@ describe 'deviseの統合テスト', type: :system do
                 click_button '変更を保存する'
             end
             expect(page).to have_selector 'li', text: 'パスワード（確認用）とパスワードの入力が一致しません'
+            #ユーザー情報の編集、現在のパスワードがない
+            within '.edit-user' do
+                fill_in 'user_name', with: "変更した名前"
+                fill_in 'user_email', with: "changed@mail.com"
+                fill_in 'user_password', with: "different"
+                fill_in 'user_password_confirmation', with: "difficult"
+                click_button '変更を保存する'
+            end
+            expect(page).to have_selector 'li', text: '現在のパスワードを入力してください'
             #誕生日の通知情報の編集に成功
             within '.edit-birthday' do
                 fill_in 'user_notice_before', with: 12

@@ -22,12 +22,28 @@ class User < ApplicationRecord
     end
 
     def update_without_current_password(params)
-        params.delete(:current_password)
         if params[:password].blank? && params[:password_confirmation].blank?
+            params.delete(:current_password)
             params.delete(:password)
             params.delete(:password_confirmation)
+            result = update_attributes(params)
+        else
+            current_password = params.delete(:current_password)
+
+            if params[:password].blank?
+              params.delete(:password)
+              params.delete(:password_confirmation) if params[:password_confirmation].blank?
+            end
+
+            result = if valid_password?(current_password)
+                      update(params)
+                    else
+                      assign_attributes(params)
+                      valid?
+                      errors.add(:current_password, current_password.blank? ? :blank : :invalid)
+                      false
+                    end
         end
-        result = update_attributes(params)
         clean_up_passwords
         result
     end

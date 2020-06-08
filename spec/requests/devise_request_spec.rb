@@ -37,7 +37,7 @@ describe "devise関連", type: :request do
         it '正しくログインされる' do
             post user_session_path, params: {user: {email: @user.email,
                                                     password: @user.password}}
-            #トップページへリダイレクトされる
+            #メインページへリダイレクトされる
             expect(response.status).to eq 302
             expect(response).to redirect_to(users_path)
         end
