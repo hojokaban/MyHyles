@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "devise関連" do
+describe "devise関連", type: :request do
 
     context "画面に遷移する" do
         it '新規登録画面が表示される' do
@@ -21,7 +21,7 @@ describe "devise関連" do
         end
     end
 
-    context "新規ユーザーが登録機能" do
+    context "registrationコントローラーの機能" do
         it '正しく登録される' do
              expect{
                   post user_registration_path, params: {user: attributes_for(:user)}
@@ -30,7 +30,7 @@ describe "devise関連" do
              expect(response).to redirect_to(root_path)
         end
     end
-    context "ログイン機能" do
+    context "sessionコントローラーの機能" do
         before do
             @user = create(:user, :confirmed)
         end
@@ -39,7 +39,7 @@ describe "devise関連" do
                                                     password: @user.password}}
             #トップページへリダイレクトされる
             expect(response.status).to eq 302
-            expect(response).to redirect_to(root_path)
+            expect(response).to redirect_to(users_path)
         end
         it '正しくログアウトされる' do
             sign_in @user
