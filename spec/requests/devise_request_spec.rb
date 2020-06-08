@@ -7,7 +7,6 @@ describe "devise関連" do
             get new_user_registration_path
             expect(response.status).to eq 200
         end
-
         it 'ログイン画面が表示される' do
             get new_user_session_path
             expect(response.status).to eq 200
@@ -15,6 +14,10 @@ describe "devise関連" do
         it 'パスワード再設定メール送信画面が表示される' do
             get new_user_password_path
             expect(response.status).to eq 200
+        end
+        it '設定画面が表示される' do
+            get edit_user_registration_path
+            expect(response.status).to eq 302
         end
     end
 

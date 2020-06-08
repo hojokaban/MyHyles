@@ -1,19 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe "Users", type: :request do
+describe "Users関連" do
 
-  describe "GET /show" do
-    it "returns http success" do
-      get "/users/show"
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET /edit" do
-    it "returns http success" do
-      get "/users/edit"
-      expect(response).to have_http_status(:success)
-    end
+  context "画面に遷移する" do
+      before do
+          @user = create(:user)
+          sign_in @user
+      end
+      it 'メインページが表示される' do
+          get users_path
+          expect(response.status).to eq 302
+      end
   end
 
 end
