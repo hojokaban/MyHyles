@@ -1,10 +1,19 @@
 <h2>設定画面</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, class:"form-group") do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<h3>ユーザー情報</h3>
+  <div class="field">
+    <%= f.label :name, "名前" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+  </div>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :birthday, "生年月日" %><br />
+    <%= f.date_select :birthday, {}, autofocus: true, autocomplete: "birthday", class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email, "メールアドレス" %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
   </div>
 
@@ -13,21 +22,17 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.label :password, "パスワード" %><br />
     <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation, "パスワード(確認用)" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.label :current_password, "現在のパスワード" %><br />
     <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control" %>
   </div>
 
@@ -36,4 +41,18 @@
   </div>
 <% end %>
 
-<%= link_to "戻る", :back %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, class:"form-group") do |f| %>
+    <h3>誕生日の通知</h3>
+    <%= f.radio_button :require_notice, false, class:"form-check-input" %>
+    <%= f.label "通知を出さない", class:"form-check-label" %><br>
+    <%= f.radio_button :require_notice, true, checked: true, class:"form-check-input" %>
+    <%= f.label "通知を出す", class:"form-check-label" %>
+    <%= f.number_field :notice_before , autocomplete: "current-password", class:"form-control" %> 日前に通知
+    <%= f.submit "変更を保存する" %>
+<% end %>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, class:"form-group") do |f| %>
+    <h3>どのくらいの期間でヒュレーとの関わりを計算する？</h3>
+    <%= f.number_field :notice_before , autocomplete: "current-password", class:"form-control" %> ヶ月以内での関わりを計算
+    <%= f.submit "変更を保存する" %>
+<% end %>
