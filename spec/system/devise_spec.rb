@@ -25,6 +25,8 @@ describe 'deviseの統合テスト', type: :system do
             #トップページへの遷移
             expect(page).to have_content 'アカウント有効化用のメールが送信されています'
 
+            #メールの表示
+            mail.should have_body_text "#{user.name}さん、ようこそ!"
             #ログインをすると失敗する
             click_link 'ログイン'
             fill_in 'user_email', with: "test@example.com"
@@ -32,13 +34,16 @@ describe 'deviseの統合テスト', type: :system do
             click_button 'ログイン'
             expect(page).to have_content '作業を続行するにはアカウントを有効化する必要があります。'
             expect(page).not_to have_selector 'a', text: "#{user.name}さん"
-
+            #アカウント有効化メールの再送信
+            click_link '確認メールが届いていない方はこちら'
+            expect(page).to have_selector 'h2', text: 'アカウント有効化メールの再送信'
+            fill_in 'user_email', with: "test@example.com"
+            click_button 'アカウント有効化メールを再送する'
             #メールの表示
             mail.should have_body_text "#{user.name}さん、ようこそ!"
             click_email_link_matching(/http/, mail)
             #アカウントの有効化
             expect(page).to have_content 'メールアドレスが承認されました'
-
             #ログインが成功する
             fill_in 'user_email', with: "test@example.com"
             fill_in 'user_password', with: "password"
