@@ -134,7 +134,7 @@ describe 'deviseの統合テスト', type: :system do
         before do
             login_as user, scope: :user
         end
-        it '設定画面' do
+        it 'ユーザー情報の編集' do
             visit edit_user_registration_path
             #ユーザー情報の編集に成功
             within '#edit-user' do

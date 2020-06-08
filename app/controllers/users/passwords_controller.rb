@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+include ApplicationHelper
 class Users::PasswordsController < Devise::PasswordsController
   # GET /resource/password/new
   def new
@@ -9,7 +9,7 @@ class Users::PasswordsController < Devise::PasswordsController
   # POST /resource/password
   def create
       self.resource = resource_class.send_reset_password_instructions(resource_params)
-      flash[:danger] = resource.set_error_flash if resource.errors.any?
+      flash[:danger] = set_error_flash(resource) if resource.errors.any?
       yield resource if block_given?
 
       if successfully_sent?(resource)
@@ -27,7 +27,7 @@ class Users::PasswordsController < Devise::PasswordsController
   # PUT /resource/password
   def update
       self.resource = resource_class.reset_password_by_token(resource_params)
-      flash[:danger] = resource.set_error_flash if resource.errors.any?
+      flash[:danger] = set_error_flash(resource) if resource.errors.any?
       yield resource if block_given?
 
       if resource.errors.empty?

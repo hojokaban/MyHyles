@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+include ApplicationHelper
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
@@ -14,7 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     build_resource(sign_up_params)
     resource.save
     #この一行を追加
-    flash[:danger] = resource.set_error_flash if resource.errors.any?
+    flash[:danger] = set_error_flash(resource) if resource.errors.any?
     yield resource if block_given?
     if resource.persisted?
       if resource.active_for_authentication?
@@ -35,6 +35,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
+    @category = Category.new
     super
   end
 
@@ -49,7 +50,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         bypass_sign_in resource, scope: resource_name if sign_in_after_change_password?
         respond_with resource, location: after_update_path_for(resource)
       else
-        flash[:danger] = resource.set_error_flash if resource.errors.any?
+        flash[:danger] = set_error_flash(resource) if resource.errors.any?
         respond_with resource
       end
   end
