@@ -1,4 +1,6 @@
 require 'rails_helper'
+include Warden::Test::Helpers
+
 describe 'deviseの統合テスト', type: :system do
 
     before do
@@ -117,6 +119,25 @@ describe 'deviseの統合テスト', type: :system do
             #パスワード変更に成功し、ログインされる
             expect(page).to have_content 'パスワードが変更されました。ログイン済みです。'
             expect(page).to have_selector 'a', text: "#{user.name}さん"
+        end
+    end
+
+    context "ログイン後の動き" do
+        let(:user) { create(:user, :confirmed)}
+        before do
+            login_as user, scope: :user
+        end
+        it '設定画面' do
+            visit edit_user_registration_path
+            within '.edit-user' do
+                fill_in 'user_name', with: "変更した名前"
+                fill_in 'user_email', with: "changed@mail.com"
+                fill_in 'user_password', with: "different"
+                fill_in 'user_password_confirmation', with: "different"
+                fill_in 'user_current_password', with: "password"
+                click_button '変更を保存する'
+            end
+            expect(page).to have_content 'アカウントが更新されました'
         end
     end
 end
