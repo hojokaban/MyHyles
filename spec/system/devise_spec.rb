@@ -76,7 +76,7 @@ describe 'deviseの統合テスト', type: :system do
             click_button 'ログイン'
             #ログインすると追加ボタンが表示される
             expect(page).to have_content 'ログインしました!'
-            expect(page).to have_selector 'a', text: '追加'
+            expect(page).to have_selector 'a', text: "#{user.name}さん"
         end
         it 'ログインに失敗' do
             #情報が空で失敗
