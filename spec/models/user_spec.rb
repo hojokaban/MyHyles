@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
     context "Userモデルのバリデーションが正しく稼働" do
         before do
-            @user = User.create(
+            @user = User.create!(
                 name: "試験太郎",
                 email: "taro@examole.com",
                 password: "password")

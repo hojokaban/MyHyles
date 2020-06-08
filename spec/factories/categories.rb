@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :category do
-    user { nil }
+    association :user, factory: :user 
     name { "MyString" }
   end
 end
