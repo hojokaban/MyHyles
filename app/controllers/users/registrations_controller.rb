@@ -40,7 +40,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    super
+      self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
+      prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
+      resource_updated = update_resource(resource, account_update_params)
+      yield resource if block_given?
+      if resource_updated
+        set_flash_message_for_update(resource, prev_unconfirmed_email)
+        bypass_sign_in resource, scope: resource_name if sign_in_after_change_password?
+        respond_with resource, location: after_update_path_for(resource)
+      else
+        if resource.errors.any?
+            flash[:danger] = resource.set_error_flash
+        else
+            flash[:danger] = "<ul><li>パスワードの変更には、新しいパスワードを正しく入力したのち、"
+            flash[:danger] += "<br>現在のパスワードを入力する必要があります</li></ul>"
+        end
+        respond_with resource
+      end
   end
 
   # DELETE /resource
@@ -65,11 +81,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # If you have extra params to permit, append them to the sanitizer.
-  def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update,
+    def configure_account_update_params
+        devise_parameter_sanitizer.permit(:account_update,
          keys: [:name, :birthday, :notice_before, :term, :require_notice])
-  end
+    end
 
+    def update_resource(resource, params)
+        resource.update_without_current_password(params)
+    end
+
+    def after_update_path_for(resource)
+        edit_user_registration_path
+    end
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
   #   super(resource)
