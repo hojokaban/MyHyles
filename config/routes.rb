@@ -7,5 +7,7 @@ Rails.application.routes.draw do
     root 'static_pages#top'
     get '/about', to: 'static_pages#about'
     get '/contact', to: 'static_pages#contact'
-    resource :users, only: [:show]
+    resource :users, only: [:show] do
+        resources :categories, only: [:create, :update, :destroy]
+    end
 end
