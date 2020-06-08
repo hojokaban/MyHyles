@@ -30,7 +30,16 @@ describe 'ヘッダーのテスト', type: :system do
             login_as user, scope: :user
             visit current_path
         end
-
+        it 'メインページに遷移' do
+            click_link "#{user.name}さん"
+            click_link 'メインページ'
+            expect(page).to have_selector 'h2', text: 'メインページ'
+        end
+        it '設定画面に遷移' do
+            click_link "#{user.name}さん"
+            click_link '設定'
+            expect(page).to have_selector 'h2', text: '設定画面'
+        end
         it 'ログアウトができる' do
             click_link "#{user.name}さん"
             click_link 'ログアウト'
