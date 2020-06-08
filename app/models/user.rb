@@ -15,9 +15,7 @@ class User < ApplicationRecord
                    count: self.errors.count,
                    resource: self.class.model_name.human.downcase)
         error_message = "<h2>#{error_title}</h2><ul>"
-        self.errors.full_messages.each do |message|
-          error_message += "<li>" + message + "</li>"
-        end
+        self.errors.full_messages.each { |message| error_message += "<li>" + message + "</li>" }
         return error_message + "</ul>"
     end
 
@@ -29,12 +27,10 @@ class User < ApplicationRecord
             result = update_attributes(params)
         else
             current_password = params.delete(:current_password)
-
             if params[:password].blank?
               params.delete(:password)
               params.delete(:password_confirmation) if params[:password_confirmation].blank?
             end
-
             result = if valid_password?(current_password)
                       update(params)
                     else

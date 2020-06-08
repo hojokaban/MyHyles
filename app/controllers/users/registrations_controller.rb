@@ -40,7 +40,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-      self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
+      self.resource = resource_class.to_adapter.get!(current_user.to_key)
       prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
       resource_updated = update_resource(resource, account_update_params)
       yield resource if block_given?
@@ -49,12 +49,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         bypass_sign_in resource, scope: resource_name if sign_in_after_change_password?
         respond_with resource, location: after_update_path_for(resource)
       else
-        if resource.errors.any?
-            flash[:danger] = resource.set_error_flash
-        else
-            flash[:danger] = "<ul><li>パスワードの変更には、新しいパスワードを正しく入力したのち、"
-            flash[:danger] += "<br>現在のパスワードを入力する必要があります</li></ul>"
-        end
+        flash[:danger] = resource.set_error_flash if resource.errors.any?
         respond_with resource
       end
   end
