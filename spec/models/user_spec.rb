@@ -23,5 +23,13 @@ RSpec.describe User, type: :model do
             @user.email = ""
             expect(@user).not_to be_valid
         end
+        it "notice_beforeが365より大きい場合はNG" do
+            @user.notice_before = 366
+            expect(@user).not_to be_valid
+        end
+        it "termが120より大きい場合はNG" do
+            @user.term = 121
+            expect(@user).not_to be_valid
+        end
     end
 end

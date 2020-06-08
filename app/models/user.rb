@@ -5,6 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable
 
     validates :name, presence: true, length: {maximum: 20}
+    validates :notice_before, numericality: { less_than: 366,
+         greater_than_or_equal_to: 0, only_integer: true }
+    validates :term, numericality: { less_than: 121,
+         greater_than: 0, only_integer: true }
 
     def set_error_flash
         error_title = I18n.t("errors.messages.not_saved",
