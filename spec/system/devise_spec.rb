@@ -88,6 +88,11 @@ describe 'deviseの統合テスト', type: :system do
         it 'パスワード再設定' do
             click_link 'パスワードを忘れた方はこちら'
             expect(page).to have_selector 'h2', text: 'パスワードをお忘れですか？'
+            #メールアドレス登録に失敗する
+            fill_in 'user_email', with: "wrong_email@test.com"
+            click_button 'パスワード再設定用のメールを送信'
+            expect(page).to have_selector 'li', text: "メールアドレスが見つかりませんでした"
+            #メールアドレス登録に成功する
             fill_in 'user_email', with: user.email
             click_button 'パスワード再設定用のメールを送信'
             #ボタンを押すとメールが送られる
@@ -104,7 +109,7 @@ describe 'deviseの統合テスト', type: :system do
             fill_in 'user_password', with: "new_password"
             fill_in 'user_password_confirmation', with: "different_password"
             click_button 'パスワードを変更する'
-            expect(page).to have_content 'パスワード（確認用）とパスワードの入力が一致しません'
+            expect(page).to have_selector 'li', text: 'パスワード（確認用）とパスワードの入力が一致しません'
             #パスワードを変更する
             fill_in 'user_password', with: "new_password"
             fill_in 'user_password_confirmation', with: "new_password"
