@@ -100,6 +100,11 @@ describe 'deviseの統合テスト', type: :system do
             click_email_link_matching(/http/, mail)
             #パスワード編集画面へ遷移
             expect(page).to have_selector 'h2', text: 'パスワードの再設定'
+            #パスワードの変更に失敗する
+            fill_in 'user_password', with: "new_password"
+            fill_in 'user_password_confirmation', with: "different_password"
+            click_button 'パスワードを変更する'
+            expect(page).to have_content 'パスワード（確認用）とパスワードの入力が一致しません'
             #パスワードを変更する
             fill_in 'user_password', with: "new_password"
             fill_in 'user_password_confirmation', with: "new_password"
