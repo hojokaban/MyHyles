@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_06_09_044856) do
     t.integer "category_id"
     t.string "name", null: false
     t.date "birthday"
+    t.boolean "birthday_added", default: false, null: false
     t.integer "total_relationship", default: 0
     t.string "hyle_image_id"
     t.datetime "created_at", null: false
