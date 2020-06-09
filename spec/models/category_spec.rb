@@ -14,8 +14,8 @@ RSpec.describe Category, type: :model do
             @category.name = ""
             expect(@category).not_to be_valid
         end
-        it "名前が11字以上の場合はNG" do
-            @category.name = "a"*11
+        it "名前が21字以上の場合はNG" do
+            @category.name = "a"*21
             expect(@category).not_to be_valid
         end
     end
