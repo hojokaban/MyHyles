@@ -2,43 +2,39 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name),
         html: { method: :put, class:"form-group", id:"edit-user" }) do |f| %>
-<h3>ユーザー情報</h3>
-  <%= render 'devise/shared/user_info', f:f %>
-  <%= render 'devise/shared/password_form', f:f %>
+    <h3>ユーザー情報</h3>
+    <div class="edit-user">
+      <%= render 'devise/shared/user_info', f:f %>
+      <%= render 'devise/shared/password_form', f:f %>
+      <%= f.label :current_password, "現在のパスワード" %><br />
+      <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control" %>
+      <%= f.submit "変更を保存する", class:"btn" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :current_password, "現在のパスワード" %><br />
-    <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "変更を保存する" %>
-  </div>
-<% end %>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name),
-        html: { method: :put, class:"form-group", id:"edit-birthday" }) do |f| %>
     <h3>誕生日の通知</h3>
-    <%= f.radio_button :require_notice, false, class:"form-check-input" %>
-    <%= f.label :require_notice_false, "通知を出さない", class:"form-check-label" %><br>
-    <%= f.radio_button :require_notice, true, class:"form-check-input" %>
-    <%= f.label :require_notice_true, "通知を出す", class:"form-check-label" %>
-    <%= f.number_field :notice_before , autocomplete: "current-password", class:"form-control" %> 日前に通知
-    <%= f.submit "変更を保存する" %>
-<% end %>
+    <div class="edit-birthday">
+        <%= f.radio_button :require_notice, false, class:"form-check-input" %>
+        <%= f.label :require_notice_false, "通知を出さない", class:"form-check-label" %><br>
+        <%= f.radio_button :require_notice, true, class:"form-check-input" %>
+        <%= f.label :require_notice_true, "通知を出す", class:"form-check-label" %>
+        <%= f.number_field :notice_before , autocomplete: "current-password", class:"form-control" %> 日前に通知
+        <%= f.submit "変更を保存する", class:"btn" %>
+    </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name),
-    html: { method: :put, class:"form-group", id:"edit-frequency" }) do |f| %>
     <h3>どのくらいの期間でヒュレーとの関わりを計算する？</h3>
-    <%= f.number_field :term , autocomplete: "current-password", class:"form-control" %> ヶ月以内での関わりを計算
-    <%= f.submit "変更を保存する" %>
+    <div class="edit-frequency">
+        <%= f.number_field :term , autocomplete: "current-password", class:"form-control" %> ヶ月以内での関わりを計算
+        <%= f.submit "変更を保存する", class:"btn" %>
+    </div>
 <% end %>
 
 <h3>カテゴリー</h3>
-<% @categories.each do |category| %>
-    <span><%= category.name %></span>
-<% end %>
-<%= form_with(model: @category, url: users_categories_path, local:true, html: {class:"form-group", id:"add-category"}) do |f| %>
-    <%= f.text_field :name , autocomplete: "name", class:"form-control" %>
-    <%= f.submit "新しいカテゴリーを追加" %>
-<% end %>
+<div class="category">
+    <% @categories.each do |category| %>
+        <span><%= category.name %></span>
+    <% end %>
+    <%= form_with(model: @category, url: users_categories_path, local:true, html: {class:"form-group", id:"add-category"}) do |f| %>
+        <%= f.text_field :name , autocomplete: "name", class:"form-control" %>
+        <%= f.submit "新しいカテゴリーを追加" %>
+    <% end %>
+</div>

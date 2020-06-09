@@ -137,80 +137,80 @@ describe 'deviseの統合テスト', type: :system do
         it 'ユーザー情報の編集' do
             visit edit_user_registration_path
             #ユーザー情報の編集に成功
-            within '#edit-user' do
-                fill_in 'user_name', with: "変更した名前"
-                fill_in 'user_email', with: "changed@mail.com"
-                fill_in 'user_password', with: "different"
-                fill_in 'user_password_confirmation', with: "different"
-                fill_in 'user_current_password', with: "password"
+            fill_in 'user_name', with: "変更した名前"
+            fill_in 'user_email', with: "changed@mail.com"
+            fill_in 'user_password', with: "different"
+            fill_in 'user_password_confirmation', with: "different"
+            fill_in 'user_current_password', with: "password"
+            within '.edit-user' do
                 click_button '変更を保存する'
             end
             expect(page).to have_content 'アカウントが更新されました'
             #ユーザー情報の編集、パスワードが合っていない
-            within '#edit-user' do
-                fill_in 'user_name', with: "変更した名前"
-                fill_in 'user_email', with: "changed@mail.com"
-                fill_in 'user_password', with: "different"
-                fill_in 'user_password_confirmation', with: "difficult"
-                fill_in 'user_current_password', with: "password"
+            fill_in 'user_name', with: "変更した名前"
+            fill_in 'user_email', with: "changed@mail.com"
+            fill_in 'user_password', with: "different"
+            fill_in 'user_password_confirmation', with: "difficult"
+            fill_in 'user_current_password', with: "password"
+            within '.edit-user' do
                 click_button '変更を保存する'
             end
             expect(page).to have_selector 'li', text: 'パスワード（確認用）とパスワードの入力が一致しません'
             #ユーザー情報の編集、片方のパスワードのみ入力されている
-            within '#edit-user' do
-                fill_in 'user_name', with: "変更した名前"
-                fill_in 'user_email', with: "changed@mail.com"
-                fill_in 'user_password', with: "different"
-                fill_in 'user_password_confirmation', with: "  "
+            fill_in 'user_name', with: "変更した名前"
+            fill_in 'user_email', with: "changed@mail.com"
+            fill_in 'user_password', with: "different"
+            fill_in 'user_password_confirmation', with: "  "
+            within '.edit-user' do
                 click_button '変更を保存する'
             end
             expect(page).to have_selector 'li', text: 'パスワード（確認用）とパスワードの入力が一致しません'
             #ユーザー情報の編集、現在のパスワードがない
-            within '#edit-user' do
-                fill_in 'user_name', with: "変更した名前"
-                fill_in 'user_email', with: "changed@mail.com"
-                fill_in 'user_password', with: "different"
-                fill_in 'user_password_confirmation', with: "difficult"
+            fill_in 'user_name', with: "変更した名前"
+            fill_in 'user_email', with: "changed@mail.com"
+            fill_in 'user_password', with: "different"
+            fill_in 'user_password_confirmation', with: "difficult"
+            within '.edit-user' do
                 click_button '変更を保存する'
             end
             expect(page).to have_selector 'li', text: '現在のパスワードを入力してください'
-            #誕生日の通知情報の編集に成功
-            within '#edit-birthday' do
-                choose '通知を出す'
-                fill_in 'user_notice_before', with: 12
-                click_button '変更を保存する'
-            end
-            expect(page).to have_content 'アカウントが更新されました'
             #誕生日の通知情報の編集に失敗
-            within '#edit-birthday' do
-                fill_in 'user_notice_before', with: ""
+            fill_in 'user_notice_before', with: ""
+            within '.edit-birthday' do
                 click_button '変更を保存する'
             end
             expect(page).to have_content '誕生日の通知の設定を入力してください'
             #誕生日の通知情報の編集に失敗
-            within '#edit-birthday' do
-                fill_in 'user_notice_before', with: 366
+            fill_in 'user_notice_before', with: 366
+            within '.edit-birthday' do
                 click_button '変更を保存する'
             end
             expect(page).to have_content '誕生日の通知の設定は366より小さい値にしてください'
-            #関係の期間情報の編集に成功
-            within '#edit-frequency' do
-                fill_in 'user_term', with: 12
+            #誕生日の通知情報の編集に成功
+            choose '通知を出す'
+            fill_in 'user_notice_before', with: 12
+            within '.edit-birthday' do
                 click_button '変更を保存する'
             end
             expect(page).to have_content 'アカウントが更新されました'
             #関係の期間情報の編集に失敗
-            within '#edit-frequency' do
-                fill_in 'user_term', with: ""
+            fill_in 'user_term', with: ""
+            within '.edit-frequency' do
                 click_button '変更を保存する'
             end
             expect(page).to have_content '関係性を算出する期間の設定を入力してください'
             #関係の期間情報の編集に失敗
-            within '#edit-frequency' do
-                fill_in 'user_term', with: 121
+            fill_in 'user_term', with: 121
+            within '.edit-frequency' do
                 click_button '変更を保存する'
             end
             expect(page).to have_content '関係性を算出する期間の設定は121より小さい値にしてください'
+            #関係の期間情報の編集に成功
+            fill_in 'user_term', with: 12
+            within '.edit-frequency' do
+                click_button '変更を保存する'
+            end
+            expect(page).to have_content 'アカウントが更新されました'
         end
     end
 end

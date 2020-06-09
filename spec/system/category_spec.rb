@@ -8,7 +8,7 @@ describe 'deviseの統合テスト', type: :system do
         login_as user, scope: :user
     end
 
-    it "設定画面からカテゴリーを追加する" do
+    it "設定画面でカテゴリーを追加、表示する" do
         visit edit_user_registration_path
         expect(page).to have_selector 'h3', text: 'カテゴリー'
         expect(page).to have_selector 'span', text: category.name
