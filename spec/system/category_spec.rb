@@ -26,5 +26,10 @@ describe 'deviseの統合テスト', type: :system do
         fill_in "category-name-#{new_category_id}", with: "  "
         find(".edit-category-#{new_category_id}").click
         expect(page).to have_selector 'li', text: "カテゴリー名を入力してください"
+        #カテゴリーの編集に成功
+        fill_in "category-name-#{new_category_id}", with: "編集したカテゴリー"
+        find(".edit-category-#{new_category_id}").click
+        expect(page).to have_content "カテゴリーが編集されました"
+        expect(find("#category-name-#{new_category_id}").value).to eq "編集したカテゴリー"
     end
 end

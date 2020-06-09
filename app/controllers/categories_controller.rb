@@ -14,6 +14,7 @@ class CategoriesController < ApplicationController
     def update
         @category = Category.find(params[:id])
         if @category.update(category_params)
+            flash[:success] = "カテゴリーが編集されました"
         else
             flash[:danger] = set_error_flash(@category)
         end
