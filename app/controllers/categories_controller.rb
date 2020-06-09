@@ -12,7 +12,14 @@ class CategoriesController < ApplicationController
     end
 
     def update
+        @category = Category.find(params[:id])
+        if @category.update(category_params)
+        else
+            flash[:danger] = set_error_flash(@category)
+        end
+        redirect_back(fallback_location: root_path)
     end
+
     def destroy
     end
 

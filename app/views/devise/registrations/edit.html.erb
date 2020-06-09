@@ -31,9 +31,14 @@
 <h3>カテゴリー</h3>
 <div class="category">
     <% @categories.each do |category| %>
-        <span><%= category.name %></span>
+        <%= form_with(model:category, url: users_category_path(category),
+                local: true, html: {method: :patch}) do |f| %>
+            <span><%= f.text_field :name, id:"category-name-#{category.id}" %></span>
+            <%= f.submit "変更を保存する", class:"edit-category-#{category.id}" %>
+        <% end %>
     <% end %>
-    <%= form_with(model: @category, url: users_categories_path, local:true, html: {class:"form-group", id:"add-category"}) do |f| %>
+    <%= form_with(model: @category, url: users_categories_path, local:true,
+            html: {class:"form-group", id:"add-category"}) do |f| %>
         <%= f.text_field :name , autocomplete: "name", class:"form-control" %>
         <%= f.submit "新しいカテゴリーを追加" %>
     <% end %>
