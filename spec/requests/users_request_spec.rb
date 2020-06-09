@@ -4,8 +4,7 @@ describe "Users関連" do
 
   context "画面に遷移する" do
       before do
-          @user = create(:user)
-          sign_in @user
+          sign_in create(:user)
       end
       it 'メインページが表示される' do
           get users_path

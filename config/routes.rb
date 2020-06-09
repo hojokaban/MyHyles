@@ -9,5 +9,11 @@ Rails.application.routes.draw do
     get '/contact', to: 'static_pages#contact'
     resource :users, only: [:show] do
         resources :categories, only: [:create, :update, :destroy]
+        resources :hyles do
+            collection do
+                get :categorized_index
+                get :tagged_index
+            end
+        end
     end
 end

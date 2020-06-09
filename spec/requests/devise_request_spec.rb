@@ -5,15 +5,15 @@ describe "devise関連", type: :request do
     context "画面に遷移する" do
         it '新規登録画面が表示される' do
             get new_user_registration_path
-            expect(response.status).to eq 200
+            expect(response).to have_http_status(:success)
         end
         it 'ログイン画面が表示される' do
             get new_user_session_path
-            expect(response.status).to eq 200
+            expect(response).to have_http_status(:success)
         end
         it 'パスワード再設定メール送信画面が表示される' do
             get new_user_password_path
-            expect(response.status).to eq 200
+            expect(response).to have_http_status(:success)
         end
         it '設定画面が表示される' do
             get edit_user_registration_path
