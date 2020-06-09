@@ -1,3 +1,4 @@
+include ApplicationHelper
 class CategoriesController < ApplicationController
 
     def create
