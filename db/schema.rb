@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 2020_06_09_044856) do
 
   create_table "hyles", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "label_id"
     t.integer "category_id"
     t.string "name", null: false
     t.date "birthday"
@@ -31,14 +30,16 @@ ActiveRecord::Schema.define(version: 2020_06_09_044856) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_hyles_on_category_id"
-    t.index ["label_id"], name: "index_hyles_on_label_id"
     t.index ["user_id"], name: "index_hyles_on_user_id"
   end
 
   create_table "labels", force: :cascade do |t|
+    t.integer "hyle_id"
     t.string "name", null: false
+    t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["hyle_id"], name: "index_labels_on_hyle_id"
   end
 
   create_table "users", force: :cascade do |t|
