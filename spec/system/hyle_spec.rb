@@ -39,13 +39,18 @@ describe 'deviseの統合テスト', type: :system do
         click_button '新しいカテゴリーを追加'
         expect(page).to have_content 'カテゴリーが追加されました'
       end
-      it 'タグを追加する' do
-        #カテゴリーの追加に成功
+      it 'タグを追加、削除する' do
+        #タグの追加に成功
         fill_in 'user_tag', with: "新しいタグ"
         click_button '新しいタグを追加'
         expect(page).to have_content 'タグが追加されました!'
         user.reload
         expect(user.tag_list.count).to eq 1
+        #タグを削除する
+        click_link "削除"
+        expect(page).to have_content 'タグを削除しました'
+        user.reload
+        expect(user.tag_list.count).to eq 0
       end
     end
 end

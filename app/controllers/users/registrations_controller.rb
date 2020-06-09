@@ -58,9 +58,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
+  def destroy
+      current_user.tag_list.remove(params[:format])
+      current_user.update(tag_list: current_user.tag_list)
+      flash[:success] = "タグを削除しました"
+      redirect_back(fallback_location: root_path)
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign

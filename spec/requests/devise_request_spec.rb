@@ -34,11 +34,16 @@ describe "devise関連", type: :request do
           before do
             sign_in user
           end
-          it 'タグの追加' do
+          it 'タグの追加と削除' do
+            #追加
             expect(user.tag_list.count).to eq 0
             patch user_registration_path(user), params:{user:{tag:"test"}}
             user.reload
             expect(user.tag_list.count).to eq 1
+            #削除
+            delete user_registration_path("test")
+            user.reload
+            expect(user.tag_list.count).to eq 0
           end
       end
     end
