@@ -1,7 +1,19 @@
+include ApplicationHelper
 class HylesController < ApplicationController
 
   def new
       @hyle = Hyle.new
+  end
+
+  def create
+    @hyle = current_user.hyles.new(hyle_params)
+    if @hyle.save
+      flash[:success] = "ヒュレーが追加されました!"
+      redirect_to users_hyles_path
+    else
+      flash[:danger] = set_error_flash(@hyle)
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def edit
@@ -19,13 +31,16 @@ class HylesController < ApplicationController
   def tagged_index
   end
 
-  def create
-  end
-
   def update
   end
 
   def destroy
   end
+
+  private
+
+    def hyle_params
+      params.require(:hyle).permit(:category, :name, :birthday_added, :birthday, :hyle_image)
+    end
 
 end

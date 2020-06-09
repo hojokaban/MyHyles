@@ -1,2 +1,19 @@
 <h2>ヒュレーの追加</h2>
-<p>Find me in app/views/hyles/new.html.erb</p>
+<div class="new-hyle">
+    <div class="hyle-image">
+    </div>
+    <div class="hyle-info">
+        <%= form_with(model: @hyle, url: users_hyles_path, local: true, class:"form-group") do |f| %>
+            <%= f.label :name, "名前" %>
+            <%= f.text_field :name, class:"form-control" %>
+            <%= f.radio_button :birthday_added, false, class:"form-check-input" %>
+            <%= f.label :birthday_added_false, "誕生日を記入しない", class:"form-check-label" %><br>
+            <%= f.radio_button :birthday_added, true, class:"form-check-input" %>
+            <%= f.label :birthday_added_true, "誕生日を記入する", class:"form-check-label" %>
+            <%= f.label :birthday, "生年月日" %>
+            <%= f.date_select :birthday, {}, autofocus: true, autocomplete: "birthday", class:"form-control" %>
+            <%= f.submit 'この内容で追加する' %>
+        <% end %>
+    </div>
+
+</div>

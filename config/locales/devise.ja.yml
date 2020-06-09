@@ -34,6 +34,7 @@ ja:
         name: ラベル名
         body: 内容
       hyle:
+        category: カテゴリー
         name: 名前
         birthday: 誕生日
         total_relationship: ヒュレーとの関係
