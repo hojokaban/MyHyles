@@ -12,13 +12,21 @@ class User < ApplicationRecord
                 greater_than_or_equal_to: 0 }
     validates :term, presence: true, numericality: { less_than: 121,
                 greater_than: 0}
+    acts_as_taggable
+    attr_accessor :tag
 
     def update_without_current_password(params)
         current_password = params.delete(:current_password)
-        if params[:password].blank? && params[:password_confirmation].blank?
+        if params[:password].blank? && params[:password_confirmation].blank? && params[:tag].blank?
             params.delete(:password)
             params.delete(:password_confirmation)
             result = update_attributes(params)
+        elsif !params[:tag].blank?
+            params.delete(:password)
+            params.delete(:password_confirmation)
+            self.tag_list.add(params[:tag])
+            update(params)
+            result = "タグが追加されました!"
         else
             if params[:password].blank?
               params.delete(:password)

@@ -1,0 +1,6 @@
+
+<%= form_with(model: current_user, url: user_registration_path, local:true,
+        html: {method: :patch, class:"form-group", id:"add-category"}) do |f| %>
+    <%= f.text_field :tag, class:"form-control" %>
+    <%= f.submit "新しいタグを追加" %>
+<% end %>
