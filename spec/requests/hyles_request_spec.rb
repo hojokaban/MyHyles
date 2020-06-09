@@ -30,4 +30,16 @@ RSpec.describe "Hyles", type: :request do
     end
   end
 
+  context "hyleコントローラーの機能" do
+
+    it "ヒュレーが追加できる" do
+      expect{
+      post users_hyles_path, params:{hyle:{
+                            name: "test",
+                            category_id: hyle.category.id}}
+      }.to change(Hyle, :count).by(1)
+    end
+
+  end
+
 end
