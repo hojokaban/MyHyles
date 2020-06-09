@@ -2,8 +2,8 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 describe 'deviseの統合テスト', type: :system do
-    let(:user) { create(:user, :confirmed)}
-    let(:category) { create(:category)}
+    let(:category) { create(:category) }
+    let(:user) { category.user }
     before do
         login_as user, scope: :user
     end

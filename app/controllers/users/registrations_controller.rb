@@ -36,6 +36,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/edit
   def edit
     @category = Category.new
+    @categories = current_user.categories
     super
   end
 
