@@ -30,9 +30,19 @@ ja:
         notice_before: 誕生日の通知の設定
       category:
         name: カテゴリー名
+      label:
+        name: ラベル名
+        body: 内容
+      hyle:
+        name: 名前
+        birthday: 誕生日
+        total_relationship: ヒュレーとの関係
+        hyle_image_id: 画像
     models:
         user: ユーザー
         category: カテゴリー
+        label: ラベル
+        hyle: ヒュレー
   devise:
     confirmations:
       confirmed: メールアドレスが承認されました
