@@ -3,6 +3,7 @@ class HylesController < ApplicationController
 
   def new
       @hyle = Hyle.new
+      @category = Category.new
   end
 
   def create
@@ -12,7 +13,8 @@ class HylesController < ApplicationController
       redirect_to users_hyles_path
     else
       flash[:danger] = set_error_flash(@hyle)
-      redirect_back(fallback_location: root_path)
+      @category = Category.new
+      render :new
     end
   end
 

@@ -18,8 +18,13 @@
                 |category| [category.name, category.id]}, "カテゴリーを選択してください"),
                  {prompt: "カテゴリーを選択してください"}, {class:"form-control"} %>
 
+
             <%= f.submit 'この内容で追加する' %>
         <% end %>
+    </div>
+    <div class="new-category">
+      <h4>新しいカテゴリーを追加する</h4>
+      <%= render 'categories/category_new_form', category: @category %>
     </div>
 
 </div>
