@@ -8,9 +8,9 @@ class User < ApplicationRecord
 
     validates :name, presence: true, length: {maximum: 20}
     validates :notice_before, presence: true, numericality: { less_than: 366,
-                greater_than_or_equal_to: 0, only_integer: true }
+                greater_than_or_equal_to: 0 }
     validates :term, presence: true, numericality: { less_than: 121,
-                greater_than: 0, only_integer: true }
+                greater_than: 0}
 
     def update_without_current_password(params)
         current_password = params.delete(:current_password)

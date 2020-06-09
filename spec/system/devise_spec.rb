@@ -183,6 +183,12 @@ describe 'deviseの統合テスト', type: :system do
             expect(page).to have_content 'アカウントが更新されました'
             #誕生日の通知情報の編集に失敗
             within '#edit-birthday' do
+                fill_in 'user_notice_before', with: ""
+                click_button '変更を保存する'
+            end
+            expect(page).to have_content '誕生日の通知の設定を入力してください'
+            #誕生日の通知情報の編集に失敗
+            within '#edit-birthday' do
                 fill_in 'user_notice_before', with: 366
                 click_button '変更を保存する'
             end
@@ -193,6 +199,12 @@ describe 'deviseの統合テスト', type: :system do
                 click_button '変更を保存する'
             end
             expect(page).to have_content 'アカウントが更新されました'
+            #関係の期間情報の編集に失敗
+            within '#edit-frequency' do
+                fill_in 'user_term', with: ""
+                click_button '変更を保存する'
+            end
+            expect(page).to have_content '関係性を算出する期間の設定を入力してください'
             #関係の期間情報の編集に失敗
             within '#edit-frequency' do
                 fill_in 'user_term', with: 121

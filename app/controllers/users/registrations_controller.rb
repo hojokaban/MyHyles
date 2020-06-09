@@ -3,6 +3,7 @@ include ApplicationHelper
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
+  before_action :set_category, only: [:edit, :update]
 
   # GET /resource/sign_up
   def new
@@ -13,7 +14,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     build_resource(sign_up_params)
     resource.save
-    #この一行を追加
     flash[:danger] = set_error_flash(resource) if resource.errors.any?
     yield resource if block_given?
     if resource.persisted?
@@ -35,8 +35,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-    @category = Category.new
-    @categories = current_user.categories
     super
   end
 
@@ -89,6 +87,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     def after_update_path_for(resource)
         edit_user_registration_path
+    end
+
+    def set_category
+        @category = Category.new
+        @categories = current_user.categories
     end
 
   # The path used after sign up for inactive accounts.
