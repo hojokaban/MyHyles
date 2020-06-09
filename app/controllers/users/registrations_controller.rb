@@ -55,16 +55,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def update_tag
-      tag = params[:user][:tag]
-      if tag.blank?
-        flash[:danger] = "タグ名は空白では追加できません"
-      elsif tag.length > 20
-        flash[:danger] = "タグ名は20字以内です"
-      else
-        current_user.tag_list.add(tag)
-        current_user.update(tag_list: current_user.tag_list)
-        flash[:success] = "タグが追加されました!"
-      end
+      message = current_user.add_tag(params[:user][:tag])
+      message.class == String ? flash[:danger] = message : flash[:success] = "タグが追加されました!"
       redirect_back(fallback_location: root_path)
   end
 

@@ -38,4 +38,15 @@ class User < ApplicationRecord
         clean_up_passwords
         result
     end
+
+    def add_tag(tag)
+      if tag.blank?
+        result = "タグ名は空白では追加できません"
+      elsif tag.length > 20
+        result = "タグ名は20字以内です"
+      else
+        tag_list.add(tag)
+        result = update(tag_list: tag_list)
+      end
+    end
 end
