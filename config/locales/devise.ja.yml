@@ -28,8 +28,11 @@ ja:
         updated_at: 更新日
         term: 関係性を算出する期間の設定
         notice_before: 誕生日の通知の設定
+      category:
+        name: カテゴリー名
     models:
-  #     user: ユーザー
+        user: ユーザー
+        category: カテゴリー
   devise:
     confirmations:
       confirmed: メールアドレスが承認されました

@@ -13,10 +13,13 @@ describe 'deviseの統合テスト', type: :system do
         expect(page).to have_selector 'h3', text: 'カテゴリー'
         expect(page).to have_selector 'span', text: category.name
         #カテゴリーの作成に成功
-        within '#add-category' do
-            fill_in 'category_name', with: "新しいカテゴリー"
-            click_button '新しいカテゴリーを追加'
-        end
+        fill_in 'category_name', with: "新しいカテゴリー"
+        click_button '新しいカテゴリーを追加'
         expect(page).to have_content 'カテゴリーが追加されました'
+        expect(page).to have_selector 'span', text: "新しいカテゴリー"
+        #カテゴリーの作成に失敗
+        fill_in 'category_name', with: "  "
+        click_button '新しいカテゴリーを追加'
+        expect(page).to have_selector 'li', text: "カテゴリー名を入力してください"
     end
 end
