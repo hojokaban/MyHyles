@@ -3,8 +3,7 @@ require 'rails_helper'
 RSpec.describe "Categories", type: :request do
     let(:category) { create(:category) }
     before do
-        @user = create(:user, :confirmed)
-        sign_in @user
+        sign_in category.user
     end
     it 'カテゴリーが作成される' do
         expect{
@@ -12,7 +11,7 @@ RSpec.describe "Categories", type: :request do
         }.to change(Category, :count).by(1)
     end
     it 'カテゴリーが編集される' do
-        expect(category.name).to eq "category1"
+        expect(category.name).to eq "category2"
         patch users_category_path(category), params: {category: {name: "categories"}}
         expect(Category.first.name).to eq "categories"
     end
