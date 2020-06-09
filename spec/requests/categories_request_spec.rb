@@ -13,7 +13,13 @@ RSpec.describe "Categories", type: :request do
     end
     it 'カテゴリーが編集される' do
         expect(category.name).to eq "category1"
-        patch users_category_path(category), params: {category: {name: "categories1"}}
-        expect(category.name).to eq "categories1"
+        patch users_category_path(category), params: {category: {name: "categories"}}
+        expect(Category.first.name).to eq "categories"
+    end
+    it 'カテゴリーが削除される' do
+        category
+        expect{
+            delete users_category_path(category)
+        }.to change(Category, :count).by(-1)
     end
 end
