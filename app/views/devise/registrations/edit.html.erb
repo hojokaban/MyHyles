@@ -36,6 +36,9 @@
             <span><%= f.text_field :name, id:"category-name-#{category.id}" %></span>
             <%= f.submit "変更を保存する", class:"edit-category-#{category.id}" %>
         <% end %>
+        <%= button_to "削除", users_category_path(category),
+            method: :delete, class:"delete-category-#{category.id}",
+             data: {confirm: "このカテゴリーを削除すると、このカテゴリーのヒュレー が全て削除されます。本当に削除しますか？"} %>
     <% end %>
     <%= form_with(model: @category, url: users_categories_path, local:true,
             html: {class:"form-group", id:"add-category"}) do |f| %>

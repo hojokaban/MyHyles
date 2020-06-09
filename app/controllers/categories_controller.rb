@@ -22,6 +22,9 @@ class CategoriesController < ApplicationController
     end
 
     def destroy
+        Category.find(params[:id]).destroy
+        flash[:success] = "カテゴリーが削除されました"
+        redirect_back(fallback_location: root_path)
     end
 
     private
