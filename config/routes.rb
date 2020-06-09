@@ -3,6 +3,9 @@ Rails.application.routes.draw do
                                  :registrations => 'users/registrations',
                                  :passwords => 'users/passwords'
                                 }
+    devise_scope :user do
+      patch 'users/tag', to: 'users/registrations#update_tag', as: 'tag_registration'
+    end
     mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
     root 'static_pages#top'
     get '/about', to: 'static_pages#about'

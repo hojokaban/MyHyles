@@ -40,6 +40,18 @@ describe 'deviseの統合テスト', type: :system do
         expect(page).to have_content 'カテゴリーが追加されました'
       end
       it 'タグを追加、削除する' do
+        #タグの追加に失敗(タグ名が空)
+        fill_in 'user_tag', with: " "
+        click_button '新しいタグを追加'
+        expect(page).to have_content 'タグ名は空白では追加できません'
+        user.reload
+        expect(user.tag_list.count).to eq 0
+        #タグの追加に失敗(タグ名が空)
+        fill_in 'user_tag', with: "a"*21
+        click_button '新しいタグを追加'
+        expect(page).to have_content 'タグ名は20字以内です'
+        user.reload
+        expect(user.tag_list.count).to eq 0
         #タグの追加に成功
         fill_in 'user_tag', with: "新しいタグ"
         click_button '新しいタグを追加'

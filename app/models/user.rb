@@ -21,12 +21,6 @@ class User < ApplicationRecord
             params.delete(:password)
             params.delete(:password_confirmation)
             result = update_attributes(params)
-        elsif !params[:tag].blank?
-            params.delete(:password)
-            params.delete(:password_confirmation)
-            self.tag_list.add(params[:tag])
-            update(params)
-            result = "タグが追加されました!"
         else
             if params[:password].blank?
               params.delete(:password)

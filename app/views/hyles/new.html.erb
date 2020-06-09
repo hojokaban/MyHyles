@@ -18,9 +18,10 @@
                 |category| [category.name, category.id]}),
                  {prompt: "カテゴリーを選択してください"}, {class:"form-control"} %>
 
-            <% current_user.tag_list.each do |tag, i| %>
-              <%= check_box_tag 'hyle[tag_list][]', tag, false, id:"tag-#{i}"%>
-              <%= tag %><%= link_to "削除", user_registration_path(tag), {method: :delete, id:"delete-tag-#{i}"} %>
+            <% current_user.tag_list.each_with_index do |tag, i| %>
+              <%= check_box_tag 'hyle[tag_list][]', tag, false, id:"tag-#{i}" %>
+              <%= tag %>
+              <%= link_to "削除", user_registration_path(tag), {method: :delete, id:"delete-tag-#{i}"} %>
             <% end %>
 
             <%= f.submit 'この内容で追加する' %>

@@ -44,10 +44,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
       resource_updated = update_resource(resource, account_update_params)
       yield resource if block_given?
-      if resource_updated == "タグが追加されました!"
-        flash[:success] = resource_updated
-        redirect_back(fallback_location: root_path)
-      elsif resource_updated
+      if resource_updated
         set_flash_message_for_update(resource, prev_unconfirmed_email)
         bypass_sign_in resource, scope: resource_name if sign_in_after_change_password?
         respond_with resource, location: after_update_path_for(resource)
@@ -55,6 +52,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
         flash[:danger] = set_error_flash(resource) if resource.errors.any?
         respond_with resource
       end
+  end
+
+  def update_tag
+      tag = params[:user][:tag]
+      if tag.blank?
+        flash[:danger] = "タグ名は空白では追加できません"
+      elsif tag.length > 20
+        flash[:danger] = "タグ名は20字以内です"
+      else
+        current_user.tag_list.add(tag)
+        current_user.update(tag_list: current_user.tag_list)
+        flash[:success] = "タグが追加されました!"
+      end
+      redirect_back(fallback_location: root_path)
   end
 
   # DELETE /resource
