@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_09_043822) do
+ActiveRecord::Schema.define(version: 2020_06_09_044856) do
 
   create_table "categories", force: :cascade do |t|
     t.integer "user_id"
@@ -20,8 +20,23 @@ ActiveRecord::Schema.define(version: 2020_06_09_043822) do
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
+  create_table "hyles", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "label_id"
+    t.integer "category_id"
+    t.string "name", null: false
+    t.date "birthday"
+    t.integer "total_relationship", default: 0
+    t.string "hyle_image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_hyles_on_category_id"
+    t.index ["label_id"], name: "index_hyles_on_label_id"
+    t.index ["user_id"], name: "index_hyles_on_user_id"
+  end
+
   create_table "labels", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
