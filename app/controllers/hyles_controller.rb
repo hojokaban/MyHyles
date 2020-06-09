@@ -1,5 +1,7 @@
 class HylesController < ApplicationController
+
   def new
+      @hyle = Hyle.new
   end
 
   def edit
@@ -25,5 +27,5 @@ class HylesController < ApplicationController
 
   def destroy
   end
-  
+
 end
