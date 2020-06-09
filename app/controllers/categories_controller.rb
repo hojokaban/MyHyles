@@ -3,21 +3,15 @@ class CategoriesController < ApplicationController
 
     def create
         @category = current_user.categories.new(category_params)
-        if @category.save
-            flash[:success] = "カテゴリーが追加されました"
-        else
+        @category.save ? flash[:success] = "カテゴリーが追加されました" :
             flash[:danger] = set_error_flash(@category)
-        end
         redirect_back(fallback_location: root_path)
     end
 
     def update
         @category = Category.find(params[:id])
-        if @category.update(category_params)
-            flash[:success] = "カテゴリーが編集されました"
-        else
-            flash[:danger] = set_error_flash(@category)
-        end
+        @category.update(category_params) ? flash[:success] = "カテゴリーが編集されました"
+                : flash[:danger] = set_error_flash(@category)
         redirect_back(fallback_location: root_path)
     end
 

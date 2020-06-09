@@ -1,0 +1,7 @@
+<!-- recieves category -->
+
+<%= form_with(model: category, url: users_categories_path, local:true,
+        html: {class:"form-group", id:"add-category"}) do |f| %>
+    <%= f.text_field :name , autocomplete: "name", class:"form-control" %>
+    <%= f.submit "新しいカテゴリーを追加" %>
+<% end %>
