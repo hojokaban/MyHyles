@@ -40,7 +40,7 @@ class HylesController < ApplicationController
   private
 
     def hyle_params
-      params.require(:hyle).permit(:category, :name, :birthday_added, :birthday, :hyle_image)
+      params.require(:hyle).permit(:category_id, :name, :birthday_added, :birthday, :hyle_image)
     end
 
 end

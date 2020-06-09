@@ -16,6 +16,11 @@ describe 'deviseの統合テスト', type: :system do
         choose '誕生日を記入しない'
         click_button 'この内容で追加する'
         expect(page).to have_content 'カテゴリーを入力してください'
+        #ヒュレー情報の入力に失敗(名前がない)
+        fill_in 'hyle_name', with: "  "
+        choose '誕生日を記入しない'
+        select hyle.category.name, from: 'hyle[category_id]'
+        click_button 'この内容で追加する'
+        expect(page).to have_content '名前を入力してください'
     end
 end
-#select hyle.category, from 'カテゴリー'

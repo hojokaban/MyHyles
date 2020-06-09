@@ -12,6 +12,12 @@
             <%= f.label :birthday_added_true, "誕生日を記入する", class:"form-check-label" %>
             <%= f.label :birthday, "生年月日" %>
             <%= f.date_select :birthday, {}, autofocus: true, autocomplete: "birthday", class:"form-control" %>
+
+            <%= f.label :category, "カテゴリー" %>
+            <%= f.select :category_id, options_for_select(current_user.categories.collect{
+                |category| [category.name, category.id]}, "カテゴリーを選択してください"),
+                 {prompt: "カテゴリーを選択してください"}, {class:"form-control"} %>
+
             <%= f.submit 'この内容で追加する' %>
         <% end %>
     </div>
