@@ -7,7 +7,6 @@ class HylesController < ApplicationController
   end
 
   def create
-    binding.pry
     @hyle = current_user.hyles.new(hyle_params)
     if @hyle.save
       flash[:success] = "ヒュレーが追加されました!"

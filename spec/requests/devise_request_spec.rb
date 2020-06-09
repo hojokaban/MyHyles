@@ -29,6 +29,18 @@ describe "devise関連", type: :request do
              #登録後はトップページへリダイレクトされる
              expect(response).to redirect_to(root_path)
         end
+        context "ユーザーの編集について" do
+          let(:user) { create(:test_user) }
+          before do
+            sign_in user
+          end
+          it 'タグの追加' do
+            expect(user.tag_list.count).to eq 0
+            patch user_registration_path(user), params:{user:{tag:"test"}}
+            user.reload
+            expect(user.tag_list.count).to eq 1
+          end
+      end
     end
     context "sessionコントローラーの機能" do
         before do
