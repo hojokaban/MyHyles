@@ -7,11 +7,11 @@ describe 'hylesの統合テスト', type: :system do
     before do
         login_as user, scope: :user
     end
-    context "ヒュレー追加画面" do
+    context "ヒュレー追加画面から詳細画面" do
       before do
           visit new_users_hyle_path
       end
-      it "ヒュレーをタグなしで追加する" do
+      it "ヒュレーを誕生日、タグなしで追加する" do
           expect(page).to have_selector 'h2', text: 'ヒュレーの追加'
           #ヒュレー情報の入力に失敗(カテゴリーがない)
           fill_in 'hyle_name', with: "新しいヒュレー"
@@ -32,8 +32,9 @@ describe 'hylesの統合テスト', type: :system do
           expect(page).to have_selector 'h2', text: "タグなしヒュレー"
           expect(page).to have_selector 'td', text: "タグなしヒュレー"
           expect(page).to have_selector 'td', text: "test_category"
-          expect(page).to have_selector 'td', text: "タグはありません"
-          #誕生日も表示されない
+          #タグが表示されない
+          expect(page).not_to have_selector 'th', text: "タグ"
+          #誕生日が表示されない
           expect(page).not_to have_selector 'th', text: "誕生日"
       end
       it 'カテゴリーを追加する' do
@@ -66,7 +67,7 @@ describe 'hylesの統合テスト', type: :system do
         user.reload
         expect(user.tag_list.count).to eq 1
       end
-      it 'ヒュレーをタグ付けで追加する' do
+      it 'ヒュレーを誕生日あり、タグ付けで追加する' do
         #タグを３つ追加
         fill_in 'user_tag', with: "タグ1"
         click_button '新しいタグを追加'
@@ -77,16 +78,19 @@ describe 'hylesの統合テスト', type: :system do
         user.reload
         #タグ付けでヒュレーを追加する
         fill_in 'hyle_name', with: "タグ付きヒュレー"
+        choose '誕生日を記入する'
+        select "2016", from: 'hyle[birthday(1i)]'
+        select "12", from: 'hyle[birthday(2i)]'
+        select "12", from: 'hyle[birthday(3i)]'
         select "test_category", from: 'hyle[category_id]'
-        #expect(find("#hyle_tag_list_callタグ2call").value).to eq '<call>タグ2</call>'
         check user.tag_list[1]
-        #"hyle_tag_list_call#{user.tag_list[1]}call"
         check user.tag_list[2]
         click_button 'この内容で追加する'
         expect(page).to have_content 'ヒュレーが追加されました!'
         #詳細ページに遷移し、正しく表示
         expect(page).to have_selector 'h2', text: "タグ付きヒュレー"
         expect(page).to have_selector 'td', text: "タグ付きヒュレー"
+        expect(page).to have_selector 'td', text: "2016-12-12"
         expect(page).to have_selector 'td', text: "test_category"
         expect(page).to have_selector 'span', text: "タグ2"
         expect(page).to have_selector 'span', text: "タグ3"

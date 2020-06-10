@@ -8,7 +8,6 @@ class HylesController < ApplicationController
 
   def create
     @hyle = current_user.hyles.new(hyle_params)
-    binding.pry
     @hyle.set_tag(params[:hyle][:tag_list]) if @hyle.valid? && params[:hyle][:tag_list].present?
     if @hyle.save
       flash[:success] = "ヒュレーが追加されました!"

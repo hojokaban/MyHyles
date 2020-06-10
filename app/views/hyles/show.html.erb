@@ -17,13 +17,16 @@
       <th>カテゴリー</th>
       <td><%= @hyle.category.name %></td>
     </tr>
-    <tr>
-      <th>タグ</th>
-      <td>
-        <% @hyle.tag_list.each do |tag| %>
-          <span><%= tag %></span>
-        <% end %>
-      </td>
-    </tr>
+    <% if @hyle.tag_list.present? %>
+      <tr>
+        <th>タグ</th>
+        <td>
+          <% @hyle.tag_list.each do |tag| %>
+            <span><%= tag %></span>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
   </table>
+  <%= link_to "内容を編集する", edit_users_hyle_path(@hyle) %>
 </div>
