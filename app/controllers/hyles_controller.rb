@@ -24,6 +24,13 @@ class HylesController < ApplicationController
   end
 
   def edit
+    @hyle = Hyle.find(params[:id])
+  end
+
+  def update
+    @hyle = Hyle.find(params[:id])
+    @hyle.update(hyle_params) ? flash[:success]="ヒュレーが編集されました!" : flash[:danger]=set_error_flash(@hyle)
+    redirect_back(fallback_location: root_path)
   end
 
   def index
@@ -33,9 +40,6 @@ class HylesController < ApplicationController
   end
 
   def tagged_index
-  end
-
-  def update
   end
 
   def destroy

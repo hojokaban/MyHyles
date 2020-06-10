@@ -1,2 +1,41 @@
-<h1>Hyles#edit</h1>
-<p>Find me in app/views/hyles/edit.html.erb</p>
+<h2><%= @hyle.name %></h2>
+<div class="new-hyle">
+  <%= form_with(model: @hyle, url: users_hyle_path, local: true, class:"form-group") do |f| %>
+    <div class="hyle-image">
+      <%= attachment_image_tag @hyle, :hyle_image, format:'jpg', class:"hyle-img", fallback:"no_image2.jpg", size:"300x300" %>
+			<%= f.attachment_field :hyle_image %>
+    </div>
+    <div class="new-hyle-form">
+        <div class="hyle-info">
+          <%= f.label :name, "名前" %>
+          <%= f.text_field :name, class:"form-control" %>
+          <%= f.radio_button :birthday_added, false, class:"form-check-input" %>
+          <%= f.label :birthday_added_false, "誕生日を記入しない", class:"form-check-label" %><br>
+          <%= f.radio_button :birthday_added, true, class:"form-check-input" %>
+          <%= f.label :birthday_added_true, "誕生日を記入する", class:"form-check-label" %>
+          <%= f.label :birthday, "生年月日" %>
+          <%= f.date_select :birthday, {}, autofocus: true, autocomplete: "birthday", class:"form-control" %>
+        </div>
+        <div class="select-category">
+          <%= f.label :category, "カテゴリー" %>
+          <%= f.select :category_id, options_for_select(current_user.categories.collect{
+              |category| [category.name, category.id]}),
+               {prompt: "カテゴリーを選択してください"}, {class:"form-control"} %>
+        </div>
+        <div class="check_box" >
+          <%= f.collection_check_boxes(:tag_list, current_user.tag_list,tag,tag) %>
+        </div>
+        <%= f.submit '変更を保存する' %>
+    </div>
+  <% end %>
+
+  <div class="new-category">
+    <h4>新しいカテゴリーを追加する</h4>
+    <%= render 'categories/category_new_form', category: @category %>
+  </div>
+  <div class="new-tag">
+    <h4>新しいタグを追加する</h4>
+    <%= render 'categories/tag_new_form' %>
+  </div>
+
+</div>
