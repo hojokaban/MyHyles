@@ -2,8 +2,7 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 describe 'deviseの統合テスト', type: :system do
-  let(:category) { create(:category) }
-  let(:user) { category.user}
+  let(:user) { create(:test_user) }
 
     before do
         ActionMailer::Base.deliveries.clear
@@ -212,32 +211,6 @@ describe 'deviseの統合テスト', type: :system do
                 click_button '変更を保存する'
             end
             expect(page).to have_content 'アカウントが更新されました'
-        end
-        context "ログイン後の動き(ヒュレー追加画面)" do
-          before do
-              login_as user, scope: :user
-              visit new_users_hyle_path
-          end
-          it 'タグの編集' do
-            #タグを３つ追加
-            fill_in 'user_tag', with: "タグ1"
-            click_button '新しいタグを追加'
-            fill_in 'user_tag', with: "タグ2"
-            click_button '新しいタグを追加'
-            fill_in 'user_tag', with: "タグ3"
-            click_button '新しいタグを追加'
-            user.reload
-            #タグ付けでヒュレーを追加する
-            fill_in 'hyle_name', with: "タグ付きヒュレー"
-            select category.name, from: 'hyle[category_id]'
-            #expect(find("#hyle_tag_list_callタグ2call").value).to eq '<call>タグ2</call>'
-            check user.tag_list[1]
-            #"hyle_tag_list_call#{user.tag_list[1]}call"
-            check user.tag_list[2]
-            click_button 'この内容で追加する'
-            expect(page).to have_content 'ヒュレーが追加されました!'
-            hyle = Hyle.last
-          end
         end
     end
 end
