@@ -67,6 +67,14 @@ describe 'hylesの統合テスト', type: :system do
         user.reload
         expect(user.tag_list.count).to eq 1
       end
+      it '画像を追加する' do
+        fill_in 'hyle_name', with: "タグなしヒュレー"
+        select "test_category", from: 'hyle[category_id]'
+        click_button 'この内容で追加する'
+        expect(page).to have_content 'ヒュレーが追加されました!'
+        #詳細ページに遷移し、正しく表示
+        expect(page).to have_selector 'h2', text: "タグ付きヒュレー"
+      end
       it 'ヒュレーを誕生日あり、タグ付けで追加する' do
         #タグを３つ追加
         fill_in 'user_tag', with: "タグ1"
