@@ -28,13 +28,18 @@
         <%= f.submit 'この内容で追加する' %>
     </div>
   <% end %>
-    <div class="new-category">
-      <h4>新しいカテゴリーを追加する</h4>
-      <%= render 'categories/category_new_form', category: @category %>
-    </div>
-    <div class="new-tag">
-      <h4>新しいタグを追加する</h4>
-      <%= render 'categories/tag_new_form' %>
-    </div>
+
+  <h3>そのほか、お好みの情報を追加してみましょう！</h3>
+
+  <% current_user.labels
+
+  <div class="new-category">
+    <h4>新しいカテゴリーを追加する</h4>
+    <%= render 'categories/category_new_form', category: @category %>
+  </div>
+  <div class="new-tag">
+    <h4>新しいタグを追加する</h4>
+    <%= render 'categories/tag_new_form' %>
+  </div>
 
 </div>
