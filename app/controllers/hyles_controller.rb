@@ -18,12 +18,12 @@ class HylesController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def show
     flash[:success] = "ヒュレーが追加されました!"
     @hyle = Hyle.find(params[:id])
+  end
+
+  def edit
   end
 
   def index

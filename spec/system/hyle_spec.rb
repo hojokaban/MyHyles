@@ -2,8 +2,9 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 describe 'hylesの統合テスト', type: :system do
-    let(:hyle) { create(:test_hyle)}
-    let(:user) { hyle.user }
+    let(:label) { create(:test_label) }
+    let(:hyle) { label.hyle}
+    let(:user) { label.user }
     before do
         login_as user, scope: :user
     end
@@ -17,12 +18,12 @@ describe 'hylesの統合テスト', type: :system do
         fill_in 'hyle_name', with: "新しいヒュレー"
         choose '誕生日を記入しない'
         click_button 'この内容で追加する'
-        expect(page).to have_content 'カテゴリーを入力してください'
+        expect(page).to have_selector, 'li', text: 'カテゴリーを入力してください'
         #ヒュレー情報の入力に失敗(名前がない)
         fill_in 'hyle_name', with: "  "
         select "test_category", from: 'hyle[category_id]'
         click_button 'この内容で追加する'
-        expect(page).to have_content '名前を入力してください'
+        expect(page).to have_selector, 'li', text: '名前を入力してください'
         #ヒュレー情報の入力に成功
         fill_in 'hyle_name', with: "タグなしヒュレー"
         select "test_category", from: 'hyle[category_id]'
@@ -55,13 +56,13 @@ describe 'hylesの統合テスト', type: :system do
         #タグの追加に失敗(タグ名が空)
         fill_in 'user_tag', with: " "
         click_button '新しいタグを追加'
-        expect(page).to have_content 'タグ名は空白では追加できません'
+        expect(page).to have_selector, 'li', text: 'タグ名は空白では追加できません'
         user.reload
         expect(user.tag_list.count).to eq 0
         #タグの追加に失敗(タグ名が空)
         fill_in 'user_tag', with: "a"*21
         click_button '新しいタグを追加'
-        expect(page).to have_content 'タグ名は20字以内です'
+        expect(page).to have_selector, 'li', text: 'タグ名は20字以内です'
         user.reload
         expect(user.tag_list.count).to eq 0
         #タグの追加に成功
@@ -158,6 +159,21 @@ describe 'hylesの統合テスト', type: :system do
         expect(page).to have_content 'ヒュレーが追加されました!'
         expect(page).to have_selector 'th', text: "テストラベル"
         expect(page).to have_selector 'td', text: "テストラベルの内容"
+      end
+    end
+    context "ヒュレーの編集画面から詳細画面" do
+      before do
+        visit edit_users_hyle_path(hyle)
+      end
+      it 'ヒュレーの情報を編集する' do
+        #ヒュレー情報の編集に失敗
+        fill_in 'hyle_name', with: "  "
+        click_button '変更を保存する'
+        expect(page).to have_selector, 'li', text: '名前を入力してください'
+        #ヒュレーの情報の編集に成功
+        fill_in 'hyle_name', with: "編集したヒュレー"
+        click_button '変更を保存する'
+        expect(page).to have_content 'ヒュレーが編集されました!'
       end
     end
 end
