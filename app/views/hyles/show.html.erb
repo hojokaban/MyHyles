@@ -1,5 +1,6 @@
 <h2><%= @hyle.name %></h2>
 <div class="hyle-image">
+  <%= attachment_image_tag @hyle, :hyle_image, format:'jpg', class:"hyle-img", fallback:"no_image2.jpg", size:"300x300" %>
 </div>
 <div class="hyle-info">
   <table>

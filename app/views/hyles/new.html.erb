@@ -1,9 +1,11 @@
 <h2>ヒュレーの追加</h2>
 <div class="new-hyle">
+  <%= form_with(model: @hyle, url: users_hyles_path, local: true, class:"form-group") do |f| %>
     <div class="hyle-image">
+      <%= attachment_image_tag @hyle, :hyle_image, format:'jpg', class:"hyle-img", fallback:"no_image2.jpg", size:"300x300" %>
+			<%= f.attachment_field :hyle_image %>
     </div>
     <div class="new-hyle-form">
-      <%= form_with(model: @hyle, url: users_hyles_path, local: true, class:"form-group") do |f| %>
         <div class="hyle-info">
           <%= f.label :name, "名前" %>
           <%= f.text_field :name, class:"form-control" %>
@@ -24,8 +26,8 @@
           <%= f.collection_check_boxes(:tag_list, current_user.tag_list,tag,tag) %>
         </div>
         <%= f.submit 'この内容で追加する' %>
-      <% end %>
     </div>
+  <% end %>
     <div class="new-category">
       <h4>新しいカテゴリーを追加する</h4>
       <%= render 'categories/category_new_form', category: @category %>
