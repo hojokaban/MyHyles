@@ -8,10 +8,8 @@ class HylesController < ApplicationController
 
   def create
     @hyle = current_user.hyles.new(hyle_params)
+    @hyle.set_tag(params[:hyle][:tag_list]) if @hyle.valid?
     if @hyle.save
-      unless params[:hyle][:tag_list].blank?
-        @hyle.tag_list.add(params[:hyle][:tag_list])
-      end
       flash[:success] = "ヒュレーが追加されました!"
       redirect_to users_hyles_path
     else

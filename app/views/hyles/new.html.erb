@@ -18,11 +18,6 @@
                 |category| [category.name, category.id]}),
                  {prompt: "カテゴリーを選択してください"}, {class:"form-control"} %>
 
-            <%# current_user.tag_list.each_with_index do |tag, i| %>
-              <%#= check_box_tag 'hyle[tag_list][]', tag, false, id:"tag-#{i}" %>
-              <%#= tag %>
-            <%# end %>
-
             <div class="check_box" >
                 <%= f.collection_check_boxes(:tag_list, current_user.tag_list,tag,tag) do |b| %>
                   <%= b.label { b.check_box + b.text } %>

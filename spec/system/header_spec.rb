@@ -46,6 +46,11 @@ describe 'ヘッダーのテスト', type: :system do
             expect(page).to have_content 'ログアウトしました!'
             expect(page).not_to have_selector 'a', text: "#{user.name}さん"
         end
+        it 'ヒュレー追加画面に遷移' do
+          click_link "追加"
+          click_link 'ヒュレーの追加'
+          expect(page).to have_selector 'h2', text: 'ヒュレーの追加'
+        end
     end
 
 end
