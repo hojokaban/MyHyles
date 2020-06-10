@@ -1,6 +1,8 @@
 include ApplicationHelper
 class HylesController < ApplicationController
 
+  before_action :set_hyle, only: [:show, :edit, :update]
+
   def new
       @hyle = Hyle.new
       @category = Category.new
@@ -14,21 +16,18 @@ class HylesController < ApplicationController
     else
       flash[:danger] = set_error_flash(@hyle)
       @category = Category.new
-      render :new
+      redirect_to new_users_hyle_path
     end
   end
 
   def show
     flash[:success] = "ヒュレーが追加されました!"
-    @hyle = Hyle.find(params[:id])
   end
 
   def edit
-    @hyle = Hyle.find(params[:id])
   end
 
   def update
-    @hyle = Hyle.find(params[:id])
     @hyle.update(hyle_params) ? flash[:success]="ヒュレーが編集されました!" : flash[:danger]=set_error_flash(@hyle)
     redirect_back(fallback_location: root_path)
   end
@@ -50,6 +49,10 @@ class HylesController < ApplicationController
     def hyle_params
       params.require(:hyle).permit(:category_id, :name,
          :birthday_added, :birthday, :hyle_image, :tag_list)
+    end
+
+    def set_hyle
+      @hyle = Hyle.find(params[:id])
     end
 
 end

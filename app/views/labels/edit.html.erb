@@ -3,14 +3,9 @@
 
 <%= render 'hyles/hyle_show.html.erb', hyle: @hyle %>
 
-<% @hyle.labels.each do |label| %>
-  <%= form_with(model: label, url: users_label_path(label), local: true, html:{method: :patch, class:"form-group"}) do |f| %>
-    <%= f.text_field :name, class:"form-control", id:"label-name-#{label.id}" %>
-    <%= f.text_area :body, class:"form-control", id:"label-body-#{label.id}" %>
-    <%= f.submit "変更する" %>
-  <% end %>
-  <%= link_to "削除", users_label_path(label), method: :delete, id:"delete-label-#{label.id}" %>
-<% end %>
+<div class="edit-label">
+  <%= render 'hyles/label_edit', hyle: @hyle %>
+</div>
 
 <div class="new-label">
   <h4>新しいラベルを追加する</h4>
