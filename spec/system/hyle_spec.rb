@@ -114,11 +114,27 @@ describe 'hylesの統合テスト', type: :system do
         expect(page).to have_selector 'span', text: "タグ3"
         expect(page).not_to have_selector 'span', text: "タグ1"
       end
-      it 'ラベルを追加して、ヒュレーの追加' do
-        #ラベルを追加する
-        # fill_in 'label_name', with: "テストラベル"
-        # click_button '新しいラベルを追加'
-        # expect(page).to have_selector 'label', text: "テストラベル"
+      it 'ラベルを追加する' do
+        #ヒュレーを追加
+        fill_in 'hyle_name', with: "ラベルありヒュレー"
+        select "test_category", from: 'hyle[category_id]'
+        click_button 'この内容で追加する'
+        expect(page).to have_content 'ヒュレーが追加されました!'
+        #ラベルの追加に失敗する
+        fill_in 'label_name', with: "a"*21
+        fill_in 'label_body', with: "  "
+        click_button '新しいラベルを追加'
+        expect(page).to have_selector 'li', text: "ラベル名は20文字以内で入力してください"
+        expect(page).to have_selector 'li', text: "内容を入力してください"
+        #ラベルの追加に成功する
+        fill_in 'label_name', with: "テストラベル"
+        fill_in 'label_body', with: "テストラベルの内容"
+        click_button '新しいラベルを追加'
+        label = Label.last
+        #ラベルを表示する
+        expect(page).to have_content "ラベルが追加されました"
+        expect(find("#label-name-#{label.id}").value).to eq "テストラベル"
+        expect(find("#label-body-#{label.id}").value).to eq "テストラベルの内容"
       end
     end
 end
