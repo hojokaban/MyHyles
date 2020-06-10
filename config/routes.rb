@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     get '/about', to: 'static_pages#about'
     get '/contact', to: 'static_pages#contact'
     resource :users, only: [:show] do
-        resources :labels, only: [:new, :create, :update, :destroy]
+        resources :labels, only: [:edit, :create, :update, :destroy]
         resources :categories, only: [:create, :update, :destroy]
         resources :hyles do
             collection do

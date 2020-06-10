@@ -1,6 +1,7 @@
 class LabelsController < ApplicationController
 
-  def new
+  def edit
+    @hyle = Hyle.find(params[:id])
   end
 
   def create

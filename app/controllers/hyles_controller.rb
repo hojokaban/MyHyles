@@ -11,7 +11,7 @@ class HylesController < ApplicationController
     @hyle.set_tag(params[:hyle][:tag_list]) if @hyle.valid? && params[:hyle][:tag_list].present?
     if @hyle.save
       flash[:success] = "ヒュレーが追加されました!"
-      redirect_to users_hyle_path(@hyle)
+      redirect_to edit_users_label_path(@hyle)
     else
       flash[:danger] = set_error_flash(@hyle)
       @category = Category.new

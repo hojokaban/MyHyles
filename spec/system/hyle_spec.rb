@@ -28,6 +28,8 @@ describe 'hylesの統合テスト', type: :system do
           select "test_category", from: 'hyle[category_id]'
           click_button 'この内容で追加する'
           expect(page).to have_content 'ヒュレーが追加されました!'
+          #ラベル追加ページに遷移
+          click_link 'ラベルの追加を終える'
           #詳細ページに遷移し、正しく表示
           expect(page).to have_selector 'h2', text: "タグなしヒュレー"
           expect(page).to have_selector 'td', text: "タグなしヒュレー"
@@ -75,6 +77,8 @@ describe 'hylesの統合テスト', type: :system do
         select "test_category", from: 'hyle[category_id]'
         click_button 'この内容で追加する'
         expect(page).to have_content 'ヒュレーが追加されました!'
+        #ラベル追加ページに遷移
+        click_link 'ラベルの追加を終える'
         #詳細ページに遷移し、正しく表示
         expect(page).to have_selector 'h2', text: "画像ありヒュレー"
         #expect(page).to have_css "img[src$='sample1.jpg']"
@@ -99,6 +103,8 @@ describe 'hylesの統合テスト', type: :system do
         check user.tag_list[2]
         click_button 'この内容で追加する'
         expect(page).to have_content 'ヒュレーが追加されました!'
+        #ラベル追加ページに遷移
+        click_link 'ラベルの追加を終える'
         #詳細ページに遷移し、正しく表示
         expect(page).to have_selector 'h2', text: "タグ付きヒュレー"
         expect(page).to have_selector 'td', text: "タグ付きヒュレー"
