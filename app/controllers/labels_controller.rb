@@ -1,5 +1,8 @@
 class LabelsController < ApplicationController
 
+  def new
+  end
+
   def create
   end
 
@@ -8,5 +11,5 @@ class LabelsController < ApplicationController
 
   def destroy
   end
-  
+
 end
