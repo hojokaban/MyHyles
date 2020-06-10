@@ -1,7 +1,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-describe 'deviseの統合テスト', type: :system do
+describe 'hylesの統合テスト', type: :system do
     let(:hyle) { create(:test_hyle)}
     let(:user) { hyle.user }
     before do
@@ -49,7 +49,7 @@ describe 'deviseの統合テスト', type: :system do
         #タグの追加に失敗(タグ名が空)
         fill_in 'user_tag', with: "a"*21
         click_button '新しいタグを追加'
-        expect(page).to have_content 'タグ名は20字以内です'
+        expect(page).to have_content 'タグは20字以内です'
         user.reload
         expect(user.tag_list.count).to eq 0
         #タグの追加に成功
@@ -58,11 +58,6 @@ describe 'deviseの統合テスト', type: :system do
         expect(page).to have_content 'タグが追加されました!'
         user.reload
         expect(user.tag_list.count).to eq 1
-        #タグを削除する
-        click_link "削除"
-        expect(page).to have_content 'タグを削除しました'
-        user.reload
-        expect(user.tag_list.count).to eq 0
       end
     end
 end

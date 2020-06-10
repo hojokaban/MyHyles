@@ -18,15 +18,12 @@ describe 'deviseの統合テスト', type: :system do
             fill_in 'user_password', with: "password"
             fill_in 'user_password_confirmation', with: "password"
             click_button '新規登録'
-
             user = User.last
             mail = open_email(user.email)
-
             #新規登録ボタンを押すとメールが送られる
             mail.to deliver_to(user.email)
             #トップページへの遷移
             expect(page).to have_content 'アカウント有効化用のメールが送信されています'
-
             #メールの表示
             mail.to deliver_to(user.email)
             mail.should have_body_text "#{user.name}さん、ようこそ!"
