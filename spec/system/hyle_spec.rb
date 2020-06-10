@@ -147,6 +147,10 @@ describe 'hylesの統合テスト', type: :system do
         expect(page).to have_content "ラベルが変更されました"
         expect(find("#label-name-#{label.id}").value).to eq "編集されたラベル"
         expect(find("#label-body-#{label.id}").value).to eq "テストラベルの内容２"
+        #ラベルを削除する
+        find("#delete-label-#{label.id}").click
+        expect(page).to have_content "ラベルが削除されました"
+        expect(page).to have_no_css "#delete-label-#{label.id}"
       end
     end
 end

@@ -6,6 +6,7 @@
     <%= f.text_area :body, class:"form-control", id:"label-body-#{label.id}" %>
     <%= f.submit "変更する" %>
   <% end %>
+  <%= link_to "削除", users_label_path(label), method: :delete, id:"delete-label-#{label.id}" %>
 <% end %>
 
 <div class="new-label">

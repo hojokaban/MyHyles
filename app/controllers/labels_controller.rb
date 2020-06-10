@@ -19,6 +19,10 @@ class LabelsController < ApplicationController
   end
 
   def destroy
+    @label = Label.find(params[:id])
+    @label.destroy
+    flash[:success] = "ラベルが削除されました"
+    redirect_back(fallback_location: root_path)
   end
 
   private
