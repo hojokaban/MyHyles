@@ -11,7 +11,7 @@ describe 'hylesの統合テスト', type: :system do
       before do
           visit new_users_hyle_path
       end
-      it "ヒュレーを追加する" do
+      it "ヒュレーをタグなしで追加する" do
           expect(page).to have_selector 'h2', text: 'ヒュレーの追加'
           #ヒュレー情報の入力に失敗(カテゴリーがない)
           fill_in 'hyle_name', with: "新しいヒュレー"
@@ -24,10 +24,17 @@ describe 'hylesの統合テスト', type: :system do
           click_button 'この内容で追加する'
           expect(page).to have_content '名前を入力してください'
           #ヒュレー情報の入力に成功
-          fill_in 'hyle_name', with: "新しいヒュレー"
+          fill_in 'hyle_name', with: "タグなしヒュレー"
           select "test_category", from: 'hyle[category_id]'
           click_button 'この内容で追加する'
           expect(page).to have_content 'ヒュレーが追加されました!'
+          #詳細ページに遷移し、正しく表示
+          expect(page).to have_selector 'h2', text: "タグなしヒュレー"
+          expect(page).to have_selector 'td', text: "タグなしヒュレー"
+          expect(page).to have_selector 'td', text: "test_category"
+          expect(page).to have_selector 'td', text: "タグはありません"
+          #誕生日も表示されない
+          expect(page).not_to have_selector 'th', text: "誕生日"
       end
       it 'カテゴリーを追加する' do
         #カテゴリーの追加に失敗
@@ -59,7 +66,7 @@ describe 'hylesの統合テスト', type: :system do
         user.reload
         expect(user.tag_list.count).to eq 1
       end
-      it 'タグの編集' do
+      it 'ヒュレーをタグ付けで追加する' do
         #タグを３つ追加
         fill_in 'user_tag', with: "タグ1"
         click_button '新しいタグを追加'
