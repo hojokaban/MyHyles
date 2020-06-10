@@ -2,6 +2,8 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 describe 'deviseの統合テスト', type: :system do
+  let(:category) { create(:category) }
+  let(:user) { category.user}
 
     before do
         ActionMailer::Base.deliveries.clear
@@ -12,7 +14,7 @@ describe 'deviseの統合テスト', type: :system do
             visit new_user_registration_path
             #情報を入力する
             fill_in 'user_name', with: "test"
-            fill_in 'user_email', with: "test@example.com"
+            fill_in 'user_email', with: "testtest@example.com"
             fill_in 'user_password', with: "password"
             fill_in 'user_password_confirmation', with: "password"
             click_button '新規登録'
@@ -30,7 +32,7 @@ describe 'deviseの統合テスト', type: :system do
             mail.should have_body_text "#{user.name}さん、ようこそ!"
             #ログインをすると失敗する
             click_link 'ログイン'
-            fill_in 'user_email', with: "test@example.com"
+            fill_in 'user_email', with: "testtest@example.com"
             fill_in 'user_password', with: "password"
             click_button 'ログイン'
             expect(page).to have_content '作業を続行するにはアカウントを有効化する必要があります。'
@@ -38,7 +40,7 @@ describe 'deviseの統合テスト', type: :system do
             #アカウント有効化メールの再送信
             click_link '確認メールが届いていない方はこちら'
             expect(page).to have_selector 'h2', text: 'アカウント有効化メールの再送信'
-            fill_in 'user_email', with: "test@example.com"
+            fill_in 'user_email', with: "testtest@example.com"
             click_button 'アカウント有効化メールを再送する'
             #メールの表示
             mail.to deliver_to(user.email)
@@ -47,7 +49,7 @@ describe 'deviseの統合テスト', type: :system do
             #アカウントの有効化
             expect(page).to have_content 'メールアドレスが承認されました'
             #ログインが成功する
-            fill_in 'user_email', with: "test@example.com"
+            fill_in 'user_email', with: "testtest@example.com"
             fill_in 'user_password', with: "password"
             click_button 'ログイン'
             expect(page).to have_content 'ログインしました!'
@@ -74,7 +76,6 @@ describe 'deviseの統合テスト', type: :system do
     end
 
     context "新規登録後の動き" do
-        let(:user) { create(:user, :confirmed)}
         before do
             visit new_user_session_path
         end
@@ -129,13 +130,12 @@ describe 'deviseの統合テスト', type: :system do
         end
     end
 
-    context "ログイン後の動き" do
-        let(:user) { create(:user, :confirmed)}
+    context "ログイン後の動き(設定画面)" do
         before do
             login_as user, scope: :user
+            visit edit_user_registration_path
         end
         it 'ユーザー情報の編集' do
-            visit edit_user_registration_path
             #ユーザー情報の編集に成功
             fill_in 'user_name', with: "変更した名前"
             fill_in 'user_email', with: "changed@mail.com"
@@ -174,6 +174,8 @@ describe 'deviseの統合テスト', type: :system do
                 click_button '変更を保存する'
             end
             expect(page).to have_selector 'li', text: '現在のパスワードを入力してください'
+        end
+        it '誕生日の通知情報の編集' do
             #誕生日の通知情報の編集に失敗
             fill_in 'user_notice_before', with: ""
             within '.edit-birthday' do
@@ -193,6 +195,8 @@ describe 'deviseの統合テスト', type: :system do
                 click_button '変更を保存する'
             end
             expect(page).to have_content 'アカウントが更新されました'
+        end
+        it '関係の期間情報の編集' do
             #関係の期間情報の編集に失敗
             fill_in 'user_term', with: ""
             within '.edit-frequency' do
@@ -211,6 +215,32 @@ describe 'deviseの統合テスト', type: :system do
                 click_button '変更を保存する'
             end
             expect(page).to have_content 'アカウントが更新されました'
+        end
+        context "ログイン後の動き(ヒュレー追加画面)" do
+          before do
+              login_as user, scope: :user
+              visit new_users_hyle_path
+          end
+          it 'タグの編集' do
+            #タグを３つ追加
+            fill_in 'user_tag', with: "タグ1"
+            click_button '新しいタグを追加'
+            fill_in 'user_tag', with: "タグ2"
+            click_button '新しいタグを追加'
+            fill_in 'user_tag', with: "タグ3"
+            click_button '新しいタグを追加'
+            user.reload
+            #タグ付けでヒュレーを追加する
+            fill_in 'hyle_name', with: "タグ付きヒュレー"
+            select category.name, from: 'hyle[category_id]'
+            #expect(find("#hyle_tag_list_callタグ2call").value).to eq '<call>タグ2</call>'
+            check user.tag_list[1]
+            #"hyle_tag_list_call#{user.tag_list[1]}call"
+            check user.tag_list[2]
+            click_button 'この内容で追加する'
+            expect(page).to have_content 'ヒュレーが追加されました!'
+            hyle = Hyle.last
+          end
         end
     end
 end
