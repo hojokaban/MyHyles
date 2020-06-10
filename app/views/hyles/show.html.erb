@@ -27,12 +27,12 @@
           <% end %>
         </td>
       </tr>
-      <% @hyle.labels.each do |label| %>
-        <tr>
-          <th><%= label.name %></th>
-          <td><%= label.body %></td>
-        </tr>
-      <% end %>
+    <% end %>
+    <% @hyle.labels.each do |label| %>
+      <tr>
+        <th><%= label.name %></th>
+        <td><%= label.body %></td>
+      </tr>
     <% end %>
   </table>
   <%= link_to "内容を編集する", edit_users_hyle_path(@hyle) %>

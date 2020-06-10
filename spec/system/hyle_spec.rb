@@ -9,35 +9,35 @@ describe 'hylesの統合テスト', type: :system do
     end
     context "ヒュレー追加画面から詳細画面" do
       before do
-          visit new_users_hyle_path
+        visit new_users_hyle_path
       end
       it "ヒュレーを誕生日、タグなしで追加する" do
-          expect(page).to have_selector 'h2', text: 'ヒュレーの追加'
-          #ヒュレー情報の入力に失敗(カテゴリーがない)
-          fill_in 'hyle_name', with: "新しいヒュレー"
-          choose '誕生日を記入しない'
-          click_button 'この内容で追加する'
-          expect(page).to have_content 'カテゴリーを入力してください'
-          #ヒュレー情報の入力に失敗(名前がない)
-          fill_in 'hyle_name', with: "  "
-          select "test_category", from: 'hyle[category_id]'
-          click_button 'この内容で追加する'
-          expect(page).to have_content '名前を入力してください'
-          #ヒュレー情報の入力に成功
-          fill_in 'hyle_name', with: "タグなしヒュレー"
-          select "test_category", from: 'hyle[category_id]'
-          click_button 'この内容で追加する'
-          #ラベル追加ページに遷移
-          click_link 'ラベルの追加を終える'
-          #詳細ページに遷移し、正しく表示
-          expect(page).to have_content 'ヒュレーが追加されました!'
-          expect(page).to have_selector 'h2', text: "タグなしヒュレー"
-          expect(page).to have_selector 'td', text: "タグなしヒュレー"
-          expect(page).to have_selector 'td', text: "test_category"
-          #タグが表示されない
-          expect(page).not_to have_selector 'th', text: "タグ"
-          #誕生日が表示されない
-          expect(page).not_to have_selector 'th', text: "誕生日"
+        expect(page).to have_selector 'h2', text: 'ヒュレーの追加'
+        #ヒュレー情報の入力に失敗(カテゴリーがない)
+        fill_in 'hyle_name', with: "新しいヒュレー"
+        choose '誕生日を記入しない'
+        click_button 'この内容で追加する'
+        expect(page).to have_content 'カテゴリーを入力してください'
+        #ヒュレー情報の入力に失敗(名前がない)
+        fill_in 'hyle_name', with: "  "
+        select "test_category", from: 'hyle[category_id]'
+        click_button 'この内容で追加する'
+        expect(page).to have_content '名前を入力してください'
+        #ヒュレー情報の入力に成功
+        fill_in 'hyle_name', with: "タグなしヒュレー"
+        select "test_category", from: 'hyle[category_id]'
+        click_button 'この内容で追加する'
+        #ラベル追加ページに遷移
+        click_link 'ラベルの追加を終える'
+        #詳細ページに遷移し、正しく表示
+        expect(page).to have_content 'ヒュレーが追加されました!'
+        expect(page).to have_selector 'h2', text: "タグなしヒュレー"
+        expect(page).to have_selector 'td', text: "タグなしヒュレー"
+        expect(page).to have_selector 'td', text: "test_category"
+        #タグが表示されない
+        expect(page).not_to have_selector 'th', text: "タグ"
+        #誕生日が表示されない
+        expect(page).not_to have_selector 'th', text: "誕生日"
       end
       it 'カテゴリーを追加する' do
         #カテゴリーの追加に失敗
