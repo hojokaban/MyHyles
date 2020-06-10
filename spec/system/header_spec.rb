@@ -35,6 +35,11 @@ describe 'ヘッダーのテスト', type: :system do
             click_link 'メインページ'
             expect(page).to have_selector 'h2', text: 'メインページ'
         end
+        it 'ヒュレー一覧画面に遷移' do
+          click_link "#{user.name}さん"
+          click_link 'ヒュレー'
+          expect(page).to have_selector 'h2', text: '全ヒュレー'
+        end
         it '設定画面に遷移' do
             click_link "#{user.name}さん"
             click_link '設定'

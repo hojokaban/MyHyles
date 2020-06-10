@@ -209,4 +209,6 @@ describe 'hylesの統合テスト', type: :system do
         expect(page).to have_no_css "#delete-label-#{label.id}"
       end
     end
+    context 'ヒュレー一覧画面' do
+    end
 end
