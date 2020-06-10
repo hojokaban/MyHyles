@@ -16,7 +16,6 @@ describe 'hylesの統合テスト', type: :system do
         expect(page).to have_selector 'h2', text: 'ヒュレーの追加'
         #ヒュレー情報の入力に失敗(カテゴリーがない)
         fill_in 'hyle_name', with: "新しいヒュレー"
-        choose '誕生日を記入しない'
         click_button 'この内容で追加する'
         expect(page).to have_selector 'li', text: 'カテゴリーを入力してください'
         #ヒュレー情報の入力に失敗(名前がない)
@@ -95,7 +94,6 @@ describe 'hylesの統合テスト', type: :system do
         user.reload
         #タグ付けでヒュレーを追加する
         fill_in 'hyle_name', with: "タグ付きヒュレー"
-        choose '誕生日を記入する'
         select "2016", from: 'hyle[birthday(1i)]'
         select "12", from: 'hyle[birthday(2i)]'
         select "12", from: 'hyle[birthday(3i)]'
