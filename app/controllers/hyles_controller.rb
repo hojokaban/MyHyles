@@ -34,6 +34,8 @@ class HylesController < ApplicationController
   end
 
   def index
+    @title = "全ヒュレー"
+    @hyles = current_user.hyles
   end
 
   def categorized_index
