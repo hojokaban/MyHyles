@@ -1,10 +1,10 @@
-<!-- recieves label -->
+<!-- recieves label hyle -->
 
 <%= form_with(model: label, url: users_labels_path, local: true, class:"form-group") do |f| %>
   <%= f.label :name, "ラベル名" %>
-  <%= f.text_field :name, autocomplete: "name", class:"form-control" %>
+  <%= f.text_field :name, autocomplete: "name", class:"form-control", id:"new-label-name" %>
   <%= f.label :body, "ラベル内容" %>
-  <%= f.text_area :body, autocomplete: "body", class:"form-control" %>
+  <%= f.text_area :body, autocomplete: "body", class:"form-control", id:"new-label-body" %>
   <%= f.hidden_field :hyle_id, value: hyle.id  %>
   <%= f.submit "新しいラベルを追加" %>
 <% end %>

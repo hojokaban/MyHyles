@@ -4,7 +4,7 @@
   <%= form_with(model: label, url: users_label_path(label), local: true, html:{method: :patch, class:"form-group"}) do |f| %>
     <%= f.text_field :name, class:"form-control", id:"label-name-#{label.id}" %>
     <%= f.text_area :body, class:"form-control", id:"label-body-#{label.id}" %>
-    <%= f.submit "変更する" %>
+    <%= f.submit "変更する", id:"label-edit-button-#{label.id}" %>
   <% end %>
   <%= link_to "削除", users_label_path(label), method: :delete, id:"delete-label-#{label.id}" %>
 <% end %>

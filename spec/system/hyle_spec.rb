@@ -36,8 +36,8 @@ describe 'hylesの統合テスト', type: :system do
         expect(page).to have_selector 'td', text: "test_category"
         #タグが表示されない
         expect(page).not_to have_selector 'th', text: "タグ"
-        #誕生日が表示されない
-        expect(page).not_to have_selector 'th', text: "誕生日"
+        #誕生日の表示
+        expect(page).to have_selector 'td', text: "--/--/--"
       end
       it 'カテゴリーを追加する' do
         #カテゴリーの追加に失敗
@@ -107,7 +107,7 @@ describe 'hylesの統合テスト', type: :system do
         expect(page).to have_content 'ヒュレーが追加されました!'
         expect(page).to have_selector 'h2', text: "タグ付きヒュレー"
         expect(page).to have_selector 'td', text: "タグ付きヒュレー"
-        expect(page).to have_selector 'td', text: "2016-12-12"
+        expect(page).to have_selector 'td', text: "2016年12月12日"
         expect(page).to have_selector 'td', text: "test_category"
         expect(page).to have_selector 'span', text: "タグ2"
         expect(page).to have_selector 'span', text: "タグ3"
@@ -119,14 +119,14 @@ describe 'hylesの統合テスト', type: :system do
         select "test_category", from: 'hyle[category_id]'
         click_button 'この内容で追加する'
         #ラベルの追加に失敗する
-        fill_in 'label_name', with: "a"*21
-        fill_in 'label_body', with: "  "
+        fill_in 'new-label-name', with: "a"*21
+        fill_in 'new-label-body', with: "  "
         click_button '新しいラベルを追加'
         expect(page).to have_selector 'li', text: "ラベル名は20文字以内で入力してください"
         expect(page).to have_selector 'li', text: "内容を入力してください"
         #ラベルの追加に成功する
-        fill_in 'label_name', with: "テストラベル"
-        fill_in 'label_body', with: "テストラベルの内容"
+        fill_in 'new-label-name', with: "テストラベル"
+        fill_in 'new-label-body', with: "テストラベルの内容"
         click_button '新しいラベルを追加'
         label = Label.last
         #ラベルを表示する
@@ -150,8 +150,8 @@ describe 'hylesの統合テスト', type: :system do
         expect(page).to have_content "ラベルが削除されました"
         expect(page).to have_no_css "#delete-label-#{label.id}"
         #ラベルを追加し、詳細ページへ遷移する
-        fill_in 'label_name', with: "テストラベル"
-        fill_in 'label_body', with: "テストラベルの内容"
+        fill_in 'new-label-name', with: "テストラベル"
+        fill_in 'new-label-body', with: "テストラベルの内容"
         click_button '新しいラベルを追加'
         click_link 'ラベルの追加を終える'
         expect(page).to have_content 'ヒュレーが追加されました!'
@@ -172,6 +172,41 @@ describe 'hylesの統合テスト', type: :system do
         fill_in 'hyle_name', with: "編集したヒュレー"
         click_button '変更を保存する'
         expect(page).to have_content 'ヒュレーが編集されました!'
+        click_link "ヒュレーの編集を終える"
+        expect(page).to have_selector 'td', text: "編集したヒュレー"
+      end
+      it 'ラベルの追加、編集、削除ができる' do
+        #ラベルの追加に失敗する
+        fill_in 'new-label-name', with: "a"*21
+        fill_in 'new-label-body', with: "  "
+        click_button '新しいラベルを追加'
+        expect(page).to have_selector 'li', text: "ラベル名は20文字以内で入力してください"
+        expect(page).to have_selector 'li', text: "内容を入力してください"
+        #ラベルの追加に成功する
+        fill_in 'new-label-name', with: "テストラベル"
+        fill_in 'new-label-body', with: "テストラベルの内容"
+        click_button '新しいラベルを追加'
+        label = Label.last
+        #ラベルを表示する
+        expect(page).to have_content "ラベルが追加されました"
+        expect(find("#label-name-#{label.id}").value).to eq "テストラベル"
+        expect(find("#label-body-#{label.id}").value).to eq "テストラベルの内容"
+        #ラベルの編集に失敗する
+        fill_in "label-name-#{label.id}", with: "  "
+        fill_in "label-body-#{label.id}", with: "テストラベルの内容"
+        find("#label-edit-button-#{label.id}").click
+        expect(page).to have_selector 'li', text: "ラベル名を入力してください"
+        #ラベルの編集に成功する
+        fill_in "label-name-#{label.id}", with: "編集されたラベル"
+        fill_in "label-body-#{label.id}", with: "テストラベルの内容２"
+        find("#label-edit-button-#{label.id}").click
+        expect(page).to have_content "ラベルが変更されました"
+        expect(find("#label-name-#{label.id}").value).to eq "編集されたラベル"
+        expect(find("#label-body-#{label.id}").value).to eq "テストラベルの内容２"
+        #ラベルを削除する
+        find("#delete-label-#{label.id}").click
+        expect(page).to have_content "ラベルが削除されました"
+        expect(page).to have_no_css "#delete-label-#{label.id}"
       end
     end
 end

@@ -25,6 +25,7 @@ class HylesController < ApplicationController
   end
 
   def edit
+    @label = Label.new
   end
 
   def update
