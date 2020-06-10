@@ -135,6 +135,18 @@ describe 'hylesの統合テスト', type: :system do
         expect(page).to have_content "ラベルが追加されました"
         expect(find("#label-name-#{label.id}").value).to eq "テストラベル"
         expect(find("#label-body-#{label.id}").value).to eq "テストラベルの内容"
+        #ラベルの編集に失敗する
+        fill_in "label-name-#{label.id}", with: "  "
+        fill_in "label-body-#{label.id}", with: "テストラベルの内容"
+        click_button '変更する'
+        expect(page).to have_selector 'li', text: "ラベル名を入力してください"
+        #ラベルの編集に成功する
+        fill_in "label-name-#{label.id}", with: "編集されたラベル"
+        fill_in "label-body-#{label.id}", with: "テストラベルの内容２"
+        click_button '変更する'
+        expect(page).to have_content "ラベルが変更されました"
+        expect(find("#label-name-#{label.id}").value).to eq "編集されたラベル"
+        expect(find("#label-body-#{label.id}").value).to eq "テストラベルの内容２"
       end
     end
 end

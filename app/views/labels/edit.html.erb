@@ -1,7 +1,7 @@
 
 <h2>そのほか、お好みの情報を追加してみましょう！</h2>
 <% @hyle.labels.each do |label| %>
-  <%= form_with(model: label, url: users_label_path(label), local: true, class:"form-group") do |f| %>
+  <%= form_with(model: label, url: users_label_path(label), local: true, html:{method: :patch, class:"form-group"}) do |f| %>
     <%= f.text_field :name, class:"form-control", id:"label-name-#{label.id}" %>
     <%= f.text_area :body, class:"form-control", id:"label-body-#{label.id}" %>
     <%= f.submit "変更する" %>

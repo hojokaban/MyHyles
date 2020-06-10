@@ -13,6 +13,9 @@ class LabelsController < ApplicationController
   end
 
   def update
+    @label = Label.find(params[:id])
+    @label.update(label_params) ? flash[:success]="ラベルが変更されました" : flash[:danger]=set_error_flash(@label)
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
