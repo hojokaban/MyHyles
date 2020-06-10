@@ -1,1 +1,29 @@
-<h2>@hyle.name</h2>
+<h2><%= @hyle.name %></h2>
+<div class="hyle-image">
+</div>
+<div class="hyle-info">
+  <table>
+    <tr>
+      <th>名前</th>
+      <td><%= @hyle.name %></td>
+    </tr>
+    <% if @hyle.birthday_added %>
+      <tr>
+        <th>誕生日</th>
+        <td><%= @hyle.birthday %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <th>カテゴリー</th>
+      <td><%= @hyle.category.name %></td>
+    </tr>
+    <tr>
+      <th>タグ</th>
+      <td>
+        <% @hyle.tag_list.each do |tag| %>
+          <span><%= tag %></span>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+</div>

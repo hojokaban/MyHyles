@@ -78,10 +78,9 @@ describe 'hylesの統合テスト', type: :system do
         click_button 'この内容で追加する'
         expect(page).to have_content 'ヒュレーが追加されました!'
         #詳細ページに遷移し、正しく表示
-        expect(page).to have_content "こんな感じー"
         expect(page).to have_selector 'h2', text: "タグ付きヒュレー"
-        expect(page).to have_selector 'h4', text: "タグ付きヒュレー"
-        expect(page).to have_selector 'h4', text: "test_category"
+        expect(page).to have_selector 'td', text: "タグ付きヒュレー"
+        expect(page).to have_selector 'td', text: "test_category"
         expect(page).to have_selector 'span', text: "タグ2"
         expect(page).to have_selector 'span', text: "タグ3"
         expect(page).not_to have_selector 'span', text: "タグ1"

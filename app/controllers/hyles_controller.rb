@@ -8,6 +8,7 @@ class HylesController < ApplicationController
 
   def create
     @hyle = current_user.hyles.new(hyle_params)
+    binding.pry
     @hyle.set_tag(hyle_params[:tag_list]) if @hyle.valid? && hyle_params[:tag_list].present?
     if @hyle.save
       flash[:success] = "ヒュレーが追加されました!"
@@ -23,6 +24,7 @@ class HylesController < ApplicationController
   end
 
   def show
+    @hyle = Hyle.find(params[:id])
   end
 
   def index
