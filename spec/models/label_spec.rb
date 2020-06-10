@@ -2,9 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Label, type: :model do
     context "Labelモデルのバリデーションが正しく稼働" do
+      let(:hyle) { create(:test_hyle) }
         before do
             @label = Label.create!(
-                                   hyle: create(:test_hyle),
+                                   hyle: hyle,
+                                   user: hyle.user,
                                    name: "test",
                                    body: "テスト")
         end
