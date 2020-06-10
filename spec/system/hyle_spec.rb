@@ -27,10 +27,10 @@ describe 'hylesの統合テスト', type: :system do
           fill_in 'hyle_name', with: "タグなしヒュレー"
           select "test_category", from: 'hyle[category_id]'
           click_button 'この内容で追加する'
-          expect(page).to have_content 'ヒュレーが追加されました!'
           #ラベル追加ページに遷移
           click_link 'ラベルの追加を終える'
           #詳細ページに遷移し、正しく表示
+          expect(page).to have_content 'ヒュレーが追加されました!'
           expect(page).to have_selector 'h2', text: "タグなしヒュレー"
           expect(page).to have_selector 'td', text: "タグなしヒュレー"
           expect(page).to have_selector 'td', text: "test_category"
@@ -76,10 +76,10 @@ describe 'hylesの統合テスト', type: :system do
         fill_in 'hyle_name', with: "画像ありヒュレー"
         select "test_category", from: 'hyle[category_id]'
         click_button 'この内容で追加する'
-        expect(page).to have_content 'ヒュレーが追加されました!'
         #ラベル追加ページに遷移
         click_link 'ラベルの追加を終える'
         #詳細ページに遷移し、正しく表示
+        expect(page).to have_content 'ヒュレーが追加されました!'
         expect(page).to have_selector 'h2', text: "画像ありヒュレー"
         #expect(page).to have_css "img[src$='sample1.jpg']"
       end
@@ -102,10 +102,10 @@ describe 'hylesの統合テスト', type: :system do
         check user.tag_list[1]
         check user.tag_list[2]
         click_button 'この内容で追加する'
-        expect(page).to have_content 'ヒュレーが追加されました!'
         #ラベル追加ページに遷移
         click_link 'ラベルの追加を終える'
         #詳細ページに遷移し、正しく表示
+        expect(page).to have_content 'ヒュレーが追加されました!'
         expect(page).to have_selector 'h2', text: "タグ付きヒュレー"
         expect(page).to have_selector 'td', text: "タグ付きヒュレー"
         expect(page).to have_selector 'td', text: "2016-12-12"
@@ -119,7 +119,6 @@ describe 'hylesの統合テスト', type: :system do
         fill_in 'hyle_name', with: "ラベルありヒュレー"
         select "test_category", from: 'hyle[category_id]'
         click_button 'この内容で追加する'
-        expect(page).to have_content 'ヒュレーが追加されました!'
         #ラベルの追加に失敗する
         fill_in 'label_name', with: "a"*21
         fill_in 'label_body', with: "  "
@@ -151,6 +150,14 @@ describe 'hylesの統合テスト', type: :system do
         find("#delete-label-#{label.id}").click
         expect(page).to have_content "ラベルが削除されました"
         expect(page).to have_no_css "#delete-label-#{label.id}"
+        #ラベルを追加し、詳細ページへ遷移する
+        fill_in 'label_name', with: "テストラベル"
+        fill_in 'label_body', with: "テストラベルの内容"
+        click_button '新しいラベルを追加'
+        click_link 'ラベルの追加を終える'
+        expect(page).to have_content 'ヒュレーが追加されました!'
+        expect(page).to have_selector 'th', text: "テストラベル"
+        expect(page).to have_selector 'td', text: "テストラベルの内容"
       end
     end
 end
