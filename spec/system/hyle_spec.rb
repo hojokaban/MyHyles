@@ -42,10 +42,12 @@ describe 'hylesの統合テスト', type: :system do
         fill_in 'category_name', with: "  "
         click_button '新しいカテゴリーを追加'
         expect(page).to have_selector 'li', text: "カテゴリー名を入力してください"
+        expect(page).to have_select('hyle[category_id]', options: ["カテゴリーを選択してください", "test_category"])
         #カテゴリーの追加に成功
         fill_in 'category_name', with: "新しいカテゴリー"
         click_button '新しいカテゴリーを追加'
         expect(page).to have_content 'カテゴリーが追加されました'
+        expect(page).to have_select('hyle[category_id]', options: ["カテゴリーを選択してください", "test_category", "新しいカテゴリー"])
       end
       it 'タグを追加、削除する' do
         #タグの追加に失敗(タグ名が空)
@@ -68,12 +70,14 @@ describe 'hylesの統合テスト', type: :system do
         expect(user.tag_list.count).to eq 1
       end
       it '画像を追加する' do
+        attach_file 'ヒュレー画像', "#{Rails.root}/spec/factories/sample1.jpg"
         fill_in 'hyle_name', with: "タグなしヒュレー"
         select "test_category", from: 'hyle[category_id]'
         click_button 'この内容で追加する'
         expect(page).to have_content 'ヒュレーが追加されました!'
         #詳細ページに遷移し、正しく表示
         expect(page).to have_selector 'h2', text: "タグ付きヒュレー"
+        expect(page).to have_selector "img[src$='sample1.jpg']"
       end
       it 'ヒュレーを誕生日あり、タグ付けで追加する' do
         #タグを３つ追加
