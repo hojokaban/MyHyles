@@ -21,5 +21,16 @@ describe 'memoriesの統合テスト', type: :system do
     fill_in 'new-memory-title', with: "test memory"
     click_button 'この内容で追加する'
     expect(page).to have_content '思い出が追加されました!'
+    #詳細画面に表示
+    expect(page).to have_selector 'h2', text: "test memory"
+    expect(page).to have_selector 'td', text: "test memory"
   end
+  # it 'ヒュレーと思い出追加画面' do
+  #   visit new_users_memory_path
+  #   fill_in 'new-memory-title', with: "test memory"
+  #   check user.tag_list[1]
+  #   check user.tag_list[2]
+  #   click_button 'この内容で追加する'
+  #   expect(page).to have_content '思い出が追加されました!'
+  # end
 end
