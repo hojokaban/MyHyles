@@ -1,0 +1,10 @@
+<!-- recieves hyle -->
+
+<%= link_to users_hyle_path(hyle), id:"hyle-link-#{hyle.id}" do %>
+  <%= attachment_image_tag hyle, :hyle_image, format:'jpg', class:"hyle-img", fallback:"no_image2.jpg", size:"80x80" %>
+  <h4><%= hyle.name %></h4>
+  <span><%= hyle.category.name %></span>
+  <% hyle.labels.each do |label| %>
+    <span><%= label.name %></span>
+  <% end %>
+<% end %>

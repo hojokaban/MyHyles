@@ -203,8 +203,11 @@ describe 'hylesの統合テスト', type: :system do
     end
     context 'ヒュレー一覧画面' do
       let(:other_users_hyle) {create(:other_users_hyle)}
-      it '全ヒュレー一覧' do
+      let(:other_category_hyle) {create(:other_category_hyle)}
+      before do
         visit users_hyles_path
+      end
+      it '全ヒュレー一覧' do
         expect(page).to have_selector 'h2', text: "全ヒュレー"
         #ユーザーのヒュレーが表示される
         expect(page).to have_selector 'h4', text: "test_hyle"
@@ -215,6 +218,15 @@ describe 'hylesの統合テスト', type: :system do
         #ヒュレーをクリックすると詳細ページにリンクする
         find("#hyle-link-#{hyle.id}").click
         expect(page).to have_selector 'h2', text: "test_hyle"
+      end
+      it 'カテゴリー別ヒュレー一覧' do
+        click_link 'test_category'
+        expect(page).to have_selector 'h2', text: "カテゴリー別ヒュレー"
+        expect(page).to have_selector 'h4', text: "test_hyle"
+        #カテゴリーの違うヒュレーは表示されない
+        expect(page).not_to have_selector 'h4', text: "other_category_hyle"
+        #他のユーザーのヒュレーは表示されない
+        expect(page).not_to have_selector 'h4', text: "other_users_hyle"
       end
     end
 end

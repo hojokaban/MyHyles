@@ -11,6 +11,10 @@ FactoryBot.define do
           name {"other_users_hyle"}
           association :user, factory: :user
         end
+        factory :other_category_hyle do
+          name {"other_category_hyle"}
+          association :category, factory: :category
+        end
   end
 
 end
