@@ -39,11 +39,17 @@ ja:
         birthday: 誕生日
         total_relationship: ヒュレーとの関係
         hyle_image_id: 画像
+      memory:
+        title: タイトル
+        date: 日付
+        description: 詳細
+        memory_image: 画像
     models:
         user: ユーザー
         category: カテゴリー
         label: ラベル
         hyle: ヒュレー
+        memory: 思い出
   devise:
     confirmations:
       confirmed: メールアドレスが承認されました

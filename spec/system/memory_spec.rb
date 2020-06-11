@@ -14,12 +14,12 @@ describe 'memoriesの統合テスト', type: :system do
     visit new_users_memory_path
     expect(page).to have_selector 'h2', text: "思い出の追加"
     #思い出の追加に失敗
-    fill_in 'memory-title', with: "a"*21
+    fill_in 'new-memory-title', with: "a"*21
     click_button 'この内容で追加する'
-    expect(page).to have_selector 'h2', text: 'タイトルは20字以下'
+    expect(page).to have_selector 'li', text: 'タイトルは20文字以内で入力してください'
     #思い出の追加に成功
-    fill_in 'memory-title', with: "test memory"
+    fill_in 'new-memory-title', with: "test memory"
     click_button 'この内容で追加する'
-    expect(page).to have_content '思い出を追加しました!'
+    expect(page).to have_content '思い出が追加されました!'
   end
 end
