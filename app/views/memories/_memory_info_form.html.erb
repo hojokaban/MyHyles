@@ -7,19 +7,15 @@
 <div class="memory-form">
     <div class="memory-info">
       <%= f.label :title, "タイトル" %>
-      <%= f.text_field :title, class:"form-control", id:"new-memory-title" %>
+      <%= f.text_field :title, class:"form-control", id:"memory-title" %>
       <%= f.label :date, "いつの思い出？" %>
       <%= raw sprintf(f.date_select(:date, use_month_numbers:true, prompt:"--", start_year:Time.now.year, end_year:Time.now.year-120, date_separator:'%s'),'年','月')+'日' %>
       <%= f.label :description, "詳細" %>
-      <%= f.text_area :description, class:"form-control", id:"new-memory-description" %>
-    </div>
-    <div class="select-hyle">
-      <%= f.label :hyle, "関わったヒュレー" %>
-      <%= f.select :hyle_id, options_for_select(current_user.hyles.collect{
-          |hyle| [hyle.name, hyle.id]}),
-           {prompt: "この思い出と関わりのあるヒュレーを選択してください"}, {class:"form-control"} %>
+      <%= f.text_area :description, class:"form-control", id:"memory-description" %>
     </div>
     <div class="check_box" >
-      <%= f.collection_check_boxes(:hyle_ids, current_user.hyles, :id, :name) %>
+      <%= f.collection_check_boxes(:hyle_ids, current_user.hyles, :id, :name) do |b| %>
+        <%= b.label {b.check_box + b.text} %>
+      <% end %>
     </div>
 </div>

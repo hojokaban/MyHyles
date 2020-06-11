@@ -1,7 +1,7 @@
 include ApplicationHelper
 class MemoriesController < ApplicationController
 
-  before_action :set_memory, only: [:show]
+  before_action :set_memory, only: [:show, :edit, :update]
 
   def new
     @memory = Memory.new
@@ -26,6 +26,14 @@ class MemoriesController < ApplicationController
   end
 
   def update
+    if @memory.update(memory_params)
+      @memory.set_hyle_memory(params[:memory][:hyle_ids])
+      flash[:success] = "思い出が編集されました!"
+      redirect_to users_memory_path(@memory)
+    else
+      flash[:danger] = set_error_flash(@memory)
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def index

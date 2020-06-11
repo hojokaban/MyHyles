@@ -1,2 +1,7 @@
-<h1>Memories#edit</h1>
-<p>Find me in app/views/memories/edit.html.erb</p>
+<h2>思い出の編集</h2>
+<div class="new-memory">
+  <%= form_with(model: @memory, url: users_memory_path, local: true, class:"form-group") do |f| %>
+    <%= render 'memory_info_form', memory: @memory, f:f %>
+    <%= f.submit '変更を保存する' %>
+  <% end %>
+</div>

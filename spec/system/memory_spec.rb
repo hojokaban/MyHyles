@@ -42,17 +42,22 @@ describe 'memoriesの統合テスト', type: :system do
     #編集画面へ遷移
     click_link '内容を編集する'
     expect(page).to have_selector 'h2', text: "思い出の編集"
-    expect(page).to have_checked_field(hyle2.name)
-    expect(page).not_to have_checked_field(hyle.name)
+    # expect(page).to have_checked_field(hyle2.name)
+    # expect(page).not_to have_checked_field(hyle.name)
     #編集に失敗
     fill_in 'memory-title', with: "a"*21
     click_button '変更を保存する'
     expect(page).to have_selector 'li', text: 'タイトルは20文字以内で入力してください'
     #思い出の追加に成功
     fill_in 'memory-title', with: "editted memory"
+    check hyle.name
+    check hyle2.name
     click_button '変更を保存する'
     expect(page).to have_content '思い出が編集されました!'
     #詳細画面に表示
     expect(page).to have_selector 'td', text: "editted memory"
+    expect(page).to have_selector 'td', text: hyle.name
+    expect(page).to have_selector 'td', text: hyle2.name
+    expect(page).not_to have_selector 'td', text: hyle3.name
   end
 end
