@@ -19,5 +19,6 @@ Rails.application.routes.draw do
                 get :tagged_index, as: 'tagged'
             end
         end
+        resources :memories
     end
 end
