@@ -1,0 +1,15 @@
+
+
+<h4>ヒュレー <%= current_user.hyles.count %>人</h4>
+<div class="category-index">
+  <h3>カテゴリー</h3>
+  <% current_user.categories.each do |category| %>
+    <span><%= category.name %></span>
+  <% end %>
+</div>
+<div class="tag-index">
+  <h3>タグ</h3>
+  <% current_user.tag_list.each do |tag| %>
+    <span><%= tag %></span>
+  <% end %>
+</div>
