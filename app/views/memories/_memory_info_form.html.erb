@@ -14,7 +14,7 @@
       <%= f.text_area :description, class:"form-control", id:"memory-description" %>
     </div>
     <div class="check_box" >
-      <%= f.collection_check_boxes(:hyle_ids, current_user.hyles, :id, :name) do |b| %>
+      <%= f.collection_check_boxes(:hyle_ids, current_user.hyles, :id, :name, include_hidden: false) do |b| %>
         <%= b.label {b.check_box + b.text} %>
       <% end %>
     </div>

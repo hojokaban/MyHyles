@@ -11,8 +11,7 @@ class Memory < ApplicationRecord
   def set_hyle_memory(hyle_ids)
     related_hyles = self.hyles.pluck(:id)
     hyle_ids.each do |hyle_id|
-      if hyle_id.blank?
-      elsif related_hyles.include?(hyle_id)
+      if related_hyles.include?(hyle_id)
         related_hyles.delete(hyle_id)
       else
         HyleMemory.create!(memory:self,hyle_id:hyle_id.to_i)
