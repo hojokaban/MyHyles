@@ -12,6 +12,8 @@
 <div class="tag-index">
   <h3>タグ</h3>
   <% current_user.tag_list.each do |tag| %>
-    <span><%= tag %></span>
+    <%= link_to tagged_users_hyle_path(tag) do %>
+      <span><%= tag %></span>
+    <% end %>
   <% end %>
 </div>

@@ -45,6 +45,9 @@ class HylesController < ApplicationController
   end
 
   def tagged_index
+    @title = "タグ別ヒュレー"
+    @hyles = current_user.hyles.tagged_with(params[:id])
+    render :index
   end
 
   def destroy
