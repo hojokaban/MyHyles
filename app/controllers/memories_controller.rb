@@ -10,6 +10,7 @@ class MemoriesController < ApplicationController
   def create
     @memory = current_user.memories.new(memory_params)
     if @memory.save
+      @memory.set_hyle_memory(params[:memory][:hyle_ids])
       flash[:success] = "思い出が追加されました!"
       redirect_to users_memory_path(@memory)
     else
@@ -37,10 +38,6 @@ class MemoriesController < ApplicationController
 
     def memory_params
       params.require(:memory).permit(:title, :date, :description, :memory_image)
-    end
-
-    def hyle_memory_params
-      params.require(:memory).permit(:hyle_ids)
     end
 
     def set_memory

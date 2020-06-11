@@ -21,15 +21,13 @@
       <th>詳細</th>
       <td><%= memory.description %></td>
     </tr>
-    <%# if memory.hyles.present? %>
-      <!-- <tr>
+    <% if memory.hyles.present? %>
+      <tr>
         <th>関わりのあるヒュレー</th>
-        <td> -->
-          <%# memory.hyles.each do |tag| %>
-            <span><%#= tag %></span>
-          <%# end %>
-        <!-- </td>
-      </tr> -->
-    <%# end %>
+      </tr>
+      <% memory.hyles.each do |hyle| %>
+        <tr><th></th><td><%= hyle.name %></td></tr>
+      <% end %>
+    <% end %>
   </table>
 </div>

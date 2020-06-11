@@ -7,4 +7,10 @@ class Memory < ApplicationRecord
   validates :description, length: {maximum:500}
   attachment :memory_image
   attr_accessor :hyle_ids
+
+  def set_hyle_memory(hyle_ids)
+    hyle_ids.each do |hyle_id|
+      HyleMemory.create!(memory:self,hyle_id:hyle_id.to_i) unless hyle_id.blank?
+    end
+  end
 end
