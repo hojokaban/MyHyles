@@ -200,6 +200,15 @@ describe 'hylesの統合テスト', type: :system do
         expect(page).to have_content "ラベルが削除されました"
         expect(page).to have_no_css "#delete-label-#{label.id}"
       end
+      it 'ヒュレーを削除する' do
+        visit users_hyles_path
+        expect(page).to have_selector 'h4', text: 'test_hyle'
+        find("#hyle-link-#{hyle.id}").click
+        find("#delete-hyle-#{hyle.id}").click
+        accept_alert
+        expect(page).to have_selector 'h2', text: '全ヒュレー一覧'
+        expect(page).not_to have_selector 'h4', text: 'test_hyle'
+      end
     end
     context 'ヒュレー一覧画面' do
       let(:other_users_hyle) {create(:other_users_hyle)}
