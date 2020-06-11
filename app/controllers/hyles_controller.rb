@@ -1,7 +1,7 @@
 include ApplicationHelper
 class HylesController < ApplicationController
 
-  before_action :set_hyle, only: [:show, :edit, :update]
+  before_action :set_hyle, only: [:show, :edit, :update, :destroy]
 
   def new
       @hyle = Hyle.new
@@ -51,6 +51,9 @@ class HylesController < ApplicationController
   end
 
   def destroy
+    @hyle.destroy
+    flash[:success]="ヒュレーを削除しました"
+    redirect_to users_hyles_path
   end
 
   private

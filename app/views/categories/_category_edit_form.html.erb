@@ -4,10 +4,10 @@
     <%= form_with(model:category, url: users_category_path(category),
             local: true, html: {method: :patch, class:"form-group"}) do |f| %>
         <span><%= f.text_field :name, class:"form-control", id:"category-name-#{category.id}" %></span>
-        <%= f.submit "変更を保存する", class:"edit-category-#{category.id}" %>
+        <%= f.submit "変更を保存する", id:"edit-category-#{category.id}" %>
     <% end %>
     <%= button_to "削除", users_category_path(category),
-        method: :delete, class:"delete-category-#{category.id}",
+        method: :delete, id:"delete-category-#{category.id}",
          data: {confirm: "このカテゴリーを削除すると、このカテゴリーのヒュレーが全て削除されます。
                                                     本当に削除しますか？"} %>
 <% end %>

@@ -1,3 +1,5 @@
 <h2><%= @hyle.name %></h2>
 <%= render 'hyles/hyle_show.html.erb', hyle: @hyle %>
 <%= link_to "内容を編集する", edit_users_hyle_path(@hyle) %>
+<%= button_to "削除する", users_hyle_path(@hyle), method: :delete,
+                    data: {confirm: "本当にこのヒュレーを削除しますか？"} %>
