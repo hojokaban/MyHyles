@@ -1,0 +1,35 @@
+<!-- recieves memory -->
+
+<div class="memory-image">
+  <%= attachment_image_tag memory, :memory_image, format:'jpg', class:"memory-img", fallback:"no_image2.jpg", size:"300x300" %>
+</div>
+<div class="memory-info">
+  <table>
+    <tr>
+      <th>タイトル</th>
+      <td><%= memory.title %></td>
+    </tr>
+    <% unless memory.date.nil? %>
+      <tr>
+        <th>日付</th>
+        <td>
+          <%= memory.date.strftime("%Y年%-m月%-d日") %>
+        </td>
+      </tr>
+    <% end %>
+    <tr>
+      <th>詳細</th>
+      <td><%= memory.description %></td>
+    </tr>
+    <%# if memory.hyles.present? %>
+      <!-- <tr>
+        <th>関わりのあるヒュレー</th>
+        <td> -->
+          <%# memory.hyles.each do |tag| %>
+            <span><%#= tag %></span>
+          <%# end %>
+        <!-- </td>
+      </tr> -->
+    <%# end %>
+  </table>
+</div>
