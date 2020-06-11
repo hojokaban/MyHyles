@@ -213,8 +213,8 @@ describe 'hylesの統合テスト', type: :system do
       end
     end
     context 'ヒュレー一覧画面' do
-      let(:other_users_hyle) {create(:other_users_hyle)}
-      let(:other_category_hyle) {create(:other_category_hyle)}
+      let(:other_users_hyle) {create(:test_hyle, user:create(:user), category:category)}
+      let(:other_category_hyle) {create(:hyle_without_tag, user:user, category:create(:category))}
       before do
         visit users_hyles_path
       end

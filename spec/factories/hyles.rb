@@ -8,12 +8,7 @@ FactoryBot.define do
           name {"test_hyle"}
           tag_list {["tag1"]}
         end
-        factory :other_users_hyle do
-          name {"other_users_hyle"}
-          #association :user, factory: :user
-          tag_list {["tag1"]}
-        end
-        factory :other_category_hyle do
+        factory :hyle_without_tag do
           name {"other_category_hyle"}
           #association :category, factory: :category
         end
