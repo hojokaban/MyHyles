@@ -2,6 +2,8 @@ class Hyle < ApplicationRecord
   belongs_to :user
   belongs_to :category
   has_many :labels, dependent: :destroy
+  has_many :hyle_memories, dependent: :destroy
+  has_many :memories, through: :hyle_memories
   attachment :hyle_image
   acts_as_taggable
 
