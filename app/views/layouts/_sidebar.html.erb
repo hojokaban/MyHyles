@@ -4,7 +4,9 @@
 <div class="category-index">
   <h3>カテゴリー</h3>
   <% current_user.categories.each do |category| %>
-    <span><%= category.name %></span>
+    <%= link_to categorized_users_hyle_path(category) do %>
+      <span><%= category.name %></span>
+    <% end %>
   <% end %>
 </div>
 <div class="tag-index">

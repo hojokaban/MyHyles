@@ -39,6 +39,9 @@ class HylesController < ApplicationController
   end
 
   def categorized_index
+    @title = "カテゴリー別ヒュレー"
+    @hyles = Category.find(params[:id]).hyles
+    render :index
   end
 
   def tagged_index
