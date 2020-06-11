@@ -21,7 +21,7 @@ class HylesController < ApplicationController
   end
 
   def show
-    flash.now[:success] = "ヒュレーが追加されました!"
+    flash[:success] = "ヒュレーが追加されました!"
   end
 
   def edit

@@ -12,6 +12,7 @@ FactoryBot.define do
           name { "test_user" }
           email { "test@example.com" }
           confirmed_at { Time.now }
+          tag_list { ["tag1", "tag2", "tag3"]}
       end
     end
 

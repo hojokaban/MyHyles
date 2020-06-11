@@ -57,19 +57,19 @@ describe 'hylesの統合テスト', type: :system do
         click_button '新しいタグを追加'
         expect(page).to have_content 'タグ名は空白では追加できません'
         user.reload
-        expect(user.tag_list.count).to eq 0
+        expect(user.tag_list.count).to eq 3
         #タグの追加に失敗(タグ名が空)
         fill_in 'user_tag', with: "a"*21
         click_button '新しいタグを追加'
         expect(page).to have_content 'タグ名は20字以内です'
         user.reload
-        expect(user.tag_list.count).to eq 0
+        expect(user.tag_list.count).to eq 3
         #タグの追加に成功
         fill_in 'user_tag', with: "新しいタグ"
         click_button '新しいタグを追加'
         expect(page).to have_content 'タグが追加されました!'
         user.reload
-        expect(user.tag_list.count).to eq 1
+        expect(user.tag_list.count).to eq 4
       end
       it '画像を追加する' do
         attach_file 'hyle_hyle_image', "#{Rails.root}/spec/factories/sample1.jpg"
@@ -84,14 +84,6 @@ describe 'hylesの統合テスト', type: :system do
         #expect(page).to have_css "img[src$='sample1.jpg']"
       end
       it 'ヒュレーを誕生日あり、タグ付けで追加する' do
-        #タグを３つ追加
-        fill_in 'user_tag', with: "タグ1"
-        click_button '新しいタグを追加'
-        fill_in 'user_tag', with: "タグ2"
-        click_button '新しいタグを追加'
-        fill_in 'user_tag', with: "タグ3"
-        click_button '新しいタグを追加'
-        user.reload
         #タグ付けでヒュレーを追加する
         fill_in 'hyle_name', with: "タグ付きヒュレー"
         select "2016", from: 'hyle[birthday(1i)]'
@@ -109,8 +101,8 @@ describe 'hylesの統合テスト', type: :system do
         expect(page).to have_selector 'td', text: "タグ付きヒュレー"
         expect(page).to have_selector 'td', text: "2016年12月12日"
         expect(page).to have_selector 'td', text: "test_category"
-        expect(page).to have_selector 'span', text: "タグ2"
-        expect(page).to have_selector 'span', text: "タグ3"
+        expect(page).to have_selector 'span', text: "tag2"
+        expect(page).to have_selector 'span', text: "tag3"
         expect(page).not_to have_selector 'span', text: "タグ1"
       end
       it 'ラベルを追加する' do
@@ -220,6 +212,9 @@ describe 'hylesの統合テスト', type: :system do
         expect(page).to have_selector 'span', text: "test_label"
         #他のユーザーのヒュレーは表示されない
         expect(page).not_to have_selector 'h4', text: "other_users_hyle"
+        #ヒュレーをクリックすると詳細ページにリンクする
+        find("#hyle-link-#{hyle.id}").click
+        expect(page).to have_selector 'h2', text: "test_hyle"
       end
     end
 end
