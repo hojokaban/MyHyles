@@ -210,5 +210,16 @@ describe 'hylesの統合テスト', type: :system do
       end
     end
     context 'ヒュレー一覧画面' do
+      let(:other_users_hyle) {create(:other_users_hyle)}
+      it '全ヒュレー一覧' do
+        visit users_hyles_path
+        expect(page).to have_selector 'h2', text: "全ヒュレー"
+        #ユーザーのヒュレーが表示される
+        expect(page).to have_selector 'h4', text: "test_hyle"
+        expect(page).to have_selector 'span', text: "test_category"
+        expect(page).to have_selector 'span', text: "test_label"
+        #他のユーザーのヒュレーは表示されない
+        expect(page).not_to have_selector 'h4', text: "other_users_hyle"
+      end
     end
 end

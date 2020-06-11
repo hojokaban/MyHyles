@@ -1,1 +1,15 @@
-<h2><%= @title %></h2>
+<div class="sidebar">
+</div>
+<div class="hyle-index">
+  <h2><%= @title %></h2>
+  <% @hyles.each do |hyle| %>
+    <div class="hyle-box">
+      <%= attachment_image_tag hyle, :hyle_image, format:'jpg', class:"hyle-img", fallback:"no_image2.jpg", size:"80x80" %>
+      <h4><%= hyle.name %></h4>
+      <span><%= hyle.category.name %></span>
+      <% hyle.labels.each do |label| %>
+        <span><%= label.name %></span>
+      <% end %>
+    </div>
+  <% end %>
+</div>
