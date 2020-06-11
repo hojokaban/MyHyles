@@ -40,7 +40,7 @@ class MemoriesController < ApplicationController
     end
 
     def hyle_memory_params
-      params.require(:memory).permit(:hyle_id)
+      params.require(:memory).permit(:hyle_ids)
     end
 
     def set_memory

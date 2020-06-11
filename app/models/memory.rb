@@ -6,4 +6,5 @@ class Memory < ApplicationRecord
   validates :title, presence: true, length: {maximum:20}
   validates :description, length: {maximum:500}
   attachment :memory_image
+  attr_accessor :hyle_ids
 end

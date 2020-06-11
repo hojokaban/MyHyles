@@ -19,4 +19,7 @@
           |hyle| [hyle.name, hyle.id]}),
            {prompt: "この思い出と関わりのあるヒュレーを選択してください"}, {class:"form-control"} %>
     </div>
+    <div class="check_box" >
+      <%= f.collection_check_boxes(:hyle_ids, current_user.hyles, :id, :name) %>
+    </div>
 </div>

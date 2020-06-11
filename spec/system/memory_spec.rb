@@ -2,12 +2,12 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 describe 'memoriesの統合テスト', type: :system do
-  let(:hyle_memory) { create(:hyle_memory) }
-  let(:hyle) { hyle_memory.hyle}
-  let(:user) { hyle.user }
-  let(:memory) {hyle_memory.memory}
+  let(:user) { create(:test_user)}
+  let(:category) { create(:category, user:user)}
+  let(:hyle) { create(:test_hyle, user: user, category:category)}
+  let(:memory) {create(:test_memory, user: user)}
+  let(:hyle_memory) { create(:hyle_memory, hyle:hyle, memory:memory) }
   before do
-    memory.update(user: user)
     login_as user, scope: :user
   end
   it '思い出追加画面' do
@@ -25,12 +25,14 @@ describe 'memoriesの統合テスト', type: :system do
     expect(page).to have_selector 'h2', text: "test memory"
     expect(page).to have_selector 'td', text: "test memory"
   end
-  # it 'ヒュレーと思い出追加画面' do
-  #   visit new_users_memory_path
-  #   fill_in 'new-memory-title', with: "test memory"
-  #   check user.tag_list[1]
-  #   check user.tag_list[2]
-  #   click_button 'この内容で追加する'
-  #   expect(page).to have_content '思い出が追加されました!'
-  # end
+  it 'ヒュレーと思い出追加画面' do
+    hyle2 = create(:hyle, user:user, category:category)
+    hyle3 = create(:hyle, user:user, category:category)
+    visit new_users_memory_path
+    fill_in 'new-memory-title', with: "test memory"
+    check hyle2.name
+    check hyle3.name
+    click_button 'この内容で追加する'
+    expect(page).to have_content '思い出が追加されました!'
+  end
 end
