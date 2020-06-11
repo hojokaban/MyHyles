@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_09_090006) do
+ActiveRecord::Schema.define(version: 2020_06_11_034755) do
 
   create_table "categories", force: :cascade do |t|
     t.integer "user_id"
@@ -42,6 +42,17 @@ ActiveRecord::Schema.define(version: 2020_06_09_090006) do
     t.datetime "updated_at", null: false
     t.index ["hyle_id"], name: "index_labels_on_hyle_id"
     t.index ["user_id"], name: "index_labels_on_user_id"
+  end
+
+  create_table "memories", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "title"
+    t.date "date"
+    t.text "description"
+    t.string "memory_image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_memories_on_user_id"
   end
 
   create_table "taggings", force: :cascade do |t|
