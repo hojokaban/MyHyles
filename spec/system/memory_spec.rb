@@ -34,5 +34,10 @@ describe 'memoriesの統合テスト', type: :system do
     check hyle3.name
     click_button 'この内容で追加する'
     expect(page).to have_content '思い出が追加されました!'
+    #詳細画面に遷移し、表示される
+    expect(page).to have_selector 'td', text: "test memory"
+    expect(page).to have_selector 'td', text: hyle2.name
+    expect(page).to have_selector 'td', text: hyle3.name
+    expect(page).not_to have_selector 'td', text: hyle.name
   end
 end
