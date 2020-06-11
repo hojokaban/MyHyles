@@ -2,9 +2,9 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 describe 'deviseの統合テスト', type: :system do
-  let(:label) {create(:label)}
-  let(:hyle) {create(:hyle)}
-  let(:user) { label.user}
+  let(:label) {create(:test_label)}
+  let(:hyle) { label.hyle }
+  let(:user) { label.user }
   before do
       login_as user, scope: :user
   end
