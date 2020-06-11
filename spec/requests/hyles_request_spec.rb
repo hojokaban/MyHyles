@@ -1,11 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe "Hyles", type: :request do
-
-    let(:hyle) { create(:test_hyle)}
+    let(:user) { create(:test_user) }
+    let(:category){create(:test_category, user:user)}
+    let!(:hyle) { create(:test_hyle, user:user, category:category) }
 
     before do
-        sign_in hyle.user
+        sign_in user
     end
 
   context "画面に遷移する" do

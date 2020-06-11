@@ -1,10 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe "Memories", type: :request do
-
-  let(:memory) {create(:test_memory)}
-
+  let(:user) { create(:test_user) }
+  let(:memory) {create(:test_memory, user:user)}
   describe "画面に遷移する" do
+    before do
+      sign_in user
+    end
     it "思い出追加画面が表示される" do
       get new_users_memory_path
       expect(response).to have_http_status(:success)

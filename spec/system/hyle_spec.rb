@@ -2,9 +2,10 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 describe 'hylesの統合テスト', type: :system do
-    let(:label) { create(:test_label) }
-    let(:hyle) { label.hyle}
-    let(:user) { label.user }
+    let(:user) { create(:test_user) }
+    let!(:category){create(:test_category, user:user)}
+    let!(:hyle) { create(:test_hyle, user:user, category:category) }
+    let!(:label) {create(:test_label, user:user, hyle:hyle)}
     before do
         login_as user, scope: :user
     end

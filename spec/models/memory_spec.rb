@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Memory, type: :model do
   context "Labelモデルのバリデーションが正しく稼働" do
-    let(:hyle) { create(:test_hyle) }
+    let(:user) { create(:test_user) }
+    let(:category){create(:test_category, user:user)}
+    let(:hyle) { create(:test_hyle, user:user, category:category) }
     before do
         @memory = Memory.create!(
                                title: "test",

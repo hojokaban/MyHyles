@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Hyle, type: :model do
     context "Hyleモデルのバリデーションが正しく稼働" do
-        let(:category) { create(:category) }
+        let(:user) { create(:test_user) }
+        let(:category){create(:test_category, user:user)}
         before do
             @hyle = Hyle.create!(
                             name: "試験太郎",

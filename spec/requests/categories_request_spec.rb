@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "Categories", type: :request do
-    let(:category) { create(:category) }
+    let(:user) { create(:test_user) }
+    let(:category){create(:test_category, user:user)}
     before do
         sign_in category.user
     end

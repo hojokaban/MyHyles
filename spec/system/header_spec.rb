@@ -25,7 +25,7 @@ describe 'ヘッダーのテスト', type: :system do
     end
 
     context "ログインしている状態" do
-        let(:user) { create(:user, :confirmed) }
+        let(:user) { create(:test_user) }
         before do
             login_as user, scope: :user
             visit current_path
