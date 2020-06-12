@@ -252,11 +252,17 @@ describe 'hylesの統合テスト', type: :system do
     context "ヒュレー詳細と思い出" do
       let(:memory){create(:test_memory, user: user)}
       let(:another_memory){create(:memory, user:user)}
-      let(:hyle_memory){create(:hyle_memory, hyle:hyle,memory:memory)}
+      let!(:hyle_memory){create(:hyle_memory, hyle:hyle,memory:memory)}
+      let(:another_hyle){create(:hyle, user:user, category:category)}
       it 'ヒュレー詳細画面に、ヒュレーの思い出が表示される' do
         visit users_hyle_path(hyle)
+        expect(page).to have_selector 'h3', text: "#{hyle.name}さんとの思い出"
         expect(page).to have_selector 'h4', text: memory.title
         expect(page).not_to have_selector 'h4', text: another_memory.title
+      end
+      it 'ヒュレーの思い出がない場合は表示されない' do
+        visit users_hyle_path(another_hyle)
+        expect(page).not_to have_selector 'h3', text: "#{another_hyle.name}さんとの思い出"
       end
     end
 end

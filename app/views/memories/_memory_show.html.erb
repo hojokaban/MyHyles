@@ -26,7 +26,7 @@
         <th>関わりのあるヒュレー</th>
       </tr>
       <% memory.hyles.each do |hyle| %>
-        <tr><th></th><td><%= hyle.name %></td></tr>
+        <tr><th></th><td><%= link_to hyle.name, users_hyle_path(hyle) %></td></tr>
       <% end %>
     <% end %>
   </table>

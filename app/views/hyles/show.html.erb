@@ -3,3 +3,10 @@
 <%= link_to "内容を編集する", edit_users_hyle_path(@hyle) %>
 <%= button_to "削除する", users_hyle_path(@hyle), method: :delete,
                     data: {confirm: "本当にこのヒュレーを削除しますか？"} %>
+
+<% unless @hyle.memories.empty? %>
+  <h3><%= @hyle.name %>さんとの思い出</h3>
+  <div class="memory-index">
+    <%= render 'memories/memory_index', memories:@hyle.memories %>
+  </div>
+<% end %>
