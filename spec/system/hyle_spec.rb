@@ -249,4 +249,14 @@ describe 'hylesの統合テスト', type: :system do
         expect(page).not_to have_selector 'h4', text: "other_users_hyle"
       end
     end
+    context "ヒュレー詳細と思い出" do
+      let(:memory){create(:test_memory, user: user)}
+      let(:another_memory){create(:memory, user:user)}
+      let(:hyle_memory){create(:hyle_memory, hyle:hyle,memory:memory)}
+      it 'ヒュレー詳細画面に、ヒュレーの思い出が表示される' do
+        visit users_hyle_path(hyle)
+        expect(page).to have_selector 'h4', text: memory.title
+        expect(page).not_to have_selector 'h4', text: another_memory.title
+      end
+    end
 end
