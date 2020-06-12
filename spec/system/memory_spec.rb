@@ -5,7 +5,7 @@ describe 'memoriesの統合テスト', type: :system do
   let(:user) { create(:test_user)}
   let(:category) { create(:category, user:user)}
   let(:hyle) { create(:test_hyle, user: user, category:category)}
-  let(:memory) {create(:test_memory, user: user)}
+  let!(:memory) {create(:test_memory, user: user)}
   let(:hyle_memory) { create(:hyle_memory, hyle:hyle, memory:memory) }
   before do
     login_as user, scope: :user
@@ -71,16 +71,16 @@ describe 'memoriesの統合テスト', type: :system do
     expect(page).not_to have_selector 'td', text: hyle3.name
     #一覧画面で表示を確認
     visit users_memories_path
-    expect(page).to have_selector 'h4', text: "test_memory"
+    expect(page).to have_selector 'h4', text: "test_title"
     expect(page).to have_selector 'h4', text: "editted memory２"
     #思い出を削除する
     new_memory = Memory.last
-    find("memory-#{new_memory.id}").click
+    find("#memory-link-#{new_memory.id}").click
     click_button '削除する'
     accept_alert
     expect(page).to have_content "思い出が削除されました"
     expect(page).to have_selector 'h2', text: '思い出一覧'
-    expect(page).to have_selector 'h4', text: "test_memory"
+    expect(page).to have_selector 'h4', text: "test_title"
     expect(page).not_to have_selector 'h4', text: "editted memory２"
   end
 end

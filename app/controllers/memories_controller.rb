@@ -37,12 +37,13 @@ class MemoriesController < ApplicationController
   end
 
   def index
+    @memories = current_user.memories
   end
 
   def destroy
     @memory.destroy
     flash[:success] = "思い出が削除されました"
-    redirect_to users_path
+    redirect_to users_memories_path
   end
 
   private

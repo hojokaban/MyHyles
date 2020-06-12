@@ -1,1 +1,8 @@
 <h2>思い出一覧</h2>
+<div class="memory-index">
+  <% @memories.each do |memory| %>
+    <div class="memory-box">
+      <%= render 'memory_box', memory:memory %>
+    </div>
+  <% end %>
+</div>
