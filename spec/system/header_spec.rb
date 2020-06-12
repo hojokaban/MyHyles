@@ -40,6 +40,11 @@ describe 'ヘッダーのテスト', type: :system do
           click_link 'ヒュレー'
           expect(page).to have_selector 'h2', text: '全ヒュレー'
         end
+        it '思い出一覧画面に遷移' do
+          click_link "#{user.name}さん"
+          click_link '思い出'
+          expect(page).to have_selector 'h2', text: '思い出一覧'
+        end
         it '設定画面に遷移' do
             click_link "#{user.name}さん"
             click_link '設定'
@@ -55,6 +60,11 @@ describe 'ヘッダーのテスト', type: :system do
           click_link "追加"
           click_link 'ヒュレーの追加'
           expect(page).to have_selector 'h2', text: 'ヒュレーの追加'
+        end
+        it '思い出追加画面に遷移' do
+          click_link "追加"
+          click_link '思い出の追加'
+          expect(page).to have_selector 'h2', text: '思い出の追加'
         end
     end
 
