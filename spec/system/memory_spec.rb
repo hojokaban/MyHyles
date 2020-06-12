@@ -69,10 +69,18 @@ describe 'memoriesの統合テスト', type: :system do
     expect(page).not_to have_selector 'td', text: hyle.name
     expect(page).not_to have_selector 'td', text: hyle2.name
     expect(page).not_to have_selector 'td', text: hyle3.name
+    #一覧画面で表示を確認
+    visit users_memories_path
+    expect(page).to have_selector 'h4', text: "test_memory"
+    expect(page).to have_selector 'h4', text: "editted memory２"
     #思い出を削除する
+    new_memory = Memory.last
+    find("memory-#{new_memory.id}").click
     click_button '削除する'
     accept_alert
     expect(page).to have_content "思い出が削除されました"
-    expect(page).to have_selector 'h2', text: 'メインページ'
+    expect(page).to have_selector 'h2', text: '思い出一覧'
+    expect(page).to have_selector 'h4', text: "test_memory"
+    expect(page).not_to have_selector 'h4', text: "editted memory２"
   end
 end
