@@ -1,0 +1,2 @@
+module DailyRelationshipsHelper
+end
