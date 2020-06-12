@@ -7,5 +7,6 @@ class CreateHyleDailyRelationships < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
+    add_index :hyle_daily_relationships, [:hyle_id, :daily_relationship_id], unique: true, name: 'hyle_daily_relationship_index'
   end
 end

@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2020_06_12_051225) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["daily_relationship_id"], name: "index_hyle_daily_relationships_on_daily_relationship_id"
+    t.index ["hyle_id", "daily_relationship_id"], name: "hyle_daily_relationship_index", unique: true
     t.index ["hyle_id"], name: "index_hyle_daily_relationships_on_hyle_id"
   end
 

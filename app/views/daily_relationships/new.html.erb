@@ -2,8 +2,12 @@
 <h2>今日関わった人間関係を記録しましょう</h2>
 
 <%= form_with(model:@hyle_daily_relationship,
-url:users_daily_relationships_hyle_daily_relationships_path,local:true) do |f| %>
+  url:users_daily_relationships_hyle_daily_relationships_path,local:true,
+    class:"form-group") do |f| %>
+  <%= f.hidden_field :daily_relationship_id: @daily_relationship.id %>
   <%= f.select :hyle_id, options_for_select(current_user.hyles.collect{
     |hyle| [hyle.name, hyle.id]}),
      {prompt: "ヒュレーを選択してください"}, {class:"form-control"} %>
+  <%= f.number_field :relationship_amount, class:"form-control" %>
+  <%= f.submit 'このヒュレーを追加する' %>
 <% end %>
