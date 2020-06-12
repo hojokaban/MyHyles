@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     devise_scope :user do
       patch 'users/tag', to: 'users/registrations#update_tag', as: 'tag_registration'
     end
-    mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
     root 'static_pages#top'
     get '/about', to: 'static_pages#about'
     get '/contact', to: 'static_pages#contact'
@@ -20,5 +19,7 @@ Rails.application.routes.draw do
             end
         end
         resources :memories
+        resource :daily_relationships, only: [:new, :update]
     end
+    mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end
