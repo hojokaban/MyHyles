@@ -6,6 +6,7 @@ describe 'hylesの統合テスト', type: :system do
     let(:category){create(:test_category, user:user)}
     let(:hyle){create(:test_hyle, user:user, category:category)}
     let(:daily_relationship){create(:daily_relationship, user:user)}
+    let(:another_hyle){create(:hyle, user:user, category:category)}
     before do
         login_as user, scope: :user
     end
@@ -33,6 +34,20 @@ describe 'hylesの統合テスト', type: :system do
       relation = HyleDailyRelationship.last
       expect(find("#hyle-#{relation.id}").value).to eq "test_hyle"
       expect(find("#amount-#{relation.id}").value).to eq 60
+      #同じヒュレーを追加できない
+      select "test_hyle", from: 'user[hyle_id]'
+      fill_in "add-relationship", with: 40
+      click_button 'このヒュレーを追加する'
+      expect(page).to have_selector 'li', text: "このヒュレーはすでに存在します"
+      #ヒュレーを追加して削除する
+      select another_hyle.name, from: 'user[hyle_id]'
+      fill_in "add-relationship", with: 50
+      click_button 'このヒュレーを追加する'
+      new_relation = HyleDailyRelationship.last
+      expect(find("#hyle-#{new_relation.id}").value).to eq "another_hyle"
+      find("#hyle-#{new_relation.id}").click
+      expect(page).to have_content 'ヒュレーを削除しました'
+      expect(find("#hyle-#{new_relation.id}").value).not_to eq "another_hyle"
       #関係の作成に成功
       click_button 'この内容で追加する'
       accept_alert

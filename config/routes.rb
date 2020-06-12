@@ -19,7 +19,9 @@ Rails.application.routes.draw do
             end
         end
         resources :memories
-        resource :daily_relationships, only: [:new, :update]
+        resource :daily_relationships, only: [:new, :update] do
+          resources :hyle_daily_relationships, only: [:create, :destroy]
+        end
     end
     mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end
