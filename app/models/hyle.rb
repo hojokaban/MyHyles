@@ -4,6 +4,8 @@ class Hyle < ApplicationRecord
   has_many :labels, dependent: :destroy
   has_many :hyle_memories, dependent: :destroy
   has_many :memories, through: :hyle_memories
+  has_many :hyle_daily_relationships, dependent: :destroy
+  has_many :daily_relationships, through: :hyle_daily_relationships
   attachment :hyle_image
   acts_as_taggable
 
