@@ -1,7 +1,7 @@
 include ApplicationHelper
 class MemoriesController < ApplicationController
 
-  before_action :set_memory, only: [:show, :edit, :update]
+  before_action :set_memory, only: [:show, :edit, :update, :destroy]
 
   def new
     @memory = Memory.new
@@ -10,7 +10,7 @@ class MemoriesController < ApplicationController
   def create
     @memory = current_user.memories.new(memory_params)
     if @memory.save
-      @memory.set_hyle_memory(params[:memory][:hyle_ids])
+      @memory.set_hyle_memory(params[:memory][:hyle_ids]) unless params[:memory][:hyle_ids].nil?
       flash[:success] = "思い出が追加されました!"
       redirect_to users_memory_path(@memory)
     else
@@ -27,7 +27,7 @@ class MemoriesController < ApplicationController
 
   def update
     if @memory.update(memory_params)
-      @memory.set_hyle_memory(params[:memory][:hyle_ids])
+      @memory.set_hyle_memory(params[:memory][:hyle_ids]) unless params[:memory][:hyle_ids].nil?
       flash[:success] = "思い出が編集されました!"
       redirect_to users_memory_path(@memory)
     else
@@ -40,6 +40,9 @@ class MemoriesController < ApplicationController
   end
 
   def destroy
+    @memory.destroy
+    flash[:success] = "思い出が削除されました"
+    redirect_to users_path
   end
 
   private

@@ -1,5 +1,5 @@
 <h2><%= @memory.title %></h2>
 <%= render 'memories/memory_show', memory: @memory %>
 <%= link_to "内容を編集する", edit_users_memory_path(@memory) %>
-<%#= button_to "削除する", users_memory_path(@memory), method: :delete,
+<%= button_to "削除する", users_memory_path(@memory), method: :delete,
                     data: {confirm: "本当にこの思い出を削除しますか？"} %>

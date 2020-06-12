@@ -25,7 +25,7 @@ describe 'memoriesの統合テスト', type: :system do
     expect(page).to have_selector 'h2', text: "test memory"
     expect(page).to have_selector 'td', text: "test memory"
   end
-  it 'ヒュレーと思い出追加、そして編集' do
+  it 'ヒュレーをチェックして思い出追加、編集、削除ができる' do
     hyle2 = create(:hyle, user:user, category:category)
     hyle3 = create(:hyle, user:user, category:category)
     visit new_users_memory_path
@@ -59,5 +59,10 @@ describe 'memoriesの統合テスト', type: :system do
     expect(page).to have_selector 'td', text: hyle.name
     expect(page).to have_selector 'td', text: hyle2.name
     expect(page).not_to have_selector 'td', text: hyle3.name
+    #思い出を削除する
+    click_button '削除する'
+    accept_alert
+    expect(page).to have_content "思い出が削除されました"
+    expect(page).to have_selector 'h2', text: 'メインページ'
   end
 end
