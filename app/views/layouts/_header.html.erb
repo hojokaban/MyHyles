@@ -16,7 +16,7 @@
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <%= link_to "ヒュレーの追加", new_users_hyle_path, class:"dropdown-item" %>
-                    <a class="dropdown-item" href="#">思い出の追加</a>
+                    <%= link_to "思い出の追加", new_users_memory_path, class:"dropdown-item" %>
                   </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -26,7 +26,7 @@
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <%= link_to "メインページ", users_path, class:"dropdown-item" %>
                     <%= link_to "ヒュレー", users_hyles_path, class:"dropdown-item" %>
-                    <%= link_to "思い出", '#', class:"dropdown-item" %>
+                    <%= link_to "思い出", users_memories_path, class:"dropdown-item" %>
                     <%= link_to "設定", edit_user_registration_path, class:"dropdown-item" %>
                     <div class="dropdown-divider"></div>
                     <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"dropdown-item" %>
