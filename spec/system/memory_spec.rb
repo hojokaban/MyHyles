@@ -48,7 +48,7 @@ describe 'memoriesの統合テスト', type: :system do
     fill_in 'memory-title', with: "a"*21
     click_button '変更を保存する'
     expect(page).to have_selector 'li', text: 'タイトルは20文字以内で入力してください'
-    #思い出の追加に成功
+    #思い出の編集に成功
     fill_in 'memory-title', with: "editted memory"
     check hyle.name
     check hyle2.name
@@ -58,6 +58,16 @@ describe 'memoriesの統合テスト', type: :system do
     expect(page).to have_selector 'td', text: "editted memory"
     expect(page).to have_selector 'td', text: hyle.name
     expect(page).to have_selector 'td', text: hyle2.name
+    expect(page).not_to have_selector 'td', text: hyle3.name
+    #チェックせずに編集(params[:memory][:hyle_ids]がnilとなる)
+    click_link '内容を編集する'
+    fill_in 'memory-title', with: "editted memory２"
+    click_button '変更を保存する'
+    expect(page).to have_content '思い出が編集されました!'
+    #詳細画面に表示
+    expect(page).to have_selector 'td', text: "editted memory２"
+    expect(page).not_to have_selector 'td', text: hyle.name
+    expect(page).not_to have_selector 'td', text: hyle2.name
     expect(page).not_to have_selector 'td', text: hyle3.name
     #思い出を削除する
     click_button '削除する'
