@@ -97,7 +97,7 @@ describe 'hylesの統合テスト', type: :system do
         #ラベル追加ページに遷移
         click_link 'ラベルの追加を終える'
         #詳細ページに遷移し、正しく表示
-        expect(page).to have_content 'ヒュレーが追加されました!'
+        expect(page).to have_content 'ヒュレーが追加されました!' #まとめてテストするとエラーになる
         expect(page).to have_selector 'h2', text: "タグ付きヒュレー"
         expect(page).to have_selector 'td', text: "タグ付きヒュレー"
         expect(page).to have_selector 'td', text: "2016年12月12日"
