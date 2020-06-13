@@ -9,7 +9,8 @@
       <%= f.label :name, "名前" %>
       <%= f.text_field :name, class:"form-control" %>
       <%= f.label :birthday, "生年月日" %>
-      <%= raw sprintf(f.date_select(:birthday, use_month_numbers:true, prompt:"--", start_year:Time.now.year, end_year:Time.now.year-120, date_separator:'%s'),'年','月')+'日' %>
+      <%= raw sprintf(f.date_select(:birthday, use_month_numbers:true,
+      prompt:"--", start_year:Time.now.year, end_year:Time.now.year-120, date_separator:'%s'),'年','月')+'日' %>
     </div>
     <div class="select-category">
       <%= f.label :category, "カテゴリー" %>

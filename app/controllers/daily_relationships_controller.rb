@@ -5,7 +5,15 @@ class DailyRelationshipsController < ApplicationController
     @hyle_daily_relationship = HyleDailyRelationship.new
   end
 
-  def create
+  def update
+    @daily_relationship = DailyRelationship.find(params[:id])
+    if @daily_relationship.hyle_daily_relationships.present?
+      flash[:success] = "今日の関係が追加されました!"
+      redirect_to users_path
+    else
+      flash[:danger] = "ヒュレーを最低１人追加してください"
+      redirect_back(fallback_location: root_path)
+    end
   end
 
 end

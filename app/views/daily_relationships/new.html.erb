@@ -1,13 +1,27 @@
 <h2><%= Time.current.strftime("%Y年%-m月%-d日") %></h2>
 <h2>今日関わった人間関係を記録しましょう</h2>
+<table>
+  <% @daily_relationship.hyle_daily_relationships.each do |relationship| %>
+    <tr>
+      <td><%= relationship.hyle.name %></td>
+      <td>=></td>
+      <td><%= relationship.relationship_amount %></td>
+      <td><%= link_to "削除", users_daily_relationship_hyle_daily_relationships_path(relationship),
+         method: :delete, id:"delete-hyle-#{relationship.id}" %></td>
+    </tr>
+  <% end %>
+</table>
 
 <%= form_with(model:@hyle_daily_relationship,
-  url:users_daily_relationships_hyle_daily_relationships_path,local:true,
-    class:"form-group") do |f| %>
-  <%= f.hidden_field :daily_relationship_id: @daily_relationship.id %>
+  url:users_daily_relationship_hyle_daily_relationships_path(@daily_relationship),
+    local:true, class:"form-group") do |f| %>
   <%= f.select :hyle_id, options_for_select(current_user.hyles.collect{
     |hyle| [hyle.name, hyle.id]}),
      {prompt: "ヒュレーを選択してください"}, {class:"form-control"} %>
-  <%= f.number_field :relationship_amount, class:"form-control" %>
+  <%= f.number_field :relationship_amount, min: 1, max: 100, class:"form-control" %>
   <%= f.submit 'このヒュレーを追加する' %>
 <% end %>
+
+<%= link_to 'この内容で追加する', users_daily_relationship_path(@daily_relationship),
+  method: :patch,
+  data:{confirm:"この内容はあとで変更ができません。この内容で追加してもよろしいですか？"} %>

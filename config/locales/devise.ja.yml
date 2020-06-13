@@ -44,6 +44,9 @@ ja:
         date: 日付
         description: 詳細
         memory_image: 画像
+      hyle_daily_relationship:
+        relationship_amount: ヒュレーとの関わり
+        hyle: ヒュレー
     models:
         user: ユーザー
         category: カテゴリー
