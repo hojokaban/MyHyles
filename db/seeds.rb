@@ -12,7 +12,7 @@ cate2 = luffy.categories.create!(name: "海賊")
 cate3 = luffy.categories.create!(name: "海軍")
 cate4 = luffy.categories.create!(name: "革命軍")
 cate5 = luffy.categories.create!(name: "放浪者")
-cate5 = luffy.categories.create!(name: "住民")
+cate6 = luffy.categories.create!(name: "住民")
 #麦わらの一味
 luffy.hyles.create!(category: cate1,name: "ロロノア・ゾロ",birthday: Date.new(1999-11-11),total_relationship: 100)
 luffy.hyles.create!(category: cate1,name: "ナミ",birthday: Date.new(2000-7-3),total_relationship: 100)
@@ -46,7 +46,7 @@ luffy.hyles.create!(category: cate2,name: "マーシャル・D・ティーチ",b
 #和の国
 luffy.hyles.create!(category: cate5,name: "錦えもん",birthday: nil,total_relationship: 0)
 #人魚
-luffy.hyles.create!(category: cate5,name: "ケイミー",birthday: Date.new(2002-11-3),total_relationship: 0)
+luffy.hyles.create!(category: cate6,name: "ケイミー",birthday: Date.new(2002-11-3),total_relationship: 0)
 luffy.hyles.create!(category: cate3,name: "コビー",birthday: Date.new(2002-5-13),total_relationship: 0)
 #海賊
 luffy.hyles.create!(category: cate2,name: "トラファルガー・ロー",birthday: Date.new(1994-10-6),total_relationship: 70)
@@ -56,3 +56,7 @@ luffy.hyles.create!(category: cate2,name: "ユースタス・キッド",birthday
 luffy.hyles.create!(category: cate5,name: "ビビ",birthday: Date.new(2002-2-2),total_relationship: 0)
 #ドラゴン
 luffy.hyles.create!(category: cate5,name: "ドラゴン",birthday: Date.new(2002-2-2),total_relationship: 0)
+#思い出
+luffy.memories.create!(title:"頂上戦争",date:Date.new(2018-12-1),description:"エースの公開処刑を止めるための、白髭海賊団VS海軍!\nエースの救出には成功したものの、その後赤犬からルフィを庇ってエースは死去。黒ひげの乱入により白ひげも後を追い、場が混乱していたところをシャンクスが来て、戦争を終わらせた。")
+luffy.memories.create!(title:"麦わらの一味再集結",date:Date.new(2020-1-1),description:"一味それぞれが２年間の修行を経て、シャボンディ諸島に再び集結!\n麦わらの一味を偽る海賊がいたり、海軍がその海賊を捕らえるために上陸していたりで混乱していたが、たくさんの味方のサポートもあり無事に魚人島への出向に成功！")
+luffy.memories.create!(title:"和の国",date:Date.new(2020-5-1),description:"いよいよカイドウを倒すべく、和の国へ上陸！\nカイドウの統べる和の国は、汚染された環境で食糧の普及すらままなっていなかった。そんな中、錦えもんたちの正体も発覚。これから作戦を実行するが、果たしてどうなるのか。。")
