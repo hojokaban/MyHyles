@@ -14,8 +14,8 @@ Rails.application.routes.draw do
         resources :categories, only: [:create, :update, :destroy]
         resources :hyles do
             member do
-                get :categorized_index, as: 'categorized'
-                get :tagged_index, as: 'tagged'
+              get :categorized_index, as: 'categorized'
+              get :tagged_index, as: 'tagged'
             end
         end
         resources :memories

@@ -29,9 +29,9 @@ describe 'hylesの統合テスト', type: :system do
         select "test_category", from: 'hyle[category_id]'
         click_button 'この内容で追加する'
         #ラベル追加ページに遷移
+        expect(page).to have_content 'ヒュレーが追加されました!'
         click_link 'ラベルの追加を終える'
         #詳細ページに遷移し、正しく表示
-        expect(page).to have_content 'ヒュレーが追加されました!'
         expect(page).to have_selector 'h2', text: "タグなしヒュレー"
         expect(page).to have_selector 'td', text: "タグなしヒュレー"
         expect(page).to have_selector 'td', text: "test_category"
@@ -78,9 +78,9 @@ describe 'hylesの統合テスト', type: :system do
         select "test_category", from: 'hyle[category_id]'
         click_button 'この内容で追加する'
         #ラベル追加ページに遷移
+        expect(page).to have_content 'ヒュレーが追加されました!'
         click_link 'ラベルの追加を終える'
         #詳細ページに遷移し、正しく表示
-        expect(page).to have_content 'ヒュレーが追加されました!'
         expect(page).to have_selector 'h2', text: "画像ありヒュレー"
         #expect(page).to have_css "img[src$='sample1.jpg']"
       end
@@ -95,9 +95,9 @@ describe 'hylesの統合テスト', type: :system do
         check user.tag_list[2]
         click_button 'この内容で追加する'
         #ラベル追加ページに遷移
+        expect(page).to have_content 'ヒュレーが追加されました!' #まとめてテストするとエラーになる
         click_link 'ラベルの追加を終える'
         #詳細ページに遷移し、正しく表示
-        expect(page).to have_content 'ヒュレーが追加されました!' #まとめてテストするとエラーになる
         expect(page).to have_selector 'h2', text: "タグ付きヒュレー"
         expect(page).to have_selector 'td', text: "タグ付きヒュレー"
         expect(page).to have_selector 'td', text: "2016年12月12日"
@@ -111,6 +111,7 @@ describe 'hylesの統合テスト', type: :system do
         fill_in 'hyle_name', with: "ラベルありヒュレー"
         select "test_category", from: 'hyle[category_id]'
         click_button 'この内容で追加する'
+        expect(page).to have_content 'ヒュレーが追加されました!'
         #ラベルの追加に失敗する
         fill_in 'new-label-name', with: "a"*21
         fill_in 'new-label-body', with: "  "
@@ -147,7 +148,6 @@ describe 'hylesの統合テスト', type: :system do
         fill_in 'new-label-body', with: "テストラベルの内容"
         click_button '新しいラベルを追加'
         click_link 'ラベルの追加を終える'
-        expect(page).to have_content 'ヒュレーが追加されました!'
         expect(page).to have_selector 'th', text: "テストラベル"
         expect(page).to have_selector 'td', text: "テストラベルの内容"
       end
@@ -256,6 +256,7 @@ describe 'hylesの統合テスト', type: :system do
       let(:another_hyle){create(:hyle, user:user, category:category)}
       it 'ヒュレー詳細画面に、ヒュレーの思い出が表示される' do
         visit users_hyle_path(hyle)
+        expect(page).not_to have_content 'ヒュレーが追加されました!'
         expect(page).to have_selector 'h3', text: "#{hyle.name}さんとの思い出"
         expect(page).to have_selector 'h4', text: memory.title
         expect(page).not_to have_selector 'h4', text: another_memory.title
