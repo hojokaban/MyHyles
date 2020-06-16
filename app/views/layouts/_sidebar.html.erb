@@ -1,19 +1,23 @@
 <div class="hyle-count my-4">
   <h4>ヒュレー <%= current_user.hyles.count %>人</h4>
 </div>
+<h3>カテゴリー</h3>
 <div class="category-index my-4">
-  <h3>カテゴリー</h3>
   <% current_user.categories.each do |category| %>
-    <%= link_to categorized_users_hyle_path(category) do %>
-      <span><%= category.name %></span>
+    <%= link_to categorized_users_hyle_path(category), style:"text-decoration:none;" do %>
+      <div class="category-label rounded col-md-12 m-1">
+        <span><%= category.name %></span>
+      </div>
     <% end %>
   <% end %>
 </div>
+<h3>タグ</h3>
 <div class="tag-index my-4">
-  <h3>タグ</h3>
   <% current_user.tag_list.each do |tag| %>
-    <%= link_to tagged_users_hyle_path(tag) do %>
-      <span><%= tag %></span>
+    <%= link_to tagged_users_hyle_path(tag), style:"text-decoration:none;" do %>
+      <div class="tag-label rounded col-md-12 m-1">
+        <span><%= tag %></span>
+      </div>
     <% end %>
   <% end %>
 </div>
