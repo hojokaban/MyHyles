@@ -5,7 +5,8 @@ User.create!(name: "sample",
 luffy = User.create!(name: "モンキー・D・ルフィ",
             email: "luffy@example.com",
             password: "password",
-            confirmed_at: Time.current)
+            confirmed_at: Time.current,
+            tag_list: ["王下七武海","四皇","能力者","兄弟","家族","同盟","大将"])
 
 cate1 = luffy.categories.create!(name: "麦わらの一味")
 cate2 = luffy.categories.create!(name: "海賊")
