@@ -18,20 +18,33 @@
 @import "font-awesome";
 
 /* フォント */
-h2, h3, h4{
-  font-family: sans-serif;
+h2, h3, h4, a, td, th, label{
+  font-family: 'Yu Mincho Light','YuMincho','Yu Mincho','游明朝体','ヒラギノ角ゴシック','Hiragino Sans';
 }
-h2{font-size:2em}
+h2{
+  font-size:2em;
+
+}
 h3{font-size:1.7em}
 h4{font-size:1.3em}
 
-body .container{
-    min-height: 90vh;
+/* ヘッダー */
+header{
+  height:60px;
+  background-color: #33CCFF;
+}
+body .container-fluid{
+  min-height: 90vh;
+  background-color:#CCFFFF;
+  .row{
+    margin:0 4%;
+  }
 }
 
 /* サイドバー */
 .sidebar{
-  background-color: #CC99CC;
+  background-color: #33CCFF;
+  border: 3px solid #1155AA;
 }
 /* タグリスト */
 .tag-index{
@@ -42,6 +55,9 @@ body .container{
     width: inherit;
     background-color: blue;
     color: white;
+    &:hover{
+      color: red;
+    }
   }
 }
 
@@ -54,9 +70,13 @@ body .container{
     width: inherit;
     background-color: green;
     color: white;
+    &:hover{
+      color: red;
+    }
   }
 }
 
 footer{
-    background-color: green;
+  z-index: 10;
+  background-color: green;
 }
