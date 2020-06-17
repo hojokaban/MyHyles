@@ -2,9 +2,13 @@
 
 <% hyle.labels.each do |label| %>
   <%= form_with(model: label, url: users_label_path(label), local: true, html:{method: :patch, class:"form-group"}) do |f| %>
-    <%= f.text_field :name, class:"form-control", id:"label-name-#{label.id}" %>
-    <%= f.text_area :body, class:"form-control", id:"label-body-#{label.id}" %>
-    <%= f.submit "変更する", id:"label-edit-button-#{label.id}" %>
+    <div class="row">
+      <%= f.text_field :name, class:"form-control string-field", id:"label-name-#{label.id}" %>
+      <%= f.text_area :body, class:"form-control string-field", id:"label-body-#{label.id}" %>
+    </div>
+    <div class="btns d-flex justify-content-center">
+      <%= f.submit "変更する", class:"btn btn-info m-2", id:"label-edit-button-#{label.id}" %>
+      <%= link_to "削除", users_label_path(label), method: :delete, class:"btn btn-danger m-2", id:"delete-label-#{label.id}" %>
+    </div>
   <% end %>
-  <%= link_to "削除", users_label_path(label), method: :delete, id:"delete-label-#{label.id}" %>
 <% end %>

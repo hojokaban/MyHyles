@@ -1,28 +1,31 @@
-<h2><%= @hyle.name %></h2>
-<div class="edit-hyle">
+<div class="edit-hyle background">
+  <h2><%= @hyle.name %></h2>
   <%= form_with(model: @hyle, url: users_hyle_path, local: true, class:"form-group") do |f| %>
     <%= render 'hyle_info_form', hyle: @hyle, f:f %>
-    <%= f.submit '変更を保存する' %>
+    <%= f.submit '変更を保存する', class:"btn btn-primary my-5 mx-auto d-block" %>
   <% end %>
-
-  <div class="new-category">
-    <h4>新しいカテゴリーを追加する</h4>
-    <%= render 'categories/category_new_form', category: @category %>
-  </div>
-  <div class="new-tag">
-    <h4>新しいタグを追加する</h4>
-    <%= render 'categories/tag_new_form' %>
-  </div>
 </div>
 
-<div class="edit-label">
+<div class="edit-label background">
   <h4>ラベルを編集する</h4>
   <%= render 'hyles/label_edit', hyle: @hyle %>
 </div>
 
-<div class="new-label">
+<div class="new-label background">
   <h4>新しいラベルを追加する</h4>
   <%= render 'labels/label_new_form', label: @label, hyle: @hyle %>
 </div>
 
-<%= link_to "ヒュレーの編集を終える",users_hyle_path(@hyle) %>
+<div class="add-things row">
+  <div class="new-category col-md-5 background">
+    <h4>新しいカテゴリーを追加する</h4>
+    <%= render 'categories/category_new_form', category: @category %>
+  </div>
+  <div class="new-tag offset-md-2 col-md-5 background">
+    <h4>新しいタグを追加する</h4>
+    <%= render 'categories/tag_new_form' %>
+  </div>
+</div>
+<div class="row">
+  <%= link_to "ヒュレーの編集を終える",users_hyle_path(@hyle), class:"btn btn-primary my-5 mx-auto d-block" %>
+</div>

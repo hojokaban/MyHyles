@@ -1,14 +1,16 @@
-<h2><%= @hyle.name %></h2>
-<div class="row text-center background">
+<div class="background">
+  <h2><%= @hyle.name %></h2>
   <%= render 'hyles/hyle_show', hyle: @hyle %>
-  <%= link_to "内容を編集する", edit_users_hyle_path(@hyle), class:"btn btn-primary my-5 mx-auto d-block" %>
-  <%= link_to "削除する", users_hyle_path(@hyle), method: :delete,
-                      data: {confirm: "本当にこのヒュレーを削除しますか？"}, class:"btn btn-danger my-5 mx-auto d-block" %>
+  <div class="btns d-flex justify-content-center">
+    <%= link_to "内容を編集する", edit_users_hyle_path(@hyle), class:"btn btn-primary m-2" %>
+    <%= link_to "削除する", users_hyle_path(@hyle), method: :delete,
+                        data: {confirm: "本当にこのヒュレーを削除しますか？"}, class:"btn btn-danger m-2" %>
+  </div>
 </div>
 
 <% unless @hyle.memories.empty? %>
-  <h3><%= @hyle.name %>さんとの思い出</h3>
-  <div class="memory-index">
+  <div class="memory-index background">
+    <h3><%= @hyle.name %>さんとの思い出</h3>
     <%= render 'memories/memory_index', memories:@hyle.memories %>
   </div>
 <% end %>

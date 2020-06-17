@@ -1,43 +1,43 @@
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light" style="justify-content: flex-end;">
-      <%= link_to root_path, class:"navbar-brand mr-auto" do %>
-          <div >MyHyles</div>
-      <% end %>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+  <nav class="navbar navbar-expand-lg navbar-light" style="justify-content: flex-end;">
+    <%= link_to root_path, class:"navbar-brand mr-auto" do %>
+      <div >MyHyles</div>
+    <% end %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent" style="flex-grow: 0;">
-        <ul class="navbar-nav mr-auto">
-            <% if user_signed_in? %>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    追加
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <%= link_to "ヒュレーの追加", new_users_hyle_path, class:"dropdown-item" %>
-                    <%= link_to "思い出の追加", new_users_memory_path, class:"dropdown-item" %>
-                  </div>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <%= current_user.name %>さん
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <%= link_to "メインページ", users_path, class:"dropdown-item" %>
-                    <%= link_to "ヒュレー", users_hyles_path, class:"dropdown-item" %>
-                    <%= link_to "思い出", users_memories_path, class:"dropdown-item" %>
-                    <%= link_to "設定", edit_user_registration_path, class:"dropdown-item" %>
-                    <div class="dropdown-divider"></div>
-                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"dropdown-item" %>
-                  </div>
-                </li>
-            <% else %>
-                <li class="nav-item"><%= link_to "このサイトについて", about_path, class:"nav-link" %></li>
-                <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class:"nav-link" %></li>
-                <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class:"nav-link" %></li>
-            <% end %>
-        </ul>
-      </div>
-    </nav>
+    <div class="collapse navbar-collapse rounded" id="navbarSupportedContent" style="flex-grow: 0;z-index:10;">
+      <ul class="navbar-nav mr-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              追加
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "ヒュレーの追加", new_users_hyle_path, class:"dropdown-item" %>
+              <%= link_to "思い出の追加", new_users_memory_path, class:"dropdown-item" %>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= current_user.name %>さん
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "メインページ", users_path, class:"dropdown-item" %>
+              <%= link_to "ヒュレー", users_hyles_path, class:"dropdown-item" %>
+              <%= link_to "思い出", users_memories_path, class:"dropdown-item" %>
+              <%= link_to "設定", edit_user_registration_path, class:"dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"dropdown-item" %>
+            </div>
+          </li>
+        <% else %>
+          <li class="nav-item"><%= link_to "このサイトについて", about_path, class:"nav-link" %></li>
+          <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class:"nav-link" %></li>
+          <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class:"nav-link" %></li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
 </header>

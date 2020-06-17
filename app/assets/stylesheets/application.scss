@@ -58,16 +58,24 @@ img{
 label{margin-top:1.5em}
 .string-field{max-width: 20em}
 .form-control{margin:0 auto}
-.check_box{
-  label, input{
-    margin: 1em 0.5em;
-  }
-}
 /* ヘッダー */
 header{
   height:60px;
   background-color: #33CCFF;
+  #navbarSupportedContent ul{
+    // position: absolute;
+    // top:4em;
+    // background-color:#AAFFFF;
+    // border: 1px solid #005FFF;
+  }
+  .dropdown-menu{
+    background-color:#88FFFF;
+    .dropdown-item:hover{
+      background-color:#55FFFF;
+    }
+  }
 }
+
 body .container-fluid{
   min-height: 90vh;
   background-color:#CCFFFF;
