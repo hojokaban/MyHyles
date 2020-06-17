@@ -1,0 +1,15 @@
+
+
+  <% current_user.tag_list.each do |tag| %>
+    <%= link_to tagged_users_hyle_path(tag), style:"text-decoration:none;" do %>
+      <div class="col tag-edit d-flex mt-2">
+        <div class="tag-label">
+          <span><%= tag %></span>
+        </div>
+        <div class="tag-delete">
+          <%= button_to "削除", root_path,
+            method: :delete, class:"btn btn-danger", id:"delete-#{tag}" %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
