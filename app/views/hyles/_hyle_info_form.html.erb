@@ -1,24 +1,28 @@
 <!-- recieves hyle f -->
-
-<div class="hyle-image">
-  <%= attachment_image_tag hyle, :hyle_image, format:'jpg', class:"hyle-img", fallback:"no_image2.jpg", size:"300x300" %>
-  <%= f.attachment_field :hyle_image %>
-</div>
-<div class="hyle-form">
-    <div class="hyle-info">
-      <%= f.label :name, "名前" %>
-      <%= f.text_field :name, class:"form-control" %>
-      <%= f.label :birthday, "生年月日" %>
-      <%= raw sprintf(f.date_select(:birthday, use_month_numbers:true,
-      prompt:"--", start_year:Time.now.year, end_year:Time.now.year-120, date_separator:'%s'),'年','月')+'日' %>
+<div class="row">
+  <div class="image col-md-6 mt-3 text-center">
+    <%= attachment_image_tag hyle, :hyle_image, format:'jpg', class:"hyle-img", fallback:"no_image2.jpg", size:"300" %><br>
+    <%= f.attachment_field :hyle_image, class:"d-none", id:"file" %>
+    <div class="btn btn-info my-2" id="img_field" onClick="$('#file').click()" >
+      <span>画像を追加する</span>
     </div>
-    <div class="select-category">
-      <%= f.label :category, "カテゴリー" %>
-      <%= f.select :category_id, options_for_select(current_user.categories.collect{
-          |category| [category.name, category.id]}),
-           {prompt: "カテゴリーを選択してください"}, {class:"form-control"} %>
-    </div>
-    <div class="check_box" >
-      <%= f.collection_check_boxes(:tag_list, current_user.tag_list,tag,tag) %>
-    </div>
+  </div>
+  <div class="hyle-form col-12 col-md-6">
+      <div class="hyle-info">
+        <%= f.label :name, "名前(必須)" %>
+        <%= f.text_field :name, class:"form-control string-field" %>
+        <%= f.label :birthday, "生年月日" %><br>
+        <%= raw sprintf(f.date_select(:birthday, use_month_numbers:true,
+        prompt:"--", start_year:Time.now.year, end_year:Time.now.year-120, date_separator:'%s'),'年','月')+'日' %>
+      </div>
+      <div class="select-category">
+        <%= f.label :category, "カテゴリー(必須)" %>
+        <%= f.select :category_id, options_for_select(current_user.categories.collect{
+            |category| [category.name, category.id]}),
+             {prompt: "カテゴリーを選択してください"}, {class:"form-control string-field"} %>
+      </div>
+      <div class="check_box" >
+        <%= f.collection_check_boxes(:tag_list, current_user.tag_list,tag,tag) %>
+      </div>
+  </div>
 </div>

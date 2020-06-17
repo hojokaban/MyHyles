@@ -1,6 +1,6 @@
 
 <%= form_with(model: current_user, url: tag_registration_path, local:true,
         html: {method: :patch, class:"form-group", id:"add-tag"}) do |f| %>
-    <%= f.text_field :tag, class:"form-control" %>
-    <%= f.submit "新しいタグを追加" %>
+    <%= f.text_field :tag, class:"form-control string-field" %>
+    <%= f.submit "新しいタグを追加", class:"btn btn-info my-2 mx-auto d-block" %>
 <% end %>
