@@ -1,7 +1,9 @@
 <!-- recieves category -->
 
-<%= form_with(model: category, url: users_categories_path, local:true,
-        html: {class:"form-group", id:"add-category"}) do |f| %>
-    <%= f.text_field :name , autocomplete: "name", class:"form-control string-field" %>
-    <%= f.submit "新しいカテゴリーを追加", class:"btn btn-info my-2 mx-auto d-block" %>
-<% end %>
+<div class="new-category col-md-5 background">
+  <%= form_with(model: category, url: users_categories_path, local:true,
+          html: {class:"form-group", id:"add-category"}) do |f| %>
+      <%= f.text_field :name , autocomplete: "name", class:"form-control" %>
+      <%= f.submit "新しいカテゴリーを追加", class:"btn btn-info my-2 mx-auto d-block" %>
+  <% end %>
+</div>

@@ -3,11 +3,16 @@
 <% categories.each do |category| %>
     <%= form_with(model:category, url: users_category_path(category),
             local: true, html: {method: :patch, class:"form-group"}) do |f| %>
-        <span><%= f.text_field :name, class:"form-control", id:"category-name-#{category.id}" %></span>
-        <%= f.submit "変更を保存する", id:"edit-category-#{category.id}" %>
+        <div class="col d-flex flex-wrap justify-content-center">
+          <span><%= f.text_field :name, class:"form-control my-1", id:"category-name-#{category.id}" %></span>
+          <div class="btns my-1 mx-auto">
+            <%= f.submit "変更を保存する", class:"btn btn-info mx-2", id:"edit-category-#{category.id}" %>
+            <%= button_to "削除", users_category_path(category),
+              method: :delete, class:"btn btn-danger", id:"delete-category-#{category.id}",
+               data: {confirm: "このカテゴリーを削除すると、このカテゴリーのヒュレーが全て削除されます。
+                                                          本当に削除しますか？"} %>
+          </div>
+        </div>
     <% end %>
-    <%= button_to "削除", users_category_path(category),
-        method: :delete, id:"delete-category-#{category.id}",
-         data: {confirm: "このカテゴリーを削除すると、このカテゴリーのヒュレーが全て削除されます。
-                                                    本当に削除しますか？"} %>
+
 <% end %>

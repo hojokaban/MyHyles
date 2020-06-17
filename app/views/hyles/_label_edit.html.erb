@@ -3,8 +3,8 @@
 <% hyle.labels.each do |label| %>
   <%= form_with(model: label, url: users_label_path(label), local: true, html:{method: :patch, class:"form-group"}) do |f| %>
     <div class="row">
-      <%= f.text_field :name, class:"form-control string-field", id:"label-name-#{label.id}" %>
-      <%= f.text_area :body, class:"form-control string-field", id:"label-body-#{label.id}" %>
+      <%= f.text_field :name, class:"form-control", id:"label-name-#{label.id}" %>
+      <%= f.text_area :body, class:"form-control", id:"label-body-#{label.id}" %>
     </div>
     <div class="btns d-flex justify-content-center">
       <%= f.submit "変更する", class:"btn btn-info m-2", id:"label-edit-button-#{label.id}" %>

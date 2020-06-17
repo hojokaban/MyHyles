@@ -10,7 +10,7 @@
   <div class="hyle-form col-12 col-md-6">
       <div class="hyle-info">
         <%= f.label :name, "名前(必須)" %>
-        <%= f.text_field :name, class:"form-control string-field" %>
+        <%= f.text_field :name, class:"form-control" %>
         <%= f.label :birthday, "生年月日" %><br>
         <div class="mx-auto d-block" style="width:14em;">
           <%= raw sprintf(f.date_select(:birthday, use_month_numbers:true,
@@ -21,7 +21,7 @@
         <%= f.label :category, "カテゴリー(必須)" %>
         <%= f.select :category_id, options_for_select(current_user.categories.collect{
             |category| [category.name, category.id]}),
-             {prompt: "カテゴリーを選択してください"}, {class:"form-control string-field"} %>
+             {prompt: "カテゴリーを選択してください"}, {class:"form-control"} %>
       </div>
       <div class="check_box" >
         <%= f.label :tag_list, "タグ" %><br>
