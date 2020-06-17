@@ -5,14 +5,10 @@
   <%= link_to users_hyle_path(hyle), id:"hyle-link-#{hyle.id}", style:"text-decoration:none;" do %>
     <h4><%= hyle.name %></h4>
   <% end %>
-  <%= link_to categorized_users_hyle_path(hyle.category), style:"text-decoration:none;" do %>
-    <div class="category-label">
-      <span><%= hyle.category.name %></span>
-    </div>
+  <%= render 'categories/category_label', category:hyle.category %>
+</div>
+<div class="tags flex-wrap">
+  <% hyle.tag_list.each do |tag| %>
+    <%= render 'categories/tag_label', tag:tag %>
   <% end %>
 </div>
-
-
-<% hyle.tag_list.each do |tag| %>
-  <span><%= tag %></span>
-<% end %>

@@ -111,6 +111,20 @@ body .container-fluid{
   background-color: #EEE;
   border:1px solid #AAA;
 }
+.tags{
+  display: flex;
+  @media (max-width: 600px) {
+    display: none;
+  }
+}
+/* ヒュレーshow */
+.hyle-info table{
+  th{min-width: 7em}
+  tr{
+    display:block;
+    margin: 2em 0;
+  }
+}
 
 footer{
 background-color: #33CCFF;

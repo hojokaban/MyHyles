@@ -1,9 +1,9 @@
 <!-- recieves hyle -->
 
-<div class="hyle-image">
+<div class="image col-md-6 mt-3">
   <%= attachment_image_tag hyle, :hyle_image, format:'jpg', class:"hyle-img", fallback:"no_image2.jpg", size:"300x300" %>
 </div>
-<div class="hyle-info">
+<div class="hyle-info col-12 col-md-6">
   <table>
     <tr>
       <th>名前</th>
@@ -17,14 +17,14 @@
     </tr>
     <tr>
       <th>カテゴリー</th>
-      <td><%= hyle.category.name %></td>
+      <td><%= render 'categories/category_label', category:hyle.category %></td>
     </tr>
     <% if hyle.tag_list.present? %>
       <tr>
         <th>タグ</th>
         <td>
           <% hyle.tag_list.each do |tag| %>
-            <span><%= tag %></span>
+            <%= render 'categories/tag_label', tag:tag %>
           <% end %>
         </td>
       </tr>

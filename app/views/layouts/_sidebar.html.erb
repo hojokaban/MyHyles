@@ -1,5 +1,7 @@
 <div class="hyle-count my-4">
-  <h4>ヒュレー <%= current_user.hyles.count %>人</h4>
+  <%= link_to users_hyles_path, style:"text-decoration:none;" do %>
+    <h4>ヒュレー <%= current_user.hyles.count %>人</h4>
+  <% end %>
 </div>
 <h3>カテゴリー</h3>
 <div class="category-index d-flex flex-wrap my-4">

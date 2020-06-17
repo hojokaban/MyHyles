@@ -1,8 +1,10 @@
 <h2><%= @hyle.name %></h2>
-<%= render 'hyles/hyle_show', hyle: @hyle %>
-<%= link_to "内容を編集する", edit_users_hyle_path(@hyle) %>
-<%= button_to "削除する", users_hyle_path(@hyle), method: :delete,
-                    data: {confirm: "本当にこのヒュレーを削除しますか？"} %>
+<div class="row text-center background">
+  <%= render 'hyles/hyle_show', hyle: @hyle %>
+  <%= link_to "内容を編集する", edit_users_hyle_path(@hyle), class:"btn btn-primary my-5 mx-auto d-block" %>
+  <%= link_to "削除する", users_hyle_path(@hyle), method: :delete,
+                      data: {confirm: "本当にこのヒュレーを削除しますか？"}, class:"btn btn-danger my-5 mx-auto d-block" %>
+</div>
 
 <% unless @hyle.memories.empty? %>
   <h3><%= @hyle.name %>さんとの思い出</h3>
