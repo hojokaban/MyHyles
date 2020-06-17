@@ -17,9 +17,16 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+*{
+  box-sizing: border-box;
+}
 /* フォント */
 h2, h3, h4, a, td, th, label{
   font-family: 'Yu Mincho Light','YuMincho','Yu Mincho','游明朝体','ヒラギノ角ゴシック','Hiragino Sans';
+}
+th, label{
+  font-size: 1em;
+  color: #3333FF;
 }
 h2{
   font-size:2em;
@@ -51,6 +58,11 @@ img{
 label{margin-top:1.5em}
 .string-field{max-width: 20em}
 .form-control{margin:0 auto}
+.check_box{
+  label, input{
+    margin: 1em 0.5em;
+  }
+}
 /* ヘッダー */
 header{
   height:60px;
@@ -65,40 +77,41 @@ body .container-fluid{
 }
 
 /* サイドバー */
-.sidebar{
-  background-color: #33CCFF;
-  border: 3px solid #1155AA;
-}
-/* タグリスト */
-.tag-index{
-  display:flex;
-  flex-wrap: wrap;
-  .tag-label{
-    height:1.5em;
-    width: inherit;
-    background-color: blue;
-    color: white;
-    &:hover{
-      color: red;
-    }
+.sidebar{height:fit-content}
+/* タグ */
+.tag-label{
+  margin: 0.3em;
+  padding: 0 0.5em;
+  display:inline-block;
+  background-color: blue;
+  color: white;
+  border-radius: 5px;
+  &:hover{
+    color: #AAA;
   }
 }
 
-/* カテゴリーリスト */
-.category-index{
-  display:flex;
-  flex-wrap: wrap;
-  .category-label{
-    height:1.5em;
-    width: inherit;
-    background-color: green;
-    color: white;
-    &:hover{
-      color: red;
-    }
+/* カテゴリー */
+.category-label{
+  margin: 0.3em;
+  padding: 0 0.5em;
+  display:inline-block;
+  background-color: green;
+  color: white;
+  border-radius: 5px;
+  &:hover{
+    color: #AAA;
   }
+}
+/* ヒュレーボックス */
+.hyle-box{
+  display:flex;
+  align-items: center;
+  margin: 0.5em auto;
+  background-color: #EEE;
+  border:1px solid #AAA;
 }
 
 footer{
-  background-color: green;
+background-color: #33CCFF;
 }

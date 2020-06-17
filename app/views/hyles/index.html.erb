@@ -1,11 +1,13 @@
-<div class="sidebar">
-  <%= render 'layouts/sidebar' %>
-</div>
-<div class="hyle-index">
-  <h2><%= @title %></h2>
-  <% @hyles.each do |hyle| %>
-    <div class="hyle-box">
-      <%= render 'hyle_box', hyle: hyle %>
-    </div>
-  <% end %>
+<div class="row">
+  <div class="sidebar background col-md-3">
+    <%= render 'layouts/sidebar' %>
+  </div>
+  <div class="hyle-index col-md-9">
+    <h2><%= @title %></h2>
+    <% @hyles.each do |hyle| %>
+      <div class="hyle-box col">
+        <%= render 'hyle_box', hyle: hyle %>
+      </div>
+    <% end %>
+  </div>
 </div>
