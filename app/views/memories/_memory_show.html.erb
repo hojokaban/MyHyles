@@ -26,9 +26,12 @@
         <tr>
           <th>関わりのあるヒュレー</th>
         </tr>
-        <% memory.hyles.each do |hyle| %>
-          <tr><th></th><td><%= link_to hyle.name, users_hyle_path(hyle) %></td></tr>
+        <tr><td>
+        <% memory.hyles.each_with_index do |hyle, i| %>
+          <%= ", " unless i == 0 %>
+          <%= link_to hyle.name, users_hyle_path(hyle) %>
         <% end %>
+        </td></tr>
       <% end %>
     </table>
   </div>

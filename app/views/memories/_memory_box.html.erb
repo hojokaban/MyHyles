@@ -1,9 +1,11 @@
 <!-- recieves memory -->
 
-<%= link_to users_memory_path(memory), id:"memory-link-#{memory.id}" do %>
-  <%= attachment_image_tag memory, :memory_image, format:'jpg', class:"memory-img", fallback:"no_image2.jpg", size:"80x80" %>
-  <h4><%= memory.title %></h4>
-  <% unless memory.date.nil? %>
-    <h4><%= memory.date.strftime("%Y年%-m月%-d日") %></h4>
+<%= attachment_image_tag memory, :memory_image, format:'jpg', class:"memory-img m-1", fallback:"no_image2.jpg", size:"80x80" %>
+<div class="title-date mx-2">
+  <%= link_to users_memory_path(memory), id:"memory-link-#{memory.id}", style:"text-decoration:none;" do %>
+    <h4><%= memory.title %></h4>
+    <% unless memory.date.nil? %>
+      <p><%= memory.date.strftime("%Y年%-m月%-d日") %></p>
+    <% end %>
   <% end %>
-<% end %>
+</div>

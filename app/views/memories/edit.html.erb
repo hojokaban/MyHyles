@@ -1,7 +1,7 @@
-<h2>思い出の編集</h2>
-<div class="new-memory">
-  <%= form_with(model: @memory, url: users_memory_path, local: true, class:"form-group") do |f| %>
-    <%= render 'memory_info_form', memory: @memory, f:f %>
-    <%= f.submit '変更を保存する' %>
-  <% end %>
+<div class="edit-memory background">
+  <h2>思い出の編集</h2>
+    <%= form_with(model: @memory, url: users_memory_path, local: true, class:"form-group") do |f| %>
+      <%= render 'memory_info_form', memory: @memory, f:f %>
+      <%= f.submit '変更を保存する', class:"btn btn-primary my-5 mx-auto d-block" %>
+    <% end %>
 </div>

@@ -1,7 +1,9 @@
 <!-- recieves memories -->
 
-<% memories.each do |memory| %>
-  <div class="memory-box">
-    <%= render 'memories/memory_box', memory:memory %>
-  </div>
-<% end %>
+<div class="row flex-column">
+  <% memories.each do |memory| %>
+    <div class="memory-box col d-flex">
+      <%= render 'memories/memory_box', memory:memory %>
+    </div>
+  <% end %>
+</div>

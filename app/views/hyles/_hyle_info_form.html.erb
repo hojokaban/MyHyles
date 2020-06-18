@@ -24,7 +24,7 @@
              {prompt: "カテゴリーを選択してください"}, {class:"form-control"} %>
       </div>
       <div class="check_box" >
-        <%= f.label :tag_list, "タグ" %><br>
+        <%= f.label :tag_list, "タグ", class:"designed-label" %><br>
         <%= f.collection_check_boxes(:tag_list, current_user.tag_list,tag,tag, id:"#{tag}") do |b| %>
           <div class="d-inline-block mx-2">
             <%= b.label { b.check_box + b.text } %>

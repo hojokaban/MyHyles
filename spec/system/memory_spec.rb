@@ -76,7 +76,7 @@ describe 'memoriesの統合テスト', type: :system do
     #思い出を削除する
     new_memory = Memory.last
     find("#memory-link-#{new_memory.id}").click
-    click_button '削除する'
+    click_link '削除する'
     accept_alert
     expect(page).to have_content "思い出が削除されました"
     expect(page).to have_selector 'h2', text: '思い出一覧'

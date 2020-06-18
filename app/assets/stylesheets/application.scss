@@ -21,10 +21,11 @@
   box-sizing: border-box;
 }
 /* フォント */
-h2, h3, h4, a, td, th, label{
+h2, h3, h4, p, a, td, th, label{
   font-family: 'Yu Mincho Light','YuMincho','Yu Mincho','游明朝体','ヒラギノ角ゴシック','Hiragino Sans';
 }
-th, label{
+a{text-decoration: none;}
+th, .designed-label{
   font-size: 1em;
   color: #3333FF;
 }
@@ -55,7 +56,11 @@ img{
   padding: 1em;
 }
 /* フォーム */
-.margin-form label{margin-top:1.5em}
+.margin-form label{
+  margin-top:1.5em;
+  font-size: 1em;
+  color: #3333FF;
+}
 .form-control{max-width: 20em}
 .form-control{margin:0 auto}
 /* ヘッダー */
@@ -68,7 +73,6 @@ header{
       top:3em;
       right:2em;
       background-color:#AAFFFF;
-      border: 1px solid #005FFF;
     }
   }
   .dropdown-menu{

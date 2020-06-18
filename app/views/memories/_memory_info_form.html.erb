@@ -1,21 +1,32 @@
 <!-- recieves memory f -->
 
-<div class="memory-image">
-  <%= attachment_image_tag memory, :memory_image, format:'jpg', class:"memory-img", fallback:"no_image2.jpg", size:"300x300" %>
-  <%= f.attachment_field :memory_image %>
-</div>
-<div class="memory-form">
-    <div class="memory-info">
-      <%= f.label :title, "タイトル" %>
-      <%= f.text_field :title, class:"form-control", id:"memory-title" %>
-      <%= f.label :date, "いつの思い出？" %>
-      <%= raw sprintf(f.date_select(:date, use_month_numbers:true, prompt:"--", start_year:Time.now.year, end_year:Time.now.year-120, date_separator:'%s'),'年','月')+'日' %>
-      <%= f.label :description, "詳細" %>
-      <%= f.text_area :description, class:"form-control", id:"memory-description" %>
+<div class="row">
+  <div class="image col-md-6 mt-3 text-center">
+    <%= attachment_image_tag memory, :memory_image, format:'jpg', class:"memory-img", fallback:"no_image2.jpg", size:"300x300" %><br>
+    <%= f.attachment_field :memory_image, class:"d-none", id:"file" %>
+    <div class="btn btn-info my-2" id="img_field" onClick="$('#file').click()" >
+      <span>画像を追加する</span>
     </div>
-    <div class="check_box" >
-      <%= f.collection_check_boxes(:hyle_ids, current_user.hyles, :id, :name, include_hidden: false) do |b| %>
-        <%= b.label {b.check_box + b.text} %>
-      <% end %>
-    </div>
+  </div>
+  <div class="memory-form col-12 col-md-6">
+      <div class="memory-info margin-form">
+        <%= f.label :title, "タイトル(必須)" %>
+        <%= f.text_field :title, class:"form-control", id:"memory-title" %>
+        <%= f.label :date, "いつの思い出？" %><br>
+        <div class="mx-auto d-block" style="width:14em;">
+          <%= raw sprintf(f.date_select(:date, use_month_numbers:true,
+           prompt:"--", start_year:Time.now.year, end_year:Time.now.year-120, date_separator:'%s'),'年','月')+'日' %><br>
+         </div>
+        <%= f.label :description, "詳細" %>
+        <%= f.text_area :description, class:"form-control", id:"memory-description" %>
+      </div>
+      <div class="check_box mt-3" >
+        <%= f.label :tag_list, "関わったヒュレー", class:"designed-label" %><br>
+        <%= f.collection_check_boxes(:hyle_ids, current_user.hyles, :id, :name, include_hidden: false) do |b| %>
+          <div class="d-inline-block mx-2">
+            <%= b.label {b.check_box + b.text} %>
+          </div>
+        <% end %>
+      </div>
+  </div>
 </div>
