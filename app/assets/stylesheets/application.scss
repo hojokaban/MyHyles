@@ -63,10 +63,13 @@ header{
   height:60px;
   background-color: #33CCFF;
   #navbarSupportedContent ul{
-    // position: absolute;
-    // top:4em;
-    // background-color:#AAFFFF;
-    // border: 1px solid #005FFF;
+    @media (max-width: 991px) {
+      position: absolute;
+      top:3em;
+      right:2em;
+      background-color:#AAFFFF;
+      border: 1px solid #005FFF;
+    }
   }
   .dropdown-menu{
     background-color:#88FFFF;
@@ -125,13 +128,14 @@ body .container-fluid{
     display: none;
   }
 }
-/* ヒュレーshow */
-.hyle-info table{
+/* show */
+.show-info table{
   th{min-width: 7em}
   tr{
     display:block;
     margin: 2em 0;
   }
+  td{text-align:left}
 }
 /* フッター */
 footer{
