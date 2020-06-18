@@ -212,5 +212,22 @@ describe 'deviseの統合テスト', type: :system do
             end
             expect(page).to have_content 'アカウントが更新されました'
         end
+        it 'タグの追加と削除' do
+          #タグの表示
+          expect(page).to have_selector 'span', text: 'tag1'
+          expect(page).to have_selector 'span', text: 'tag2'
+          expect(page).to have_selector 'span', text: 'tag3'
+          #タグの削除
+          find("#delete-tag1").click
+          expect(page).to have_content 'タグが削除されました'
+          #タグの追加
+          fill_in "user_tag", with: "tag4"
+          click_button '新しいタグを追加'
+          expect(page).to have_content 'タグが追加されました'
+          #表示される
+          expect(page).to have_selector 'span', text: 'tag4'
+          expect(page).to have_selector 'span', text: 'tag2'
+          expect(page).to have_selector 'span', text: 'tag3'
+        end
     end
 end
