@@ -25,9 +25,12 @@
       </div>
       <div class="check_box mt-2" >
         <%= f.label :tag_list, "タグ", class:"designed-label" %><br>
-        <%= f.collection_check_boxes(:tag_list, current_user.tag_list,tag,tag, id:"#{tag}") do |b| %>
-          <div class="d-inline-block mx-2">
-            <%= b.label { b.check_box + b.text } %>
+        <% current_user.tag_list.each do |tag| %>
+          <div  class="d-inline-block mx-2">
+            <%= f.check_box :tag_list,
+                            { multiple: true,
+                              checked: hyle.tag_list.include?(tag) }, tag, nil %>
+            <span><%= tag %></span>
           </div>
         <% end %>
       </div>
