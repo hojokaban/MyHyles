@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="hyle-form col-12 col-md-6">
-      <div class="hyle-info">
+      <div class="hyle-info margin-form">
         <%= f.label :name, "名前(必須)" %>
         <%= f.text_field :name, class:"form-control" %>
         <%= f.label :birthday, "生年月日" %><br>
@@ -17,13 +17,13 @@
           prompt:"--", start_year:Time.now.year, end_year:Time.now.year-120, date_separator:'%s'), '年','月')+'日' %>
         </div>
       </div>
-      <div class="select-category">
+      <div class="select-category margin-form">
         <%= f.label :category, "カテゴリー(必須)" %>
         <%= f.select :category_id, options_for_select(current_user.categories.collect{
             |category| [category.name, category.id]}),
              {prompt: "カテゴリーを選択してください"}, {class:"form-control"} %>
       </div>
-      <div class="check_box" >
+      <div class="check_box mt-2" >
         <%= f.label :tag_list, "タグ", class:"designed-label" %><br>
         <%= f.collection_check_boxes(:tag_list, current_user.tag_list,tag,tag, id:"#{tag}") do |b| %>
           <div class="d-inline-block mx-2">

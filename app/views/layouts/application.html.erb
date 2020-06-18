@@ -10,7 +10,11 @@
 
   <body>
     <%= render 'layouts/header' %>
-    <%= render 'layouts/flash' %>
+    <% if flash.any? %>
+      <div class="flash">
+        <%= render 'layouts/flash' %>
+      </div>
+    <% end %>
 
     <div class="container-fluid py-3">
         <%= yield %>

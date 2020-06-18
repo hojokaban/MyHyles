@@ -9,8 +9,7 @@
             <%= f.submit "変更を保存する", class:"btn btn-info mx-2", id:"edit-category-#{category.id}" %>
             <%= button_to "削除", users_category_path(category),
               method: :delete, class:"btn btn-danger", id:"delete-category-#{category.id}",
-               data: {confirm: "このカテゴリーを削除すると、このカテゴリーのヒュレーが全て削除されます。
-                                                          本当に削除しますか？"} %>
+               data: {confirm: "このカテゴリーを削除すると、このカテゴリーのヒュレーが全て削除されます。本当に削除しますか？"} %>
           </div>
         </div>
     <% end %>

@@ -1,6 +1,6 @@
 <!-- recieves category -->
 
-<div class="new-category col-md-5 background">
+<div class="new-category">
   <%= form_with(model: category, url: users_categories_path, local:true,
           html: {class:"form-group", id:"add-category"}) do |f| %>
       <%= f.text_field :name , autocomplete: "name", class:"form-control" %>

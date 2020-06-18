@@ -50,7 +50,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         respond_with resource, location: after_update_path_for(resource)
       else
         flash[:danger] = set_error_flash(resource) if resource.errors.any?
-        respond_with resource
+        respond_with resource, location: after_update_path_for(resource)
       end
   end
 
