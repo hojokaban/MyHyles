@@ -22,9 +22,9 @@
       $("#hyle-count").html("(<%= @hyles.count %>人)")
     });
     $("#birthday-sort-btn").click(function(){
-      <% today_date = Date.today.to_s[5..6] + Date.today.to_s[8..10] %>
-      <% hyles = @hyles.where.not(birthday:nil).where('birthday_date >= ?', today_date).order(:birthday_date) %>
-      <% hyles += @hyles.where.not(birthday:nil).where('birthday_date < ?', today_date).order(:birthday_date) %>
+      <% today = today_date %>
+      <% hyles = @hyles.where.not(birthday:nil).where('birthday_date >= ?', today).order(:birthday_date) %>
+      <% hyles += @hyles.where.not(birthday:nil).where('birthday_date < ?', today).order(:birthday_date) %>
       $("#hyle-index").html("<%= j(render 'birthday_hyle_index', hyles: hyles) %>")
       $("#hyle-count").html("(<%= hyles.count %>人) <br />※誕生日未記入のヒュレーは除外されています")
     });

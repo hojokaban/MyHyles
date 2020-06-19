@@ -19,4 +19,14 @@ class Hyle < ApplicationRecord
   def set_birthday_date
     self.birthday_date = birthday.to_s[5..6] + birthday.to_s[8..10]
   end
+
+  def set_relationship(hyle_daily_relationship)
+    relationship = self.total_relationship + hyle_daily_relationship.relationship_amount
+    self.update(total_relationship: relationship)
+  end
+
+  def delete_relationship(hyle_daily_relationship)
+    relationship = self.total_relationship - hyle_daily_relationship.relationship_amount
+    self.update(total_relationship: relationship)
+  end
 end
