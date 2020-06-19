@@ -125,6 +125,13 @@ img{
     ul{margin-bottom:0;}
   }
 }
+/* 並べ替え */
+.sort-selection button{
+  min-width:120px;
+  height:28px;
+  color:white;
+  line-height:10px;
+}
 /* ボタン */
 .btn-primary{
   margin: 2em auto;

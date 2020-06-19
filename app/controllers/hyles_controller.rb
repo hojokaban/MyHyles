@@ -58,6 +58,9 @@ class HylesController < ApplicationController
     redirect_to users_hyles_path
   end
 
+  def sort
+  end
+
   private
 
     def hyle_params

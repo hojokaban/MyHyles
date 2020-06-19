@@ -3,15 +3,30 @@
     <%= render 'layouts/sidebar' %>
   </div>
   <div class="hyle-index background col-md-8">
-    <h2><%= @title %><span style="font-size:0.7em;font-weight:normal;">(<%= @hyles.count %>人)</span></h2>
-    <div class="sort-selection d-flex">
-      <%= select_tag 'sort_by', options_for_select({作成順: 1, 誕生日順: 2}, 1), class:"form-control" %>
-      <button class="btn btn-info" id="sort-btn" style="width:120px;height:30px;color:white;vertical-align:center;">並べ替える</button>
+    <h2><%= @title %><span id="hyle-count" style="font-size:0.7em;font-weight:normal;">(<%= @hyles.count %>人)</span></h2>
+    <div class="sort-selection row justify-content-center">
+      <%#= link_to "並べ替える", sort_users_hyle_path(1), method: :post, class:"btn btn-info offset-1 col-5 col-md-3", id:"sort-btn" %>
+      <button class="btn btn-info col-3" id="created-sort-btn">作成順</button>
+      <button class="btn btn-info offset-1 col-3" id="birthday-sort-btn">誕生日順</button>
     </div>
-    <% @hyles.each do |hyle| %>
-      <div class="hyle-box col">
-        <%= render 'hyle_box', hyle: hyle %>
-      </div>
-    <% end %>
+    <div id="hyle-index">
+      <%= render 'hyle_index', hyles:@hyles %>
+    </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#created-sort-btn").click(function(){
+      $("#hyle-index").html("<%= j(render 'hyle_index', hyles: @hyles) %>")
+      $("#hyle-count").html("(<%= @hyles.count %>人)")
+    });
+    $("#birthday-sort-btn").click(function(){
+      <% today_date = Date.today.to_s[5..6] + Date.today.to_s[8..10] %>
+      <% hyles = @hyles.where.not(birthday:nil).where('birthday_date >= ?', today_date).order(:birthday_date) %>
+      <% hyles += @hyles.where.not(birthday:nil).where('birthday_date < ?', today_date).order(:birthday_date) %>
+      $("#hyle-index").html("<%= j(render 'birthday_hyle_index', hyles: hyles) %>")
+      $("#hyle-count").html("(<%= hyles.count %>人) <br />※誕生日未記入のヒュレーは除外されています")
+    });
+  });
+</script>
