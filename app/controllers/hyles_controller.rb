@@ -11,6 +11,7 @@ class HylesController < ApplicationController
   def create
     @hyle = current_user.hyles.new(hyle_params)
     @hyle.set_tag(params[:hyle][:tag_list]) if @hyle.valid? && params[:hyle][:tag_list].present?
+    @hyle.set_birthday_date unless @hyle.birthday.nil?
     if @hyle.save
       flash[:success] = "ヒュレーが追加されました!"
       redirect_to edit_users_label_path(@hyle)

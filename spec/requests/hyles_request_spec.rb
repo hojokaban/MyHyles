@@ -33,8 +33,10 @@ RSpec.describe "Hyles", type: :request do
       expect{
       post users_hyles_path, params:{hyle:{
                             name: "test",
+                            birthday: "2000-01-01",
                             category_id: hyle.category.id}}
       }.to change(Hyle, :count).by(1)
+      expect(Hyle.last.birthday_date).to eq "0101"
     end
   end
 end

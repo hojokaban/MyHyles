@@ -12,6 +12,11 @@ class Hyle < ApplicationRecord
   validates :name, presence: true, length: {maximum: 20}
 
   def set_tag(tags)
-    tags.each{|tag| self.tag_list.add(tag.delete_prefix("<call>").delete_suffix("</call>"))}
+    tags.each{|tag| self.tag_list.add(tag)}
+    #.delete_prefix("<call>").delete_suffix("</call>")
+  end
+
+  def set_birthday_date
+    self.birthday_date = birthday.to_s[5..6] + birthday.to_s[8..10]
   end
 end

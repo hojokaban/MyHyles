@@ -3,7 +3,11 @@
     <%= render 'layouts/sidebar' %>
   </div>
   <div class="hyle-index background col-md-8">
-    <h2><%= @title %></h2>
+    <h2><%= @title %><span style="font-size:0.7em;font-weight:normal;">(<%= @hyles.count %>人)</span></h2>
+    <div class="sort-selection d-flex">
+      <%= select_tag 'sort_by', options_for_select({作成順: 1, 誕生日順: 2}, 1), class:"form-control" %>
+      <button class="btn btn-info" id="sort-btn" style="width:120px;height:30px;color:white;vertical-align:center;">並べ替える</button>
+    </div>
     <% @hyles.each do |hyle| %>
       <div class="hyle-box col">
         <%= render 'hyle_box', hyle: hyle %>
