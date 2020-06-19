@@ -6,10 +6,12 @@
   <% end %>
 </div>
 
-<div class="edit-label background">
-  <h4>ラベルを編集する</h4>
-  <%= render 'hyles/label_edit', hyle: @hyle %>
-</div>
+<% if @hyle.labels.present? %>
+  <div class="edit-label background">
+    <h4>ラベルを編集する</h4>
+    <%= render 'hyles/label_edit', hyle: @hyle %>
+  </div>
+<% end %>
 
 <div class="new-label background">
   <h4>新しいラベルを追加する</h4>
@@ -27,5 +29,5 @@
   </div>
 </div>
 <div class="row">
-  <%= link_to "ヒュレーの編集を終える",users_hyle_path(@hyle), class:"btn btn-primary my-5 mx-auto d-block" %>
+  <%= link_to "ヒュレーの編集を終える",users_hyle_path(@hyle), class:"btn btn-primary" %>
 </div>

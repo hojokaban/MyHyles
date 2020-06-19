@@ -24,7 +24,9 @@
 h2, h3, h4, p, a, td, th, label{
   font-family: 'Yu Mincho Light','YuMincho','Yu Mincho','游明朝体','ヒラギノ角ゴシック','Hiragino Sans';
 }
-a{text-decoration: none;}
+a:link{
+  text-decoration: none;
+}
 th, .designed-label{
   font-size: 1.2em;
   color: #3333FF;
@@ -43,6 +45,9 @@ h3{
 h4{
   font-size:1.3em;
   color: blue;
+}
+.message p{
+  color:#2C7CFF;
 }
 /* セレクト */
 select{
@@ -77,6 +82,7 @@ img{
 }
 .img-80{
   max-height: 80px;
+  min-width: 80px;
 }
 /* 背景 */
 .background{
@@ -95,11 +101,6 @@ img{
   max-width: 20em;
   margin:0 auto;
 }
-// .date-select{
-//   display:block;
-//   margin: 0 auto;
-//   min-width: 14em;
-// }
 .devise-links{
   float: right;
 }
@@ -146,10 +147,15 @@ header{
   .dropdown-menu{
     background-color:#88FFFF;
     border: none;
-    .dropdown-item:hover{
-      background-color:#55FFFF;
+    margin: 0.125rem -2em 0em;
+    .dropdown-item{
+      color: blue;
+      &:hover{
+        background-color:#55FFFF;
+      }
     }
   }
+  .nav-item{margin:0.5em 1em;}
 }
 
 body .container-fluid{
@@ -160,15 +166,18 @@ body .container-fluid{
     margin:0 4%;
   }
 }
-
+/* アバウト */
+.image img{
+  width:100%;
+  height:auto;
+}
 /* サイドバー */
 .sidebar{height:fit-content}
-/* タグ */
-.tag-label{
+/* タグ、カテゴリーラベル */
+.label{
   margin: 0.3em;
   padding: 0 0.5em;
   display:inline-block;
-  background-color: blue;
   color: white;
   border-radius: 5px;
   &:hover{
@@ -176,18 +185,6 @@ body .container-fluid{
   }
 }
 
-/* カテゴリー */
-.category-label{
-  margin: 0.3em;
-  padding: 0 0.5em;
-  display:inline-block;
-  background-color: green;
-  color: white;
-  border-radius: 5px;
-  &:hover{
-    color: #AAA;
-  }
-}
 /* ヒュレーボックス */
 .hyle-box{
   display:flex;
