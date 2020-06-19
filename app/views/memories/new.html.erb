@@ -2,7 +2,7 @@
   <h2>思い出の追加</h2>
   <div class="new-memory">
     <%= form_with(model: @memory, url: users_memories_path, local: true, class:"form-group") do |f| %>
-      <%= render 'memory_info_form', memory: @memory, f:f %>
+      <%= render 'memory_info_form', memory: @memory, f:f, hyles:@memory.hyles %>
       <%= f.submit 'この内容で追加する', class:"btn btn-primary my-5 mx-auto d-block" %>
     <% end %>
   </div>

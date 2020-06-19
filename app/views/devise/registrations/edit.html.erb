@@ -7,9 +7,9 @@
     <div class="row edit-user justify-content-center flex-column">
       <%= render 'devise/shared/user_info', f:f %>
       <%= render 'devise/shared/password_form', f:f %>
-      <div class="field">
+      <div class="col field">
         <%= f.label :current_password, "パスワードを変更する場合は現在のパスワードを入力してください" %><br />
-        <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control col" %>
+        <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control" %>
       </div>
       </div>
     <%= f.submit "変更を保存する", class:"btn btn-primary m-3 mx-auto d-block" %>

@@ -1,4 +1,4 @@
-<!-- recieves memory f -->
+<!-- recieves memory f hyles -->
 
 <div class="row">
   <div class="image col-md-6 mt-3 text-center">
@@ -13,7 +13,7 @@
         <%= f.label :title, "タイトル(必須)" %>
         <%= f.text_field :title, class:"form-control", id:"memory-title" %>
         <%= f.label :date, "いつの思い出？" %><br>
-        <div class="mx-auto d-block" style="width:14em;">
+        <div class="mx-auto" style="width:14em;">
           <%= raw sprintf(f.date_select(:date, use_month_numbers:true,
            prompt:"--", start_year:Time.now.year, end_year:Time.now.year-120, date_separator:'%s'),'年','月')+'日' %><br>
          </div>
@@ -22,9 +22,12 @@
       </div>
       <div class="check_box mt-3" >
         <%= f.label :tag_list, "関わったヒュレー", class:"designed-label" %><br>
-        <%= f.collection_check_boxes(:hyle_ids, current_user.hyles, :id, :name, include_hidden: false) do |b| %>
-          <div class="d-inline-block mx-2">
-            <%= b.label {b.check_box + b.text} %>
+        <% current_user.hyles.each do |hyle| %>
+          <div  class="d-inline-block mx-2">
+            <%= f.check_box :hyle_ids,
+                            { multiple: true,
+                              checked: hyles.exists?(hyle.id) }, hyle.id, nil %>
+            <span><%= hyle.name %></span>
           </div>
         <% end %>
       </div>

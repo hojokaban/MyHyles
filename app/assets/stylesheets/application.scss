@@ -71,6 +71,11 @@ img{
   max-width: 20em;
   margin:0 auto;
 }
+.date-select{
+  display:block;
+  margin: 0 auto;
+  min-width: 14em;
+}
 /* フラッシュ */
 .flash{
   text-indent: 1em;
@@ -83,7 +88,8 @@ img{
     min-height: 2em;
     background-color: #FF99FF;
   }
-  .danger{
+  .danger, .alert{
+    margin-bottom:0;
     min-height: 2em;
     background-color: #FF99FF;
     h2{color:#555}
