@@ -1,8 +1,23 @@
+<h2>メインページ</h2>
 <div class="row">
   <div class="sidebar col-md-3 background">
     <%= render 'layouts/sidebar' %>
   </div>
-  <div class="main-page col-md-9 mt-sm-3">
-    <h2>メインページ</h2>
+  <div class="main-page col-md-8">
+    <div class="background">
+      <% unless current_user.has_done %>
+        <div class="row link-relationship justify-content-center">
+          <h4>今日の人間関係を記録しましょう！</h4>
+          <%= link_to "関係の記入画面に移動する", new_users_daily_relationship_path,
+           class:"btn btn-info" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="background">
+      <h3>誕生日が近いヒュレー</h3>
+      <div class="birthday-hyle-index">
+        <%= render 'hyles/birthday_hyle_index', hyles:@hyles %>
+      </div>
+    </div>
   </div>
 </div>

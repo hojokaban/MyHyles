@@ -17,7 +17,6 @@ Rails.application.routes.draw do
       member do
         get :categorized_index, as: 'categorized'
         get :tagged_index, as: 'tagged'
-        post :sort, as:'sort'
       end
     end
     resources :memories

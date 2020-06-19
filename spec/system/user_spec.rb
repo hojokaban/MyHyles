@@ -22,5 +22,8 @@ describe 'userの統合テスト', type: :system do
       expect(page).to have_selector 'span', text: "tag1"
       expect(page).to have_selector 'span', text: "tag2"
       expect(page).to have_selector 'span', text: "tag3"
+      #関係記入画面に移動
+      click_link "関係の記入画面に移動する"
+      expect(page).to have_selector 'h2', text: "今日関わった人間関係を記録しましょう"
   end
 end
