@@ -1,24 +1,26 @@
-<h2>ログイン</h2>
+<div class="background">
+  <h2>ログイン</h2>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), class:"form-group") do |f| %>
+    <div class="row flex-column margin-form">
+    <div class="field">
+      <%= f.label :email, "メールアドレス" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+    </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name), class:"form-group") do |f| %>
-  <div class="field">
-    <%= f.label :email, "メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
-  </div>
+    <div class="field">
+      <%= f.label :password, "パスワード" %><br />
+      <%= f.password_field :password, autocomplete: "current-password", class:"form-control" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password, "パスワード" %><br />
-    <%= f.password_field :password, autocomplete: "current-password", class:"form-control" %>
-  </div>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me, "アカウントを保持する" %>
+    </div>
+    </div>
 
-  <div class="field">
-    <%= f.check_box :remember_me %>
-    <%= f.label :remember_me, "アカウントを保持する" %>
-  </div>
-
+    <%= f.submit "ログイン", class:"btn btn-primary" %>
+  <% end %>
+</div>
+<div class="devise-links">
   <%= render "devise/shared/links" %>
-
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-  </div>
-<% end %>
+</div>

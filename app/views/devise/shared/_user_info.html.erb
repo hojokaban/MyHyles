@@ -5,9 +5,11 @@
   <%= f.text_field :name, autofocus: true, autocomplete: "email", class:"form-control " %>
 </div>
 
-<%= f.label :birthday, "生年月日" %><br />
-<div class="col mx-auto" style="width:16em;">
-  <%= raw sprintf(f.date_select(:birthday, prompt:"--", use_month_numbers:true, start_year:Time.now.year, end_year:Time.now.year-120, date_separator:'%s'),'年','月')+'日' %>
+<div class="col">
+  <%= f.label :birthday, "生年月日" %><br />
+  <div class="text-center">
+    <%= raw sprintf(f.date_select(:birthday, prompt:"--", use_month_numbers:true, start_year:Time.now.year, end_year:Time.now.year-120, date_separator:'%s'),'年','月')+'日' %>
+  </div>
 </div>
 
 <div class="col">

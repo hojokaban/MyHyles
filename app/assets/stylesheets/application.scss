@@ -44,6 +44,30 @@ h4{
   font-size:1.3em;
   color: blue;
 }
+/* セレクト */
+select{
+  padding-left: 0.5em;
+  text-align: center;
+  -webkit-appearance: none;
+  background-image: image-url("select-arrow.png");
+  background-repeat: no-repeat;
+  background-size: 1.8em;
+  background-position: right 0 center;
+  background-color: white;
+  height: 2em;
+  option{
+    color:red;
+  }
+}
+#memory_date_1i, #hyle_birthday_1i, #user_birthday_1i{
+  width:4em;
+}
+#memory_date_2i, #memory_date_3i, #hyle_birthday_2i, #hyle_birthday_3i{
+  width:3em;
+}
+#user_birthday_2i, #user_birthday_3i{
+  width:3em;
+}
 /* 画像 */
 img{
   height: auto;
@@ -71,14 +95,18 @@ img{
   max-width: 20em;
   margin:0 auto;
 }
-.date-select{
-  display:block;
-  margin: 0 auto;
-  min-width: 14em;
+// .date-select{
+//   display:block;
+//   margin: 0 auto;
+//   min-width: 14em;
+// }
+.devise-links{
+  float: right;
 }
 /* フラッシュ */
 .flash{
   text-indent: 1em;
+  line-height: 2em;
   color: #555;
   .flash-success{
     min-height: 2em;
@@ -92,9 +120,14 @@ img{
     margin-bottom:0;
     min-height: 2em;
     background-color: #FF99FF;
-    h2{color:#555}
+    h3, h2{color:#555}
     ul{margin-bottom:0;}
   }
+}
+/* ボタン */
+.btn-primary{
+  margin: 2em auto;
+  display: block;
 }
 /* ヘッダー */
 header{
@@ -103,7 +136,7 @@ header{
   #navbarSupportedContent ul{
     @media (max-width: 991px) {
       padding: 0 20px;
-      position: absolute;
+      position: fixed;
       top:3em;
       right:2em;
       background-color:#AAFFFF;
@@ -112,6 +145,7 @@ header{
   }
   .dropdown-menu{
     background-color:#88FFFF;
+    border: none;
     .dropdown-item:hover{
       background-color:#55FFFF;
     }
@@ -119,6 +153,7 @@ header{
 }
 
 body .container-fluid{
+  padding: 3em 1em;
   min-height: 90vh;
   background-color:#CCFFFF;
   .row{

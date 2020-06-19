@@ -13,7 +13,7 @@
         <%= f.label :title, "タイトル(必須)" %>
         <%= f.text_field :title, class:"form-control", id:"memory-title" %>
         <%= f.label :date, "いつの思い出？" %><br>
-        <div class="mx-auto" style="width:14em;">
+        <div class="text-center">
           <%= raw sprintf(f.date_select(:date, use_month_numbers:true,
            prompt:"--", start_year:Time.now.year, end_year:Time.now.year-120, date_separator:'%s'),'年','月')+'日' %><br>
          </div>

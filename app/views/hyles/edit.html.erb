@@ -2,7 +2,7 @@
   <h2><%= @hyle.name %></h2>
   <%= form_with(model: @hyle, url: users_hyle_path, local: true, class:"form-group") do |f| %>
     <%= render 'hyle_info_form', hyle: @hyle, f:f %>
-    <%= f.submit '変更を保存する', class:"btn btn-primary my-5 mx-auto d-block" %>
+    <%= f.submit '変更を保存する', class:"btn btn-primary" %>
   <% end %>
 </div>
 
