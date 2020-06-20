@@ -16,7 +16,7 @@ module ApplicationHelper
     return days_later.to_s[5..6] + days_later.to_s[8..10]
   end
   def days_before(today, another_day)
-    if (another_day.mon > today.mon) || (another_day.mon == today.mon && another_day.mday > today.mday)
+    if (another_day.mon > today.mon) || (another_day.mon == today.mon && another_day.mday >= today.mday)
       result = (another_day.next_year(today.year - another_day.year) - today).numerator
     else
       result = (another_day.next_year(today.year - another_day.year + 1) - today).numerator

@@ -91,8 +91,6 @@ gem 'rubocop-airbnb'
 #タグ付け
 gem 'acts-as-taggable-on'
 
-gem 'ransack'
-
 gem 'bullet'
 #アイコン
 gem 'font-awesome-sass'

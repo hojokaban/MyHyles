@@ -19,6 +19,9 @@ Rails.application.routes.draw do
         get :tagged_index, as: 'tagged'
         get :sort, as:'sort'
       end
+      collection do
+        post :search, as: 'search'
+      end
     end
     resources :memories
     resources :daily_relationships, only: [:new, :update] do

@@ -39,6 +39,7 @@ class HylesController < ApplicationController
     @title = "全ヒュレー"
     @hyles = current_user.hyles.paginate(page: params[:page], per_page: 10)
     @hyles_count = @hyles.count
+    @hyle_type = "all"
   end
 
   def sort
@@ -48,19 +49,28 @@ class HylesController < ApplicationController
     birthday_hyles += current_user.hyles.where.not(birthday:nil).where('birthday_date < ?', today).order(:birthday_date)
     @hyles = birthday_hyles.paginate(page: params[:page], per_page: 10)
     @hyles_count = birthday_hyles.count
+    @hyle_type = "birthday"
     render :index
   end
 
   def categorized_index
     @title = "カテゴリー別ヒュレー"
-    @hyles = Category.find(params[:id]).hyles
+    @hyles = Category.find(params[:id]).hyles.paginate(page: params[:page], per_page: 10)
     @hyles_count = @hyles.count
+    @hyle_type = "category"
     render :index
   end
 
   def tagged_index
     @title = "タグ別ヒュレー"
-    @hyles = current_user.hyles.tagged_with(params[:id])
+    @hyles = current_user.hyles.tagged_with(params[:id]).paginate(page: params[:page], per_page: 10)
+    @hyles_count = @hyles.count
+    render :index
+  end
+
+  def search
+    @title = "「#{params[:term]}」の検索結果"
+    @hyles = current_user.hyles.where("name LIKE?", "%#{params[:term]}%" ).paginate(page: params[:page], per_page: 10)
     @hyles_count = @hyles.count
     render :index
   end
