@@ -101,3 +101,5 @@ gem 'rails-i18n'
 #テスト
 gem 'database_rewinder'
 #ページネーション
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'

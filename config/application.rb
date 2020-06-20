@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 module MyHyles
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    config.paths.add 'lib', eager_load: true
     config.load_defaults 5.2
     config.time_zone = 'Asia/Tokyo'
 
