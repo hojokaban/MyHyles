@@ -52,7 +52,7 @@ Rails.application.configure do
     port:                 587,
     domain:               'gmail.com',
     user_name:            'hojokaban@gmail.com',
-    password:             ENV['DB_PASSWORD'],
+    password:             ENV['MAIL_PASSWORD'],
     authentication:       'plain',
     enable_starttls_auto: true }
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
