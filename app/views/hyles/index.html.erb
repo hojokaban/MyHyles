@@ -22,7 +22,7 @@
       $("#hyle-count").html("(<%= @hyles.count %>人)")
     });
     $("#birthday-sort-btn").click(function(){
-      <% today = today_date %>
+      <% today = today_date(Date.current) %>
       <% hyles = @hyles.where.not(birthday:nil).where('birthday_date >= ?', today).order(:birthday_date) %>
       <% hyles += @hyles.where.not(birthday:nil).where('birthday_date < ?', today).order(:birthday_date) %>
       $("#hyle-index").html("<%= j(render 'birthday_hyle_index', hyles: hyles) %>")

@@ -15,6 +15,7 @@
     </div>
     <div class="background">
       <h3>誕生日が近いヒュレー</h3>
+      <h4><%= current_user.notice_before %>日以内に誕生日！</h4>
       <div class="birthday-hyle-index">
         <%= render 'hyles/birthday_hyle_index', hyles:@birthday_hyles %>
       </div>

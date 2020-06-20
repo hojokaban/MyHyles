@@ -84,4 +84,6 @@ RSpec.configure do |config|
   #メールのテスト用
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)
+  #誕生日のテスト用
+  config.include(ActiveSupport::Testing::TimeHelpers)
 end
