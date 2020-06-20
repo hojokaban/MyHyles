@@ -1,4 +1,4 @@
-<!-- recieves hyles -->
+<!-- recieves hyles today -->
 
 <% hyles.each do |hyle| %>
   <div class="hyle-box col">
@@ -12,8 +12,18 @@
       <%= render 'categories/category_label', category:hyle.category %>
     </div>
     <div class="col-md-5">
-      <h4 style="font-size:1em;"><%= hyle.birthday.nil? ? "--/--/--" : hyle.birthday.strftime("%Y年%-m月%-d日") %></h4>
+      <h5><%= hyle.birthday.nil? ? "--/--/--" : hyle.birthday.strftime("%Y年%-m月%-d日") %></h5>
+      <h5>
+        <% if !today.nil? && days_before = days_before(today, hyle.birthday) %>
+          <% if days_before == 0 %>
+            今日が誕生日です！
+          <% elsif days_before == 1 %>
+            明日が誕生日です！
+          <% else %>
+            あと<%= days_before %>日！
+          <% end %>
+        <% end %>
+      </h5>
     </div>
-
   </div>
 <% end %>

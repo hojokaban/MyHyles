@@ -34,8 +34,6 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-gem 'dotenv-rails'
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -75,23 +73,22 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
+#ログイン機構
 gem 'devise', '>= 4.7.1'
-
+#レイアウト
 gem 'bootstrap', '>= 4.5.0'
-
+#jQuery
 gem 'jquery-rails'
-
+#画像処理
 gem 'refile', require:'refile/rails', github:'manfe/refile'
-
 gem 'refile-mini_magick'
-
+#デバッグ
 gem 'pry-byebug'
-
+#環境変数
 gem 'dotenv-rails'
 
 gem 'rubocop-airbnb'
-
+#タグ付け
 gem 'acts-as-taggable-on'
 
 gem 'ransack'
@@ -103,3 +100,4 @@ gem 'font-awesome-sass'
 gem 'rails-i18n'
 #テスト
 gem 'database_rewinder'
+#ページネーション

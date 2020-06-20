@@ -25,7 +25,7 @@
       <% today = today_date(Date.current) %>
       <% hyles = @hyles.where.not(birthday:nil).where('birthday_date >= ?', today).order(:birthday_date) %>
       <% hyles += @hyles.where.not(birthday:nil).where('birthday_date < ?', today).order(:birthday_date) %>
-      $("#hyle-index").html("<%= j(render 'birthday_hyle_index', hyles: hyles) %>")
+      $("#hyle-index").html("<%= j(render 'birthday_hyle_index', hyles: hyles, today:nil) %>")
       $("#hyle-count").html("(<%= hyles.count %>人) <br />※誕生日未記入のヒュレーは除外されています")
     });
   });
