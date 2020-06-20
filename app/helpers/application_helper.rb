@@ -12,7 +12,8 @@ module ApplicationHelper
       today_date = today.to_s[5..6] + today.to_s[8..10]
       return today_date
     end
-    def month_later_date(today_date)
+    def days_later_date(today_date, notice_before)
+      
       month_later_date = (today_date.to_i + 100).to_s
       month_later_date.insert(0, "0") if month_later_date.length == 3
       month_later_date = month_later_date.slice(2..3).insert(0, "01") if month_later_date.slice(0..1) == "13"
