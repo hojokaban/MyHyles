@@ -53,7 +53,7 @@ Rails.application.configure do
     domain:               'gmail.com',
     user_name:            'hojokaban@gmail.com',
     password:             ENV['MAIL_PASSWORD'],
-    authentication:       'plain',
+    authentication:       :login,
     enable_starttls_auto: true }
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
