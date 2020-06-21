@@ -29,4 +29,15 @@ class Hyle < ApplicationRecord
     relationship = self.total_relationship - hyle_daily_relationship.relationship_amount
     self.update(total_relationship: relationship)
   end
+
+  def days_before(today)
+    birthday = self.birthday
+    if (birthday.mon > today.mon) || (birthday.mon == today.mon && birthday.mday >= today.mday)
+      result = (birthday.next_year(today.year - birthday.year) - today).numerator
+    else
+      result = (birthday.next_year(today.year - birthday.year + 1) - today).numerator
+    end
+    return result
+  end
+
 end

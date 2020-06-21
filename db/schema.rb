@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2020_06_12_051225) do
     t.string "name", null: false
     t.date "birthday"
     t.string "birthday_date"
+    t.integer "birthday_left"
     t.integer "total_relationship", default: 0
     t.string "hyle_image_id"
     t.datetime "created_at", null: false

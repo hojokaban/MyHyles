@@ -168,7 +168,11 @@ header{
   }
   .nav-item{margin:0.5em 1em;}
 }
-
+/* ページ */
+.page ul{
+  margin: 1em auto; 
+}
+/* ボディ */
 body .container-fluid{
   padding: 3em 1em;
   min-height: 90vh;

@@ -14,13 +14,13 @@
     <div class="col-md-5">
       <h5><%= hyle.birthday.nil? ? "--/--/--" : hyle.birthday.strftime("%Y年%-m月%-d日") %></h5>
       <h5>
-        <% if !hyle.birthday.nil? && days_before = days_before(today, hyle.birthday) %>
-          <% if days_before == 0 %>
+        <% if !hyle.birthday.nil? %>
+          <% if hyle.birthday_left == 0 %>
             今日が誕生日です！
-          <% elsif days_before == 1 %>
+          <% elsif hyle.birthday_left == 1 %>
             明日が誕生日です！
           <% else %>
-            あと<%= days_before %>日！
+            あと<%= hyle.birthday_left %>日！
           <% end %>
         <% end %>
       </h5>

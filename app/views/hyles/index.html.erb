@@ -7,8 +7,8 @@
     <% unless @hyle_type == "search" %>
       <div class="sort-selection row justify-content-around">
         <%= sort_link(@q, :name, "名前順") %>
-        <%= sort_link(@q, :birthday_date, "誕生日順", class:"col") %>
-        <%= sort_link(@q, :created_at, "作成順", class:"col") %>
+        <%= sort_link(@q, :birthday_left, "誕生日順") %>
+        <%= sort_link(@q, :created_at, "作成順") %>
       </div>
     <% end %>
     <div id="hyle-index">
@@ -18,7 +18,7 @@
         <%= render 'hyle_index', hyles:@hyles %>
       <% end %>
     </div>
-    <div class="text-center">
+    <div class="text-center page">
       <%= will_paginate @hyles, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
     </div>
   </div>
