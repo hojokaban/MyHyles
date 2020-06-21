@@ -50,6 +50,10 @@ h5{
   font-size:1.3em;
   color: blue;
 }
+.relationship-percentage{
+  @media (max-width: 550px){display:none}
+  h5{@media (max-width: 875px) {font-size:0.8em}}
+}
 .message p{
   color:#2C7CFF;
 }
@@ -170,7 +174,7 @@ header{
 }
 /* ページ */
 .page ul{
-  margin: 1em auto; 
+  margin: 1em auto;
 }
 /* ボディ */
 body .container-fluid{

@@ -31,14 +31,14 @@
       <% else %>
         <h4>第1位!</h4>
         <div class="hyle-box col">
-          <%= render 'hyles/hyle_box', hyle: @relationship_hyles.first %>
+          <%= render 'hyles/relationship_hyle_box', hyle: @relationship_hyles.first %>
         </div>
         <h4>第2位!</h4>
         <% if @relationship_hyles.count == 1 %>
           <h4>なし</h4>
         <% else %>
           <div class="hyle-box col">
-            <%= render 'hyles/hyle_box', hyle: @relationship_hyles.second %>
+            <%= render 'hyles/relationship_hyle_box', hyle: @relationship_hyles.second %>
           </div>
         <% end %>
         <h4>第3位!</h4>
@@ -46,7 +46,7 @@
           <h4>なし</h4>
         <% else %>
           <div class="hyle-box col">
-            <%= render 'hyles/hyle_box', hyle: @relationship_hyles.third %>
+            <%= render 'hyles/relationship_hyle_box', hyle: @relationship_hyles.third %>
           </div>
         <% end %>
       <% end %>

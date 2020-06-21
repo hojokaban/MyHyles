@@ -1,0 +1,14 @@
+<!-- recieves hyle -->
+
+<div class="col-5 col-md-3">
+  <%= attachment_image_tag hyle, :hyle_image, format:'jpg', class:"img-80 m-1", fallback:"no_image2.jpg", size:"80x80" %>
+</div>
+<div class="col-md-4 name-cate">
+  <%= link_to users_hyle_path(hyle), id:"hyle-link-#{hyle.id}" do %>
+    <h4><%= hyle.name %></h4>
+  <% end %>
+  <%= render 'categories/category_label', category:hyle.category %>
+</div>
+<div class="relationship-percentage col-md-5">
+  <h5><% hyle.percentage %>％の関わりです</h5>
+</div>
