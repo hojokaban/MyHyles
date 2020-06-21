@@ -7,14 +7,17 @@ module ApplicationHelper
       resource.errors.full_messages.each { |message| error_message += "<li>" + message + "</li>" }
       return error_message + "</ul>"
   end
+
   def today_date(today)
     today_date = today.to_s[5..6] + today.to_s[8..10]
     return today_date
   end
+
   def days_later_date(today, notice_before)
     days_later = today + notice_before
     return days_later.to_s[5..6] + days_later.to_s[8..10]
   end
+
   def days_before(today, another_day)
     if (another_day.mon > today.mon) || (another_day.mon == today.mon && another_day.mday >= today.mday)
       result = (another_day.next_year(today.year - another_day.year) - today).numerator
@@ -22,5 +25,16 @@ module ApplicationHelper
       result = (another_day.next_year(today.year - another_day.year + 1) - today).numerator
     end
     return result
+  end
+
+  def find_hyles(type, key, user)
+    if type == "category"
+      hyles = Category.find(key).hyles
+    elsif type == "tag"
+      hyles = user.hyles.tagged_with(key)
+    else
+      hyles = user.hyles
+    end
+    return hyles
   end
 end

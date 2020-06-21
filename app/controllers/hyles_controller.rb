@@ -40,22 +40,26 @@ class HylesController < ApplicationController
     @hyles = current_user.hyles.paginate(page: params[:page], per_page: 10)
     @hyles_count = @hyles.count
     @hyle_type = "all"
+    @key = nil
   end
 
-  def sort
+  def sort_by_birthday
+    @key = params[:key]
+    @hyle_type = params[:id]
+    hyles = find_hyles(@hyle_type, @key, current_user)
     @title = "全ヒュレー"
     today = today_date(Date.current)
-    birthday_hyles = current_user.hyles.where.not(birthday:nil).where('birthday_date >= ?', today).order(:birthday_date)
-    birthday_hyles += current_user.hyles.where.not(birthday:nil).where('birthday_date < ?', today).order(:birthday_date)
+    birthday_hyles = hyles.where.not(birthday:nil).where('birthday_date >= ?', today).order(:birthday_date)
+    birthday_hyles += hyles.where.not(birthday:nil).where('birthday_date < ?', today).order(:birthday_date)
     @hyles = birthday_hyles.paginate(page: params[:page], per_page: 10)
     @hyles_count = birthday_hyles.count
-    @hyle_type = "birthday"
     render :index
   end
 
   def categorized_index
     @title = "カテゴリー別ヒュレー"
-    @hyles = Category.find(params[:id]).hyles.paginate(page: params[:page], per_page: 10)
+    @key = params[:id]
+    @hyles = Category.find(@key).hyles.paginate(page: params[:page], per_page: 10)
     @hyles_count = @hyles.count
     @hyle_type = "category"
     render :index
@@ -63,8 +67,10 @@ class HylesController < ApplicationController
 
   def tagged_index
     @title = "タグ別ヒュレー"
-    @hyles = current_user.hyles.tagged_with(params[:id]).paginate(page: params[:page], per_page: 10)
+    @key = params[:id]
+    @hyles = current_user.hyles.tagged_with(@key).paginate(page: params[:page], per_page: 10)
     @hyles_count = @hyles.count
+    @hyle_type = "tag"
     render :index
   end
 
@@ -72,6 +78,7 @@ class HylesController < ApplicationController
     @title = "「#{params[:term]}」の検索結果"
     @hyles = current_user.hyles.where("name LIKE?", "%#{params[:term]}%" ).paginate(page: params[:page], per_page: 10)
     @hyles_count = @hyles.count
+    @hyle_type = "search"
     render :index
   end
 

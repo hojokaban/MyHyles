@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       member do
         get :categorized_index, as: 'categorized'
         get :tagged_index, as: 'tagged'
-        get :sort, as:'sort'
+        post :sort_by_birthday, as:'sort_birthday'
       end
       collection do
         post :search, as: 'search'
