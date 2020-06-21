@@ -1,5 +1,7 @@
 class DailyRelationshipsController < ApplicationController
 
+  before_action :permitted_user, only: [:new]
+
   def new
     @daily_relationship = current_user.daily_relationships.create!
     @hyle_daily_relationship = HyleDailyRelationship.new
@@ -16,5 +18,14 @@ class DailyRelationshipsController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
   end
+
+  private
+
+    def permitted_user
+      if current_user.has_done
+        flash[:danger] = "今日の関係は記録済みです"
+        redirect_to users_path
+      end
+    end
 
 end

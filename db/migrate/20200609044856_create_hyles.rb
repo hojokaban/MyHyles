@@ -8,6 +8,7 @@ class CreateHyles < ActiveRecord::Migration[5.2]
       t.string :birthday_date
       t.integer :birthday_left
       t.integer :total_relationship, default: 0
+      t.integer :percentage, default: 0
       t.string :hyle_image_id
 
       t.timestamps
