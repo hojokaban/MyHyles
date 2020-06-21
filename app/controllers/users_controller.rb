@@ -14,6 +14,7 @@ class UsersController < ApplicationController
       @birthday_hyles = current_user.hyles.where('birthday_date <= ? and birthday_date >= ?',
                 days_later, today_date(@today)).order(:birthday_date)
     end
+    @relationship_hyles = current_user.hyles.order(:total_relationship).first(3)
   end
 
   def update
