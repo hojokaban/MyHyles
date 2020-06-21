@@ -1,5 +1,7 @@
 class Batch::Relationship
     def self.relationship
-        p "バッチ処理です"
+      User.all.each do |user|
+        user.has_done = false
+      end
     end
 end
