@@ -36,6 +36,7 @@ class HylesController < ApplicationController
   end
 
   def index
+    @hyle_style = params[:q].nil? ? "": params[:q]["s"]
     @q = current_user.hyles.ransack(params[:q])
     @hyles = @q.result(distinct: true).paginate(page: params[:page], per_page: 10)
     @title = "全ヒュレー"
@@ -56,6 +57,7 @@ class HylesController < ApplicationController
   # end
 
   def categorized_index
+    @hyle_style = params[:q].nil? ? "": params[:q]["s"]
     @title = "カテゴリー別ヒュレー"
     @q = Category.find(params[:id]).hyles.ransack(params[:q])
     @hyles = @q.result(distinct: true).paginate(page: params[:page], per_page: 10)
@@ -64,6 +66,7 @@ class HylesController < ApplicationController
   end
 
   def tagged_index
+    @hyle_style = params[:q].nil? ? "": params[:q]["s"]
     @title = "タグ別ヒュレー"
     @q = current_user.hyles.tagged_with(params[:id]).ransack(params[:q])
     @hyles = @q.result(distinct: true).paginate(page: params[:page], per_page: 10)

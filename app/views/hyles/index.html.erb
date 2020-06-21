@@ -5,14 +5,18 @@
   <div class="hyle-index background col-md-8">
     <h2><%= @title %><span id="hyle-count" style="font-size:0.7em;font-weight:normal;">(<%= @hyles_count %>人)</span></h2>
     <% unless @hyle_type == "search" %>
-      <div class="sort-selection row justify-content-center">
-        <%= sort_link(@q, :name, "名前") %>
-        <%= sort_link(@q, :birthday_date, "誕生日") %>
-        <%= sort_link(@q, :created_at, "作成順") %>
+      <div class="sort-selection row justify-content-around">
+        <%= sort_link(@q, :name, "名前順") %>
+        <%= sort_link(@q, :birthday_date, "誕生日順", class:"col") %>
+        <%= sort_link(@q, :created_at, "作成順", class:"col") %>
       </div>
     <% end %>
     <div id="hyle-index">
-      <%= render 'birthday_hyle_index', hyles:@hyles, today:Date.current %>
+      <% if @hyle_style.include?("birthday") %>
+        <%= render 'birthday_hyle_index', hyles:@hyles, today:Date.current %>
+      <% else %>
+        <%= render 'hyle_index', hyles:@hyles %>
+      <% end %>
     </div>
     <div class="text-center">
       <%= will_paginate @hyles, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>

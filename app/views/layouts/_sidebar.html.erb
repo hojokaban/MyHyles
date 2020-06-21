@@ -15,10 +15,10 @@
     <%= render 'categories/tag_label', tag:tag %>
   <% end %>
 </div>
-<div class="">
+<div class="search-form margin-form">
   <%= search_form_for @q, url: users_hyles_path do |f| %>
     <%= f.label :name, "名前で検索" %>
     <%= f.search_field :name_cont %>
-    <%= f.submit "検索" %>
+    <%= f.submit "検索", class:"btn btn-info d-block mt-2 mx-auto" %>
   <% end %>
 </div>

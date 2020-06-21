@@ -8,6 +8,7 @@ class DailyRelationshipsController < ApplicationController
   def update
     @daily_relationship = DailyRelationship.find(params[:id])
     if @daily_relationship.hyle_daily_relationships.present?
+      current_user.update(has_done: true)
       flash[:success] = "今日の関係が追加されました!"
       redirect_to users_path
     else
