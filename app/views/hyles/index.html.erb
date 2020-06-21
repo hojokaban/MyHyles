@@ -6,10 +6,10 @@
     <h2><%= @title %><span id="hyle-count" style="font-size:0.7em;font-weight:normal;">(<%= @hyles_count %>人)</span></h2>
     <% unless @hyle_type == "search" %>
       <div class="sort-selection row justify-content-around">
+        <%= sort_link(@q, :created_at, "作成順") %>
         <%= sort_link(@q, :name, "名前順") %>
         <%= sort_link(@q, :birthday_left, "誕生日順") %>
-        <%= sort_link(@q, :created_at, "作成順") %>
-        <%= sort_link(@q, :total_relationship, "関係順") %>
+        <%= sort_link(@q, :total_relationship, "関係順", default_order: :desc) %>
       </div>
     <% end %>
     <div id="hyle-index">

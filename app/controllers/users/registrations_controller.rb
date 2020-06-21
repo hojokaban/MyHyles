@@ -42,6 +42,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update
     self.resource = resource_class.to_adapter.get!(current_user.to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
+    unless resource.term == params[:user][:term]
+      resource.hyles.each{ |hyle| hyle.set_relationship(params[:user][:term]) }
+      resource.set_relationship_percentage
+    end
     resource_updated = update_resource(resource, account_update_params)
     yield resource if block_given?
     if resource_updated

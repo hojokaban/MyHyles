@@ -39,7 +39,7 @@ class HylesController < ApplicationController
   end
 
   def index
-    @hyle_style = params[:q].nil? ? "": params[:q]["s"]
+    @hyle_style = params[:q].nil? ? "": params[:q]["s"].nil? ? "": params[:q]["s"]
     if @hyle_style.include?("birthday")
       @q = current_user.hyles.where.not(birthday:nil).ransack(params[:q])
     else
@@ -51,7 +51,7 @@ class HylesController < ApplicationController
   end
 
   def categorized_index
-    @hyle_style = params[:q].nil? ? "": params[:q]["s"]
+    @hyle_style = params[:q].nil? ? "": params[:q]["s"].nil? ? "": params[:q]["s"]
     @title = "カテゴリー別ヒュレー"
     if @hyle_style.include?("birthday")
       @q = Category.find(params[:id]).hyles.where.not(birthday:nil).ransack(params[:q])
@@ -64,7 +64,7 @@ class HylesController < ApplicationController
   end
 
   def tagged_index
-    @hyle_style = params[:q].nil? ? "": params[:q]["s"]
+    @hyle_style = params[:q].nil? ? "": params[:q]["s"].nil? ? "": params[:q]["s"]
     @title = "タグ別ヒュレー"
     if @hyle_style.include?("birthday")
       @q = current_user.hyles.tagged_with(params[:id]).where.not(birthday:nil).ransack(params[:q])
