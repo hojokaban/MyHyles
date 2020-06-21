@@ -11,19 +11,14 @@ class HyleDailyRelationshipsController < ApplicationController
     else
       @hyle_daily_relationship_tobe_saved = HyleDailyRelationship.new(relationship_params)
       @hyle_daily_relationship_tobe_saved.daily_relationship = @daily_relationship
-      if @hyle_daily_relationship_tobe_saved.save
-        @hyle_daily_relationship_tobe_saved.hyle.set_relationship(@hyle_daily_relationship_tobe_saved)
-      else
-        flash.now[:danger]=set_error_flash(@hyle_daily_relationship_tobe_saved)
-      end
-    end
+      flash.now[:danger]=set_error_flash(@hyle_daily_relationship_tobe_saved) unless @hyle_daily_relationship_tobe_saved.save
       render template: 'daily_relationships/new'
+    end
   end
 
   def destroy
     @hyle_daily_relationship_tobe_destroyed = HyleDailyRelationship.find(params[:daily_relationship_id])
     @daily_relationship = @hyle_daily_relationship_tobe_destroyed.daily_relationship
-    @hyle_daily_relationship_tobe_destroyed.hyle.delete_relationship(@hyle_daily_relationship_tobe_destroyed)
     @hyle_daily_relationship_tobe_destroyed.destroy
     flash[:success] = "ヒュレーを削除しました"
     render template: 'daily_relationships/new'

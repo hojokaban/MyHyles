@@ -52,4 +52,11 @@ class User < ApplicationRecord
         result = update(tag_list: tag_list)
       end
     end
+
+    def self.set_relationship_percentage
+      parameter = self.hyles.map{|hyle| hyle.total_relationship}.sum
+      unless parameter == 0
+        self.hyles.each {|hyle| hyle.update(percentage:hyle.total_relationship*100/parameter)}
+      end
+    end
 end

@@ -20,14 +20,12 @@ class Hyle < ApplicationRecord
     self.birthday_date = birthday.to_s[5..6] + birthday.to_s[8..10]
   end
 
-  def set_relationship(hyle_daily_relationship)
-    relationship = self.total_relationship + hyle_daily_relationship.relationship_amount
-    self.update(total_relationship: relationship)
-  end
-
-  def delete_relationship(hyle_daily_relationship)
-    relationship = self.total_relationship - hyle_daily_relationship.relationship_amount
-    self.update(total_relationship: relationship)
+  def set_relationship
+    result = 0
+    self.hyle_daily_relationships.where('created_at >= ?',Date.current - self.user.term.month).each do |relationship|
+      result += relationship.relationship_amount
+    end
+    self.update(total_relationship:result)
   end
 
   def days_before(today)
