@@ -2,6 +2,7 @@ include ApplicationHelper
 class UsersController < ApplicationController
 
   def show
+    @q = current_user.hyles.ransack(params[:q])
     @today = Date.current
     days_later = days_later_date(@today, current_user.notice_before)
     if (@today + current_user.notice_before).year != @today.year

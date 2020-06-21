@@ -15,15 +15,10 @@
     <%= render 'categories/tag_label', tag:tag %>
   <% end %>
 </div>
-<div class="search-form">
-	<%= form_with url:search_users_hyles_path, local:true do |f| %>
-		<div class="input-group">
-			<%= f.text_field :term, placeholder: "名前で検索", class:"form-control" %>
-		</div>
-		<div class="input-group">
-		  	<%= f.submit "検索する", class:"btn btn-info mt-2 d-block mx-auto" do %>
-		      <i class="glyphicon glyphicon-search"></i>
-		    <% end %>
-		</div>
-	<% end %>
+<div class="">
+  <%= search_form_for @q, url: users_hyles_path do |f| %>
+    <%= f.label :name, "名前で検索" %>
+    <%= f.search_field :name_cont %>
+    <%= f.submit "検索" %>
+  <% end %>
 </div>

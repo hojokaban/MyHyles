@@ -101,3 +101,7 @@ gem 'database_rewinder'
 #ページネーション
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+#検索
+gem 'ransack'
+#バッチ処理
+gem 'whenever', require: false

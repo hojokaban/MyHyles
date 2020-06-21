@@ -36,49 +36,38 @@ class HylesController < ApplicationController
   end
 
   def index
+    @q = current_user.hyles.ransack(params[:q])
+    @hyles = @q.result(distinct: true).paginate(page: params[:page], per_page: 10)
     @title = "全ヒュレー"
-    @hyles = current_user.hyles.paginate(page: params[:page], per_page: 10)
     @hyles_count = @hyles.count
-    @hyle_type = "all"
-    @key = nil
   end
 
-  def sort_by_birthday
-    @key = params[:key]
-    @hyle_type = params[:id]
-    hyles = find_hyles(@hyle_type, @key, current_user)
-    @title = "全ヒュレー"
-    today = today_date(Date.current)
-    birthday_hyles = hyles.where.not(birthday:nil).where('birthday_date >= ?', today).order(:birthday_date)
-    birthday_hyles += hyles.where.not(birthday:nil).where('birthday_date < ?', today).order(:birthday_date)
-    @hyles = birthday_hyles.paginate(page: params[:page], per_page: 10)
-    @hyles_count = birthday_hyles.count
-    render :index
-  end
+  # def sort_by_birthday
+  #   @key = params[:key]
+  #   @hyle_type = params[:id]
+  #   hyles = find_hyles(@hyle_type, @key, current_user)
+  #   @title = "全ヒュレー"
+  #   today = today_date(Date.current)
+  #   birthday_hyles = hyles.where.not(birthday:nil).where('birthday_date >= ?', today).order(:birthday_date)
+  #   birthday_hyles += hyles.where.not(birthday:nil).where('birthday_date < ?', today).order(:birthday_date)
+  #   @hyles = birthday_hyles.paginate(page: params[:page], per_page: 10)
+  #   @hyles_count = birthday_hyles.count
+  #   render :index
+  # end
 
   def categorized_index
     @title = "カテゴリー別ヒュレー"
-    @key = params[:id]
-    @hyles = Category.find(@key).hyles.paginate(page: params[:page], per_page: 10)
+    @q = Category.find(params[:id]).hyles.ransack(params[:q])
+    @hyles = @q.result(distinct: true).paginate(page: params[:page], per_page: 10)
     @hyles_count = @hyles.count
-    @hyle_type = "category"
     render :index
   end
 
   def tagged_index
     @title = "タグ別ヒュレー"
-    @key = params[:id]
-    @hyles = current_user.hyles.tagged_with(@key).paginate(page: params[:page], per_page: 10)
+    @q = current_user.hyles.tagged_with(params[:id]).ransack(params[:q])
+    @hyles = @q.result(distinct: true).paginate(page: params[:page], per_page: 10)
     @hyles_count = @hyles.count
-    @hyle_type = "tag"
-    render :index
-  end
-
-  def search
-    @title = "「#{params[:term]}」の検索結果"
-    @hyles = current_user.hyles.where("name LIKE?", "%#{params[:term]}%" ).paginate(page: params[:page], per_page: 10)
-    @hyles_count = @hyles.count
-    @hyle_type = "search"
     render :index
   end
 

@@ -6,17 +6,13 @@
     <h2><%= @title %><span id="hyle-count" style="font-size:0.7em;font-weight:normal;">(<%= @hyles_count %>人)</span></h2>
     <% unless @hyle_type == "search" %>
       <div class="sort-selection row justify-content-center">
-        <%= link_to "作成順", users_hyles_path, class:"btn btn-info col-3", id:"create-sort-btn" %>
-        <%= form_with url:sort_birthday_users_hyle_path(@hyle_type), local:true do |f| %>
-          <%= f.hidden_field :key, value: @key %>
-          <%= f.submit "誕生日順", class:"btn btn-info offset-1 col-3", id:"birthday-sort-btn" %>
-        <% end %>
-        <!-- <button class="btn btn-info col-3" id="created-sort-btn">作成順</button>
-        <button class="btn btn-info offset-1 col-3" id="birthday-sort-btn">誕生日順</button> -->
+        <%= sort_link(@q, :name, "名前") %>
+        <%= sort_link(@q, :birthday_date, "誕生日") %>
+        <%= sort_link(@q, :created_at, "作成順") %>
       </div>
     <% end %>
     <div id="hyle-index">
-      <%= render 'hyle_index', hyles:@hyles %>
+      <%= render 'birthday_hyle_index', hyles:@hyles, today:Date.current %>
     </div>
     <div class="text-center">
       <%= will_paginate @hyles, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
