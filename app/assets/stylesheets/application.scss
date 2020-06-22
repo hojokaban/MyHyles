@@ -203,7 +203,14 @@ body .container-fluid{
     color: #AAA;
   }
 }
-
+.tag-label{
+  padding: 0.45em;
+  display:inline-block;
+  color: white;
+  border-radius: 5px;
+  white-space: nowrap;
+  background-color: green;
+}
 /* ヒュレーボックス */
 .hyle-box{
   display:flex;

@@ -19,3 +19,12 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
+
+// $(document).ready(function() {
+//   var a = $(`#tag-label-${id}`)
+//   $("#tag-label").click(function(){
+//     var i = $("this .tag_id").text();
+//     console.log(a);
+//     $(`#delete-${i}`).hide();
+//   });
+// });

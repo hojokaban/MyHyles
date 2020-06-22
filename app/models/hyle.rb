@@ -26,7 +26,6 @@ class Hyle < ApplicationRecord
     self.hyle_daily_relationships.where('created_at >= ?',Date.current - term.month).each do |relationship|
       result += relationship.relationship_amount
     end
-    binding.pry
     self.update(total_relationship:result)
   end
 

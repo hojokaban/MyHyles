@@ -1,13 +1,13 @@
 
 
-<% current_user.tag_list.each do |tag| %>
+<% current_user.tag_list.each_with_index do |tag, i| %>
     <div class="tag-edit m-2 d-flex">
-      <div class="mx-1">
-        <span><%= link_to tag, tagged_users_hyle_path(tag), class:"label", style:"white-space:nowrap; background-color:green;" %></span>
+      <div class="tag-label mx-1" id="tag-label-<%=i%>">
+        <span><%= tag %></span>
       </div>
-      <div class="mx-1">
+      <div class="mx-1 delete" id="delete-<%=i%>">
         <%= button_to "削除", delete_tag_users_path(tag),
-          method: :patch, class:"btn btn-danger", id:"delete-#{tag}" %>
+          method: :patch, class:"btn btn-danger" %>
       </div>
     </div>
 <% end %>

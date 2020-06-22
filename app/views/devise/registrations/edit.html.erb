@@ -4,10 +4,10 @@
         html: { method: :put, class:"form-group", id:"edit-user" }) do |f| %>
   <div class="background margin-form">
     <h3>ユーザー情報</h3>
-    <div class="row edit-user justify-content-center flex-column">
+    <div class="row edit-user align-items-center flex-column">
       <%= render 'devise/shared/user_info', f:f %>
       <%= render 'devise/shared/password_form', f:f %>
-      <div class="col field">
+      <div class="col-8 field">
         <%= f.label :current_password, "パスワードを変更する場合は現在のパスワードを入力してください" %><br />
         <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control" %>
       </div>
@@ -17,16 +17,16 @@
 
   <div class="background">
     <h3>誕生日の通知</h3>
-    <div class="row edit-birthday flex-column">
-      <div class="radio-button my-1 offset-3 col">
+    <div class="row edit-birthday align-items-center flex-column">
+      <div class="radio-button my-1 col-6 col-sm-4 col-md-3">
         <%= f.radio_button :require_notice, false, class:"form-check-input" %>
         <%= f.label :require_notice_false, "通知を出さない", class:"form-check-label" %>
       </div>
-      <div class="radio-button my-1 offset-3 col">
+      <div class="radio-button my-1 col-6 col-sm-4 col-md-3">
         <%= f.radio_button :require_notice, true, class:"form-check-input" %>
         <%= f.label :require_notice_true, "通知を出す", class:"form-check-label" %>
       </div>
-      <div class="notice-before my-1 offset-3 col">
+      <div class="notice-before my-1 col-6 col-sm-4 col-md-3">
         <%= f.number_field :notice_before, class:"rounded", style:"width:3em;" %> 日前に通知
       </div>
     </div>
@@ -35,8 +35,8 @@
 
   <div class="background">
     <h3>どのくらいの期間でヒュレーとの関わりを計算する？</h3>
-    <div class="row edit-frequency">
-      <div class="col my-2 offset-sm-3">
+    <div class="row edit-frequency justify-content-center">
+      <div class="col my-2 col-9 col-sm-7 col-md-5">
         <%= f.number_field :term , autocomplete: "current-password", class:"rounded", style:"width:3em;" %>ヶ月以内での関わりを計算
       </div>
     </div>
@@ -49,7 +49,7 @@
   <div class="row justify-content-center category">
       <%= render 'categories/category_edit_form', categories: @categories %>
   </div>
-  <div class="row justify-content-center">
+  <div class="row justify-content-center mt-3">
       <%= render 'categories/category_new_form', category: @category %>
   </div>
 </div>
@@ -59,7 +59,7 @@
   <div class="row flex-wrap">
       <%= render 'categories/tag_index' %>
   </div>
-  <div class="row justify-content-center">
+  <div class="row justify-content-center mt-3">
       <%= render 'categories/tag_new_form' %>
   </div>
 </div>

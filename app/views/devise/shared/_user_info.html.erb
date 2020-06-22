@@ -1,18 +1,18 @@
 <!-- recieves f -->
 
-<div class="col">
+<div class="col-8">
   <%= f.label :name, "名前" %><br />
   <%= f.text_field :name, autofocus: true, autocomplete: "email", class:"form-control " %>
 </div>
 
-<div class="col">
+<div class="col-8">
   <%= f.label :birthday, "生年月日" %><br />
   <div class="text-center">
     <%= raw sprintf(f.date_select(:birthday, prompt:"--", use_month_numbers:true, start_year:Time.now.year, end_year:Time.now.year-120, date_separator:'%s'),'年','月')+'日' %>
   </div>
 </div>
 
-<div class="col">
+<div class="col-8">
   <%= f.label :email, "メールアドレス" %><br />
   <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
 </div>

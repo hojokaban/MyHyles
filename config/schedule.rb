@@ -11,7 +11,7 @@ require File.expand_path(File.dirname(__FILE__) + "/environment")
 rails_env = Rails.env.to_sym
 set :environment, rails_env
 set :output, 'log/cron.log'
-every 1.day, at: jst('2:48') do
+every 1.day, at: jst('0:00') do
     begin
         runner "Batch::Relationship.relationship"
     rescue => e
