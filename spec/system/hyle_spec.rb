@@ -251,7 +251,7 @@ describe 'hylesの統合テスト', type: :system do
       end
       it 'タグ別ヒュレー一覧' do
         click_link 'tag1', match: :first
-        expect(page).to have_selector 'h2', text: "タグ別ヒュレー"
+        expect(page).to have_selector 'h2', text: "タグ別ヒュレー" #たまにエラー
         expect(page).to have_selector 'h4', text: "test_hyle"
         #タグの違うヒュレーは表示されない
         expect(page).not_to have_selector 'h4', text: "other_category_hyle"

@@ -81,7 +81,6 @@ describe 'userの統合テスト', type: :system do
         third_relationship.reload
         forth_relationship.reload
         #上位3人が表示される
-        visit users_path
         within '.relationship-hyle-index' do
           expect(page).to have_selector 'h4', text: top_relationship.name
           expect(page).to have_selector 'h4', text: second_relationship.name
