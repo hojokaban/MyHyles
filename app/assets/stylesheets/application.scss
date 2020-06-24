@@ -145,6 +145,13 @@ img{
   margin: 2em auto;
   display: block;
 }
+.category-edit-btn{
+  float:right;
+  @media (max-width:375px){
+    float: none;
+    margin-bottom: 0;
+  }
+}
 /* ヘッダー */
 header{
   height:60px;
