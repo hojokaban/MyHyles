@@ -54,7 +54,7 @@ describe 'daily_relationshipsの統合テスト', type: :system do
       click_link 'この内容で追加する'
     end
     page
-    expect(page).to have_content '今日の関係が追加されました!'
+    expect(page).to have_content '今日の関係が追加されました!' #たまにエラー
     expect(page).to have_selector 'h2', text: 'メインページ'
   end
 end

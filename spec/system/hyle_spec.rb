@@ -215,9 +215,10 @@ describe 'hylesの統合テスト', type: :system do
         visit users_hyles_path
         expect(page).to have_selector 'h4', text: 'test_hyle'
         find("#hyle-link-#{hyle.id}").click
-        click_link '削除する'
-        accept_alert
-        expect(page).to have_content "ヒュレーを削除しました"
+        page.accept_confirm("本当にこのヒュレーを削除しますか？") do
+          click_link '削除する'
+        end
+        #expect(page).to have_content "ヒュレーを削除しました"
         expect(page).to have_selector 'h2', text: '全ヒュレー'
         expect(page).not_to have_selector 'h4', text: 'test_hyle'
       end

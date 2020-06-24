@@ -40,7 +40,7 @@ describe 'ヘッダーのテスト', type: :system do
         it 'ヒュレー一覧画面に遷移' do
           click_link "#{user.name}さん"
           click_link 'ヒュレー'
-          expect(page).to have_selector 'h2', text: '全ヒュレー'
+          expect(page).to have_selector 'h2', text: '全ヒュレー' #たまにエラー
         end
         it '思い出一覧画面に遷移' do
           click_link "#{user.name}さん"
