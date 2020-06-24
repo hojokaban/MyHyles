@@ -2,7 +2,7 @@
   <h2><%= @hyle.name %></h2>
   <%= render 'hyles/hyle_show', hyle: @hyle %>
   <div class="btns d-flex justify-content-center">
-    <%= link_to "内容を編集する", edit_users_hyle_path(@hyle), class:"btn btn-primary m-2" %>
+    <%= link_to "内容を編集する", edit_users_hyle_path(@hyle), data: {"turbolinks" => false}, class:"btn btn-primary m-2" %>
     <%= link_to "削除する", users_hyle_path(@hyle), method: :delete,
                         data: {confirm: "本当にこのヒュレーを削除しますか？"}, class:"btn btn-danger m-2" %>
   </div>

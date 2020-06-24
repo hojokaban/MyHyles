@@ -2,7 +2,7 @@
   <h2><%= @memory.title %></h2>
   <%= render 'memories/memory_show', memory: @memory %>
   <div class="btns d-flex justify-content-center">
-    <%= link_to "内容を編集する", edit_users_memory_path(@memory), class:"btn btn-primary m-2" %>
+    <%= link_to "内容を編集する", edit_users_memory_path(@memory), data: {"turbolinks" => false}, class:"btn btn-primary m-2" %>
     <%= link_to "削除する", users_memory_path(@memory), method: :delete,
                       data: {confirm: "本当にこの思い出を削除しますか？"}, class:"btn btn-danger m-2" %>
   </div>
