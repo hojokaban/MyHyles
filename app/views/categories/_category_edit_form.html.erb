@@ -2,8 +2,7 @@
 
 <% categories.each do |category| %>
   <div class="col-lg-6 d-flex flex-wrap justify-content-center">
-    <%= form_with(model:category, url: users_category_path(category), method: :patch,
-            local: true, html: {class:"form-group d-flex"}) do |f| %>
+    <%= form_with(model:category, url: users_category_path(category), method: :patch, local: true, html: {class:"form-group d-flex"}) do |f| %>
       <span><%= f.text_field :name, class:"form-control my-1", id:"category-name-#{category.id}" %></span>
       <div class="btns my-1">
         <%= f.submit "変更を保存する", class:"btn btn-info mx-2", id:"edit-category-#{category.id}" %>

@@ -12,8 +12,8 @@ class HyleDailyRelationshipsController < ApplicationController
       @hyle_daily_relationship_tobe_saved = HyleDailyRelationship.new(relationship_params)
       @hyle_daily_relationship_tobe_saved.daily_relationship = @daily_relationship
       flash.now[:danger]=set_error_flash(@hyle_daily_relationship_tobe_saved) unless @hyle_daily_relationship_tobe_saved.save
-      render template: 'daily_relationships/new'
     end
+    render template: 'daily_relationships/new'
   end
 
   def destroy

@@ -10,6 +10,8 @@ class DailyRelationshipsController < ApplicationController
   def update
     @daily_relationship = DailyRelationship.find(params[:id])
     if @daily_relationship.hyle_daily_relationships.present?
+      current_user.hyles.each{ |hyle| hyle.set_relationship }
+      current_user.set_relationship_percentage
       current_user.update(has_done: true)
       flash[:success] = "今日の関係が追加されました!"
       redirect_to users_path

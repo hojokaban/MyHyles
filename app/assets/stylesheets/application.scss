@@ -154,15 +154,17 @@ header{
       padding: 0 20px;
       position: fixed;
       top:3em;
-      right:2em;
+      right:1em;
       background-color:#AAFFFF;
       border-radius: 5px;
     }
   }
   .dropdown-menu{
+    top: 2em;
+    right:1em;
     background-color:#88FFFF;
     border: none;
-    margin: 0.125rem -2em 0em;
+    margin: 0 -2em 0;
     .dropdown-item{
       color: blue;
       &:hover{

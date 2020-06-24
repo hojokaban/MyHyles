@@ -27,7 +27,7 @@
             <%= f.check_box :hyle_ids,
                             { multiple: true,
                               checked: hyles.exists?(hyle.id) }, hyle.id, nil %>
-            <span><%= hyle.name %></span>
+            <%= f.label :hyle_ids, hyle.name %>
           </div>
         <% end %>
       </div>
