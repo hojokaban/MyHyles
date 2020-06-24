@@ -16,18 +16,10 @@
   </div>
 
   <div class="background">
-    <h3>誕生日の通知</h3>
+    <h3>誕生日の近いヒュレー</h3>
     <div class="row edit-birthday align-items-center flex-column">
-      <div class="radio-button my-1 col-6 col-sm-4 col-md-3">
-        <%= f.radio_button :require_notice, false, class:"form-check-input" %>
-        <%= f.label :require_notice_false, "通知を出さない", class:"form-check-label" %>
-      </div>
-      <div class="radio-button my-1 col-6 col-sm-4 col-md-3">
-        <%= f.radio_button :require_notice, true, class:"form-check-input" %>
-        <%= f.label :require_notice_true, "通知を出す", class:"form-check-label" %>
-      </div>
-      <div class="notice-before my-1 col-6 col-sm-4 col-md-3">
-        <%= f.number_field :notice_before, class:"rounded", style:"width:3em;" %> 日前に通知
+      <div class="notice-before my-1">
+        誕生日の <%= f.number_field :notice_before, class:"rounded", style:"width:3em;" %> 日前からメインページに表示
       </div>
     </div>
     <%= f.submit "変更を保存する", class:"btn btn-primary" %>
