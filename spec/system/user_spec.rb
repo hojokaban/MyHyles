@@ -50,43 +50,43 @@ describe 'userの統合テスト', type: :system do
         expect(page).to have_selector 'h4', text: birthday_0120.name
       end
     end
-    context "関係に関するテスト" do
-      let!(:top_relationship){create(:hyle, user:user, category:category, total_relationship:100)}
-      let!(:second_relationship){create(:hyle, user:user, category:category, total_relationship:70)}
-      let!(:third_relationship){create(:hyle, user:user, category:category, total_relationship:50)}
-      let!(:forth_relationship){create(:hyle, user:user, category:category, total_relationship:0)}
-      let!(:daily_relationship){create(:daily_relationship, user:user, created_at:1.day.ago)}
-      let!(:hyle_daily_relationship1){create(:hyle_daily_relationship, hyle:top_relationship,daily_relationship:daily_relationship, relationship_amount:100)}
-      let!(:hyle_daily_relationship2){create(:hyle_daily_relationship, hyle:second_relationship,daily_relationship:daily_relationship, relationship_amount:70)}
-      let!(:hyle_daily_relationship3){create(:hyle_daily_relationship, hyle:third_relationship,daily_relationship:daily_relationship, relationship_amount:50)}
-      it "ランキングが表示される" do
-        visit users_path
-        #上位3人が表示される
-        within '.relationship-hyle-index' do
-          expect(page).to have_selector 'h4', text: top_relationship.name
-          expect(page).to have_selector 'h4', text: second_relationship.name
-          expect(page).to have_selector 'h4', text: third_relationship.name
-          expect(page).not_to have_selector 'h4', text: forth_relationship.name
-        end
-        #forth_relationshipの関係性を３位にする
-        click_link "関係の記入画面に移動する"
-        select forth_relationship.name, from: 'hyle_daily_relationship[hyle_id]' #たまにエラー出るけど連続で実行すれば通る
-        fill_in "hyle_daily_relationship_relationship_amount", with: 100
-        click_button 'このヒュレーを追加する'
-        page.accept_confirm("この内容はあとで変更ができません。この内容で追加してもよろしいですか？") do
-          click_link 'この内容で追加する'
-        end
-        top_relationship.reload
-        second_relationship.reload
-        third_relationship.reload
-        forth_relationship.reload
-        #上位3人が表示される
-        within '.relationship-hyle-index' do
-          expect(page).to have_selector 'h4', text: top_relationship.name
-          expect(page).to have_selector 'h4', text: second_relationship.name
-          expect(page).not_to have_selector 'h4', text: third_relationship.name
-          expect(page).to have_selector 'h4', text: forth_relationship.name
-        end
+  end
+  context "関係に関するテスト" do
+    let!(:top_relationship){create(:hyle, user:user, category:category, total_relationship:100)}
+    let!(:second_relationship){create(:hyle, user:user, category:category, total_relationship:70)}
+    let!(:third_relationship){create(:hyle, user:user, category:category, total_relationship:50)}
+    let!(:forth_relationship){create(:hyle, user:user, category:category, total_relationship:0)}
+    let!(:daily_relationship){create(:daily_relationship, user:user, created_at:1.day.ago)}
+    let!(:hyle_daily_relationship1){create(:hyle_daily_relationship, hyle:top_relationship,daily_relationship:daily_relationship, relationship_amount:100)}
+    let!(:hyle_daily_relationship2){create(:hyle_daily_relationship, hyle:second_relationship,daily_relationship:daily_relationship, relationship_amount:70)}
+    let!(:hyle_daily_relationship3){create(:hyle_daily_relationship, hyle:third_relationship,daily_relationship:daily_relationship, relationship_amount:50)}
+    it "ランキングが表示される" do
+      visit users_path
+      #上位3人が表示される
+      within '.relationship-hyle-index' do
+        expect(page).to have_selector 'h4', text: top_relationship.name
+        expect(page).to have_selector 'h4', text: second_relationship.name
+        expect(page).to have_selector 'h4', text: third_relationship.name
+        expect(page).not_to have_selector 'h4', text: forth_relationship.name
+      end
+      #forth_relationshipの関係性を３位にする
+      click_link "関係の記入画面に移動する"
+      select forth_relationship.name, from: 'hyle_daily_relationship[hyle_id]' #たまにエラー出るけど連続で実行すれば通る
+      fill_in "hyle_daily_relationship_relationship_amount", with: 100
+      click_button 'このヒュレーを追加する'
+      page.accept_confirm("この内容はあとで変更ができません。この内容で追加してもよろしいですか？") do
+        click_link 'この内容で追加する'
+      end
+      top_relationship.reload
+      second_relationship.reload
+      third_relationship.reload
+      forth_relationship.reload
+      #上位3人が表示される
+      within '.relationship-hyle-index' do
+        expect(page).to have_selector 'h4', text: top_relationship.name
+        expect(page).to have_selector 'h4', text: second_relationship.name
+        expect(page).not_to have_selector 'h4', text: third_relationship.name
+        expect(page).to have_selector 'h4', text: forth_relationship.name
       end
     end
   end
