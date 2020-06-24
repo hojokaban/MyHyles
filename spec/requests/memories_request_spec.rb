@@ -8,7 +8,7 @@ RSpec.describe "Memories", type: :request do
   end
   context "画面に遷移する" do
     it "思い出追加画面が表示される" do
-      patch new_users_memory_path
+      get new_users_memory_path
       expect(response).to have_http_status(:success)
     end
     it "思い出詳細画面が表示される" do
