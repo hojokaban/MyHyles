@@ -42,16 +42,3 @@ RSpec.describe "Memories", type: :request do
     end
   end
 end
-
-
-
-
-
-
-
-
-it "こんなテスト" do
-  expect(これが).to これになる
-  patch users_path(user), params:{user:}
-  expect(user.name).to eq "よっしー"
-end

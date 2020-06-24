@@ -1,7 +1,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-describe 'hyle_daily_relationshipsの統合テスト', type: :system do
+describe 'daily_relationshipsの統合テスト', type: :system do
   let(:user) { create(:test_user) }
   let(:category){create(:test_category, user:user)}
   let!(:hyle){create(:test_hyle, user:user, category:category)}
@@ -18,9 +18,10 @@ describe 'hyle_daily_relationshipsの統合テスト', type: :system do
     page.accept_confirm("この内容はあとで変更ができません。この内容で追加してもよろしいですか？") do
       click_link 'この内容で追加する'
     end
+    page
     #ヒュレー関係の追加に失敗(ヒュレーを選ばない)
     fill_in "hyle_daily_relationship_relationship_amount", with: 60
-    expect(page).to have_content "ヒュレーを最低１人追加してください"
+    expect(page).to have_content 'ヒュレーを最低１人追加してください'
     click_button 'このヒュレーを追加する'
     expect(page).to have_selector 'li', text: "ヒュレーを入力してください"
     #ヒュレー関係の追加に失敗(数値を入れない)
@@ -52,6 +53,7 @@ describe 'hyle_daily_relationshipsの統合テスト', type: :system do
     page.accept_confirm("この内容はあとで変更ができません。この内容で追加してもよろしいですか？") do
       click_link 'この内容で追加する'
     end
+    page
     expect(page).to have_content '今日の関係が追加されました!'
     expect(page).to have_selector 'h2', text: 'メインページ'
   end
