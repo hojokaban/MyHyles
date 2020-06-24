@@ -15,6 +15,7 @@
 //= require jquery3
 //= require jquery
 //= require jquery_ujs
+//= require refile
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
@@ -27,3 +28,7 @@
 //     $(`#delete-${i}`).hide();
 //   });
 // });
+
+$(function() {
+  $('form input:file').uploadThumbs();
+});
