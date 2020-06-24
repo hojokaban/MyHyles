@@ -11,8 +11,8 @@ describe 'ヘッダーのテスト', type: :system do
             expect(page).to have_selector 'h2', text: 'トップページです！'
         end
         it 'このサイトについてに遷移' do
-            click_link 'このサイトについて'
-            expect(page).to have_selector 'h2', text: 'アバウトページ'
+            click_link 'プロフィール'
+            expect(page).to have_selector 'h2', text: 'MyHylesへようこそ！'
         end
         it 'ログイン画面に遷移' do
             click_link 'ログイン'
@@ -20,7 +20,9 @@ describe 'ヘッダーのテスト', type: :system do
         end
         it '新規登録画面に遷移' do
             click_link '新規登録'
-            expect(page).to have_selector 'h2', text: '新規登録'
+            within ".background" do
+              expect(page).to have_selector 'h2', text: '新規登録'
+            end
         end
     end
 
