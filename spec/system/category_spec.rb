@@ -13,22 +13,25 @@ describe 'categoryの統合テスト', type: :system do
     expect(page).to have_selector 'h3', text: 'カテゴリー'
     expect(find("#category-name-#{category.id}").value).to eq category.name
     #カテゴリーの作成に失敗
-    fill_in 'category_name', with: "  "
+    fill_in 'new-category', with: "  "
     click_button '新しいカテゴリーを追加'
-    expect(page).to have_selector 'li', text: "カテゴリー名を入力してください"
+    sleep 3
+    expect(page).to have_selector 'li', text: "カテゴリー名を入力してください" #疑惑1
     #カテゴリーの作成に成功
-    fill_in 'category_name', with: "新しいカテゴリー"
+    fill_in 'new-category', with: "新しいカテゴリー"
     click_button '新しいカテゴリーを追加'
+    sleep 2
     expect(page).to have_content 'カテゴリーが追加されました'
     new_category_id = Category.last.id
     expect(find("#category-name-#{new_category_id}").value).to eq "新しいカテゴリー"
     #カテゴリーの編集に失敗
     fill_in "category-name-#{new_category_id}", with: "  "
-    find("#edit-category-#{new_category_id}").click
-    expect(page).to have_selector 'li', text: "カテゴリー名を入力してください"
+    find("#edit-category-#{new_category_id}-btn").click
+    sleep 2
+    expect(page).to have_selector 'li', text: "カテゴリー名を入力してください" #疑惑2
     #カテゴリーの編集に成功
     fill_in "category-name-#{new_category_id}", with: "編集したカテゴリー"
-    find("#edit-category-#{new_category_id}").click
+    find("#edit-category-#{new_category_id}-btn").click
     expect(page).to have_content "カテゴリーが編集されました"
     expect(find("#category-name-#{new_category_id}").value).to eq "編集したカテゴリー"
     #カテゴリーの削除に成功

@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
     def create
       @category = current_user.categories.new(category_params)
       @category.save ? flash.now[:success] = "カテゴリーが追加されました" :flash.now[:danger] = set_error_flash(@category)
-      @categories = current_user.categories
+      @categories = current_user.categories.where.not(id: nil)
     end
 
     def update
