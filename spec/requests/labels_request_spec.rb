@@ -14,7 +14,7 @@ RSpec.describe "Labels", type: :request do
   end
   it 'ラベル作成ができる' do
     expect{
-      post users_labels_path, params:{label:{
+      post users_labels_path, xhr: true, params:{label:{
         name: "test",
         body: "test body",
         hyle_id: label.hyle.id
@@ -22,7 +22,7 @@ RSpec.describe "Labels", type: :request do
     }.to change(Label, :count).by(1)
   end
   it 'ラベルが編集できる' do
-    patch users_label_path(label), params:{label:{
+    patch users_label_path(label), xhr: true, params:{label:{
       name: "editted test",
       body: "editted test body",
       }}
@@ -32,7 +32,7 @@ RSpec.describe "Labels", type: :request do
   end
   it 'ラベルが削除できる' do
     expect{
-      delete users_label_path(label)
+      delete users_label_path(label), xhr: true
     }.to change(Label, :count).by(-1)
   end
 end

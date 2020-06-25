@@ -37,7 +37,7 @@ describe "devise関連", type: :request do
       it 'タグの追加と削除' do
         #追加
         expect(user.tag_list.count).to eq 3
-        patch tag_registration_path, params:{user:{tag:"test"}}
+        patch tag_registration_path, xhr: true, params:{user:{tag:"test"}}
         expect(user.reload.tag_list.count).to eq 4
         #削除
         delete user_registration_path("test")
