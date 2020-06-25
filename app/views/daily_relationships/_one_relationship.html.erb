@@ -1,0 +1,7 @@
+<!-- recieves relationship -->
+
+<td style="width:40%"><%= relationship.hyle.name %></td>
+<td style="width:10%">=></td>
+<td style="width:40%"><%= relationship.relationship_amount %></td>
+<td style="width:10%"><%= link_to "削除", users_daily_relationship_hyle_daily_relationships_path(relationship),
+   method: :delete,remote:true, class:"btn btn-danger", id:"delete-hyle-#{relationship.id}" %></td>

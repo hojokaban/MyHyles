@@ -13,7 +13,6 @@ class HyleDailyRelationshipsController < ApplicationController
       @hyle_daily_relationship_tobe_saved.daily_relationship = @daily_relationship
       flash.now[:danger]=set_error_flash(@hyle_daily_relationship_tobe_saved) unless @hyle_daily_relationship_tobe_saved.save
     end
-    render template: 'daily_relationships/new'
   end
 
   def destroy
@@ -21,7 +20,6 @@ class HyleDailyRelationshipsController < ApplicationController
     @daily_relationship = @hyle_daily_relationship_tobe_destroyed.daily_relationship
     @hyle_daily_relationship_tobe_destroyed.destroy
     flash[:success] = "ヒュレーを削除しました"
-    render template: 'daily_relationships/new'
   end
 
   private

@@ -2,22 +2,13 @@
   <h2><%= Time.current.strftime("%Y年%-m月%-d日") %></h2>
   <h2>今日関わった人間関係を記録しましょう</h2>
   <div class="row">
-    <table class="col text-center my-3" style="width:100%">
-      <% @daily_relationship.hyle_daily_relationships.each do |relationship| %>
-        <tr>
-          <td style="width:40%"><%= relationship.hyle.name %></td>
-          <td style="width:10%">=></td>
-          <td style="width:40%"><%= relationship.relationship_amount %></td>
-          <td style="width:10%"><%= link_to "削除", users_daily_relationship_hyle_daily_relationships_path(relationship),
-             method: :delete, class:"btn btn-danger", id:"delete-hyle-#{relationship.id}" %></td>
-        </tr>
-      <% end %>
+    <table class="col text-center my-3" id="relationship-index" style="width:100%">
+      <%= render 'relationship_index', daily_relationship:@daily_relationship %>
     </table>
   </div>
 
   <%= form_with(model:@hyle_daily_relationship,
-    url:users_daily_relationship_hyle_daily_relationships_path(@daily_relationship),
-      local:true, class:"form-group") do |f| %>
+    url:users_daily_relationship_hyle_daily_relationships_path(@daily_relationship), class:"form-group") do |f| %>
     <div class="row">
       <%= f.select :hyle_id, options_for_select(current_user.hyles.collect{
         |hyle| [hyle.name, hyle.id]}),
@@ -27,9 +18,7 @@
     <%= f.submit 'このヒュレーを追加する', class:"btn btn-info mt-3 mx-auto d-block" %>
   <% end %>
   <div class="row">
-    <%= link_to 'この内容で追加する', users_daily_relationship_path(@daily_relationship),
-      method: :patch,
-      data:{confirm:"この内容はあとで変更ができません。この内容で追加してもよろしいですか？"},
-      class:"btn btn-primary" %>
+    <%= link_to 'この内容で追加する', users_daily_relationship_path(@daily_relationship),method: :patch,
+      data:{confirm:"この内容はあとで変更ができません。この内容で追加してもよろしいですか？"}, class:"btn btn-primary" %>
   </div>
 </div>
