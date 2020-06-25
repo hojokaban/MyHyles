@@ -1,8 +1,10 @@
 <div class="background">
   <h2>そのほか、お好みの情報を追加してみましょう！</h2>
-  <%= render 'hyles/hyle_show.html.erb', hyle: @hyle %>
+  <div id="hyle-show">
+    <%= render 'hyles/hyle_show.html.erb', hyle: @hyle %>
+  </div>
 
-  <div class="edit-label my-3">
+  <div class="my-3" id="edit-label">
     <%= render 'hyles/label_edit', hyle: @hyle %>
   </div>
 

@@ -1,7 +1,7 @@
 <!-- recieves label hyle -->
 
-<%= form_with(model: label, url: users_labels_path, local: true, class:"form-group") do |f| %>
-  <div class="row">
+<%= form_with(model: label, url: users_labels_path, class:"form-group") do |f| %>
+  <div class="row margin-form">
     <div class="col">
       <%= f.label :name, "ラベル名" %><br>
       <%= f.text_field :name, autocomplete: "name", class:"form-control string-field", id:"new-label-name" %>

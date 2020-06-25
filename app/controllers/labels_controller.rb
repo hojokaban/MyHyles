@@ -8,21 +8,19 @@ class LabelsController < ApplicationController
 
   def create
     @label = current_user.labels.new(label_params)
-    @label.save ? flash[:success]="ラベルが追加されました" : flash[:danger]=set_error_flash(@label)
-    redirect_back(fallback_location: root_path)
+    @hyle = Hyle.find(params[:label][:hyle_id])
+    @label.save ? flash.now[:success]="ラベルが追加されました" : flash.now[:danger]=set_error_flash(@label)
   end
 
   def update
     @label = Label.find(params[:id])
-    @label.update(label_params) ? flash[:success]="ラベルが変更されました" : flash[:danger]=set_error_flash(@label)
-    redirect_back(fallback_location: root_path)
+    @label.update(label_params) ? flash.now[:success]="ラベルが変更されました" : flash.now[:danger]=set_error_flash(@label)
   end
 
   def destroy
     @label = Label.find(params[:id])
     @label.destroy
-    flash[:success] = "ラベルが削除されました"
-    redirect_back(fallback_location: root_path)
+    flash.now[:success] = "ラベルが削除されました"
   end
 
   private

@@ -1,0 +1,5 @@
+$("#flash").html("<%= j(render 'layouts/flash') %>");
+$("#new-label-name").val("");
+$("#new-label-body").val("");
+$("#hyle-show").html("<%= j(render 'hyles/hyle_show', hyle:@hyle )%>");
+$("#edit-label").html("<%= j(render 'hyles/label_edit', hyle: @hyle )%>");
