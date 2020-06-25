@@ -6,6 +6,7 @@ class HylesController < ApplicationController
   def new
       @hyle = Hyle.new
       @category = Category.new
+      @categories = current_user.categories
   end
 
   def create
@@ -29,6 +30,7 @@ class HylesController < ApplicationController
 
   def edit
     @label = Label.new
+    @categories = current_user.categories
   end
 
   def update

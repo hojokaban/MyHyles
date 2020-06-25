@@ -21,7 +21,7 @@
       </div>
       <div class="margin-form">
         <%= f.label :category, "カテゴリー(必須)" %>
-        <%= f.select :category_id, options_for_select(current_user.categories.collect{
+        <%= f.select :category_id, options_for_select(categories.collect{
             |category| [category.name, category.id]}),
              {prompt: "カテゴリーを選択してください"}, {class:"form-control"} %>
       </div>

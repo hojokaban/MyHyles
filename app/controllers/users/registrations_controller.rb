@@ -59,6 +59,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update_tag
       message = current_user.add_tag(params[:user][:tag])
       message.class == String ? flash.now[:danger] = message : flash.now[:success] = "タグが追加されました!"
+      @categories = current_user.categories
   end
 
   # DELETE /resource

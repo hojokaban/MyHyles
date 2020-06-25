@@ -1,7 +1,7 @@
-<!-- recieves hyle -->
+<!-- recieves hyle categories -->
 
 <h2>ヒュレーの追加</h2>
 <%= form_with(model: hyle, url: users_hyles_path, class:"form-group") do |f| %>
-  <%= render 'hyles/hyle_info_form', hyle: hyle, f:f, categories:@categories %>
+  <%= render 'hyles/hyle_info_form', hyle: hyle, f:f, categories:categories %>
   <%= f.submit 'この内容で追加する', class:"btn btn-primary" %>
 <% end %>

@@ -1,7 +1,7 @@
 <div class="edit-hyle background">
   <h2><%= @hyle.name %></h2>
   <%= form_with(model: @hyle, url: users_hyle_path, local: true, class:"form-group") do |f| %>
-    <%= render 'hyle_info_form', hyle: @hyle, f:f %>
+    <%= render 'hyle_info_form', hyle: @hyle, f:f, categories:@categories %>
     <%= f.submit '変更を保存する', class:"btn btn-primary" %>
   <% end %>
 </div>

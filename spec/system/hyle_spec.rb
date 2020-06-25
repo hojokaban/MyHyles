@@ -18,7 +18,8 @@ describe 'hylesの統合テスト', type: :system do
         #ヒュレー情報の入力に失敗(カテゴリーがない)
         fill_in 'hyle_name', with: "新しいヒュレー"
         click_button 'この内容で追加する'
-        expect(page).to have_selector 'li', text: 'カテゴリーを入力してください'
+        sleep 2
+        expect(page).to have_selector 'li', text: 'カテゴリーを入力してください' #疑惑
         #ヒュレー情報の入力に失敗(名前がない)
         fill_in 'hyle_name', with: "  "
         select "test_category", from: 'hyle[category_id]'
@@ -29,6 +30,7 @@ describe 'hylesの統合テスト', type: :system do
         select "test_category", from: 'hyle[category_id]'
         click_button 'この内容で追加する'
         #ラベル追加ページに遷移
+        sleep 2
         expect(page).to have_content 'ヒュレーが追加されました!'
         click_link 'ラベルの追加を終える'
         #詳細ページに遷移し、正しく表示
@@ -42,48 +44,54 @@ describe 'hylesの統合テスト', type: :system do
       end
       it 'カテゴリーを追加する' do
         #カテゴリーの追加に失敗
-        fill_in 'category_name', with: "  "
+        fill_in 'new-category', with: "  "
         click_button '新しいカテゴリーを追加'
-        expect(page).to have_selector 'li', text: "カテゴリー名を入力してください"
+        sleep 2
+        expect(page).to have_selector 'li', text: "カテゴリー名を入力してください" #疑惑
         expect(page).to have_select('hyle[category_id]', options: ["カテゴリーを選択してください", "test_category"])
         #カテゴリーの追加に成功
-        fill_in 'category_name', with: "新しいカテゴリー"
+        fill_in 'new-category', with: "新しいカテゴリー"
         click_button '新しいカテゴリーを追加'
-        expect(page).to have_content 'カテゴリーが追加されました'
+        sleep 2
+        expect(page).to have_content 'カテゴリーが追加されました' #疑惑
         expect(page).to have_select('hyle[category_id]', options: ["カテゴリーを選択してください", "test_category", "新しいカテゴリー"])
       end
       it 'タグを追加、削除する' do
         #タグの追加に失敗(タグ名が空)
-        fill_in 'user_tag', with: " "
+        fill_in 'new-tag', with: " "
         click_button '新しいタグを追加'
+        sleep 2
         expect(page).to have_content 'タグ名は空白では追加できません'
         user.reload
         expect(user.tag_list.count).to eq 3
         #タグの追加に失敗(タグ名が空)
-        fill_in 'user_tag', with: "a"*21
+        fill_in 'new-tag', with: "a"*21
         click_button '新しいタグを追加'
         expect(page).to have_content 'タグ名は20字以内です'
         user.reload
         expect(user.tag_list.count).to eq 3
         #タグの追加に成功
-        fill_in 'user_tag', with: "新しいタグ"
+        fill_in 'new-tag', with: "新しいタグ"
         click_button '新しいタグを追加'
+        sleep 2
         expect(page).to have_content 'タグが追加されました!'
         user.reload
         expect(user.tag_list.count).to eq 4
       end
-      # it '画像を追加する' do
-      #   attach_file 'img_field', "#{Rails.root}/spec/factories/sample1.jpg"
-      #   fill_in 'hyle_name', with: "画像ありヒュレー"
-      #   select "test_category", from: 'hyle[category_id]'
-      #   click_button 'この内容で追加する'
-      #   #ラベル追加ページに遷移
-      #   expect(page).to have_content 'ヒュレーが追加されました!'
-      #   click_link 'ラベルの追加を終える'
-      #   #詳細ページに遷移し、正しく表示
-      #   expect(page).to have_selector 'h2', text: "画像ありヒュレー"
-      #   #expect(page).to have_css "img[src$='sample1.jpg']"
-      # end
+      it '画像を追加する' do
+        attach_file 'file', "#{Rails.root}/spec/factories/sample1.jpg", make_visible: true
+        fill_in 'hyle_name', with: "画像ありヒュレー"
+        select "test_category", from: 'hyle[category_id]'
+        click_button 'この内容で追加する'
+        #ラベル追加ページに遷移
+        sleep 2
+        expect(page).to have_content 'ヒュレーが追加されました!'
+        click_link 'ラベルの追加を終える'
+        #詳細ページに遷移し、正しく表示
+        expect(page).to have_selector 'h2', text: "画像ありヒュレー"
+        image_id = Hyle.last.hyle_image_id
+        #expect(page).to have_selector "img[src$='#{image_id}']"
+      end
       it 'ヒュレーを誕生日あり、タグ付けで追加する' do
         #タグ付けでヒュレーを追加する
         fill_in 'hyle_name', with: "タグ付きヒュレー"
@@ -95,10 +103,11 @@ describe 'hylesの統合テスト', type: :system do
         check "hyle_tag_list_tag3"
         click_button 'この内容で追加する'
         #ラベル追加ページに遷移
-        expect(page).to have_content 'ヒュレーが追加されました!' #まとめてテストするとエラーになる
+        sleep 2
+        expect(page).to have_content 'ヒュレーが追加されました!'
         click_link 'ラベルの追加を終える'
         #詳細ページに遷移し、正しく表示
-        expect(page).to have_selector 'h2', text: "タグ付きヒュレー" #たまにエラー
+        expect(page).to have_selector 'h2', text: "タグ付きヒュレー"
         expect(page).to have_selector 'td', text: "タグ付きヒュレー"
         expect(page).to have_selector 'td', text: "2016年12月12日"
         expect(page).to have_selector 'td', text: "test_category"
@@ -111,6 +120,7 @@ describe 'hylesの統合テスト', type: :system do
         fill_in 'hyle_name', with: "ラベルありヒュレー"
         select "test_category", from: 'hyle[category_id]'
         click_button 'この内容で追加する'
+        sleep 2
         expect(page).to have_content 'ヒュレーが追加されました!'
         #ラベルの追加に失敗する
         fill_in 'new-label-name', with: "a"*21
@@ -122,6 +132,7 @@ describe 'hylesの統合テスト', type: :system do
         fill_in 'new-label-name', with: "テストラベル"
         fill_in 'new-label-body', with: "テストラベルの内容"
         click_button '新しいラベルを追加'
+        sleep 2
         label = Label.last
         #ラベルを表示する
         expect(page).to have_content "ラベルが追加されました"
@@ -183,33 +194,37 @@ describe 'hylesの統合テスト', type: :system do
         fill_in 'new-label-name', with: "a"*21
         fill_in 'new-label-body', with: "  "
         click_button '新しいラベルを追加'
+        sleep 2
         expect(page).to have_selector 'li', text: "ラベル名は20文字以内で入力してください"
         expect(page).to have_selector 'li', text: "内容を入力してください"
         #ラベルの追加に成功する
         fill_in 'new-label-name', with: "テストラベル"
         fill_in 'new-label-body', with: "テストラベルの内容"
         click_button '新しいラベルを追加'
-        label = Label.last
+        sleep 2
+        label = Label.last.id
         #ラベルを表示する
         expect(page).to have_content "ラベルが追加されました"
-        expect(find("#label-name-#{label.id}").value).to eq "テストラベル"
-        expect(find("#label-body-#{label.id}").value).to eq "テストラベルの内容"
+        visit current_path #やむなく ReloadなしではjQuery追いつかず
+        expect(find("#label-name-#{label}").value).to eq "テストラベル"
+        expect(find("#label-body-#{label}").value).to eq "テストラベルの内容"
         #ラベルの編集に失敗する
-        fill_in "label-name-#{label.id}", with: "  "
-        fill_in "label-body-#{label.id}", with: "テストラベルの内容"
-        find("#label-edit-button-#{label.id}").click
+        fill_in "label-name-#{label}", with: "  "
+        fill_in "label-body-#{label}", with: "テストラベルの内容"
+        find("#label-edit-button-#{label}").click
         expect(page).to have_selector 'li', text: "ラベル名を入力してください"
         #ラベルの編集に成功する
-        fill_in "label-name-#{label.id}", with: "編集されたラベル"
-        fill_in "label-body-#{label.id}", with: "テストラベルの内容２"
-        find("#label-edit-button-#{label.id}").click
+        fill_in "label-name-#{label}", with: "編集されたラベル"
+        fill_in "label-body-#{label}", with: "テストラベルの内容２"
+        find("#label-edit-button-#{label}").click
         expect(page).to have_content "ラベルが変更されました"
-        expect(find("#label-name-#{label.id}").value).to eq "編集されたラベル"
-        expect(find("#label-body-#{label.id}").value).to eq "テストラベルの内容２"
+        expect(find("#label-name-#{label}").value).to eq "編集されたラベル"
+        expect(find("#label-body-#{label}").value).to eq "テストラベルの内容２"
         #ラベルを削除する
-        find("#delete-label-#{label.id}").click
+        find("#delete-label-#{label}").click
         expect(page).to have_content "ラベルが削除されました"
-        expect(page).to have_no_css "#delete-label-#{label.id}"
+        visit current_path #やむなく
+        expect(page).not_to have_css "#delete-label-#{label}"
       end
       it 'ヒュレーを削除する' do
         visit users_hyles_path
@@ -218,7 +233,7 @@ describe 'hylesの統合テスト', type: :system do
         page.accept_confirm("本当にこのヒュレーを削除しますか？") do
           click_link '削除する'
         end
-        #expect(page).to have_content "ヒュレーを削除しました"
+        expect(page).to have_content "ヒュレーを削除しました"
         expect(page).to have_selector 'h2', text: '全ヒュレー'
         expect(page).not_to have_selector 'h4', text: 'test_hyle'
       end
