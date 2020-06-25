@@ -106,6 +106,7 @@ describe 'hylesの統合テスト', type: :system do
         sleep 2
         expect(page).to have_content 'ヒュレーが追加されました!'
         click_link 'ラベルの追加を終える'
+        sleep 2
         #詳細ページに遷移し、正しく表示
         expect(page).to have_selector 'h2', text: "タグ付きヒュレー"
         expect(page).to have_selector 'td', text: "タグ付きヒュレー"

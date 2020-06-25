@@ -12,6 +12,7 @@ describe 'ヘッダーのテスト', type: :system do
     end
     it 'このサイトについてに遷移' do
       click_link 'プロフィール'
+      sleep 2
       expect(page).to have_selector 'h2', text: 'MyHylesへようこそ！' #たまにエラー
     end
     it 'ログイン画面に遷移' do
