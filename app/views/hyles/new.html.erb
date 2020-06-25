@@ -1,7 +1,7 @@
 <div class="new-hyle">
   <div class="hyle-info-form background">
     <h2>ヒュレーの追加</h2>
-    <%= form_with(model: @hyle, url: users_hyles_path, local: true, class:"form-group") do |f| %>
+    <%= form_with(model: @hyle, url: users_hyles_path, class:"form-group") do |f| %>
       <%= render 'hyle_info_form', hyle: @hyle, f:f %>
       <%= f.submit 'この内容で追加する', class:"btn btn-primary" %>
     <% end %>

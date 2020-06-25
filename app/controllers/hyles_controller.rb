@@ -19,9 +19,8 @@ class HylesController < ApplicationController
       flash[:success] = "ヒュレーが追加されました!"
       redirect_to edit_users_label_path(@hyle)
     else
-      flash[:danger] = set_error_flash(@hyle)
+      flash.now[:danger] = set_error_flash(@hyle)
       @category = Category.new
-      redirect_to new_users_hyle_path
     end
   end
 
