@@ -24,11 +24,11 @@ RSpec.describe Label, type: :model do
             expect(@label).not_to be_valid
         end
         it "ラベル内容が空の場合はNG" do
-            @label.name = "  "
+            @label.body = "  "
             expect(@label).not_to be_valid
         end
         it "ラベル内容が501字以上の場合はNG" do
-            @label.name = "a"*501
+            @label.body = "a"*501
             expect(@label).not_to be_valid
         end
     end
