@@ -1,3 +1,4 @@
 $("#flash").html("<%= j(render 'layouts/flash') %>");
 $(".edit-category-form").html("<%= j(render 'categories/category_edit_form', categories:@categories) %>");
 $("#new-category").val("");
+$("#hyle_new").html("<%= j(render 'hyles/hyle_new', hyle:Hyle.new)%>");

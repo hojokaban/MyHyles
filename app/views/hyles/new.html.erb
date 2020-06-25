@@ -1,15 +1,11 @@
 <div class="new-hyle">
-  <div class="hyle-info-form background">
-    <h2>ヒュレーの追加</h2>
-    <%= form_with(model: @hyle, url: users_hyles_path, class:"form-group") do |f| %>
-      <%= render 'hyle_info_form', hyle: @hyle, f:f %>
-      <%= f.submit 'この内容で追加する', class:"btn btn-primary" %>
-    <% end %>
+  <div class="hyle-info-form background" id="hyle_new">
+    <%= render 'hyle_new', hyle:@hyle %>
   </div>
   <div class="add-things row my-5">
     <div class="background col-md-5">
       <h4>新しいカテゴリーを追加する</h4>
-      <%= render 'categories/category_new_form', category: @category %>
+      <%= render 'categories/category_new_form', category: @category, hyle:@hyle %>
     </div>
     <div class="background col-md-5">
       <h4>新しいタグを追加する</h4>

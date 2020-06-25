@@ -1,4 +1,4 @@
-<!-- recieves hyle f -->
+<!-- recieves hyle f categories -->
 <div class="row">
   <div class="image col-md-6 mt-3 text-center">
     <div class="previous-image">
@@ -19,7 +19,7 @@
           prompt:"--", start_year:Time.now.year, end_year:Time.now.year-120, date_separator:'%s'), '年','月')+'日' %>
         </div>
       </div>
-      <div class="select-category margin-form">
+      <div class="margin-form">
         <%= f.label :category, "カテゴリー(必須)" %>
         <%= f.select :category_id, options_for_select(current_user.categories.collect{
             |category| [category.name, category.id]}),

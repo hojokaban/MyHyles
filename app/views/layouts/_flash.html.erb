@@ -1,5 +1,5 @@
 <% flash.each do |key, value| %>
-  <div class=<%= key == "success" || "notice" ? "flash-success": "flash-danger"%>>
+  <div class=<%= key == ("success" || "notice") ? "flash-success": "flash-danger"%>>
     <%= content_tag(:div, value.html_safe, class: "#{key}") %>
   </div>
 <% end %>
