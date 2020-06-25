@@ -1,9 +1,9 @@
 <!-- recieves category -->
 
 <div class="new-category">
-  <%= form_with(model: category, url: users_categories_path, local:true,
+  <%= form_with(model: category, url: users_categories_path,
           html: {class:"form-group", id:"add-category"}) do |f| %>
-      <%= f.text_field :name , autocomplete: "name", class:"form-control" %>
+      <%= f.text_field :name , autocomplete: "name", class:"form-control", id:"new-category" %>
       <%= f.submit "新しいカテゴリーを追加", class:"btn btn-info my-2 mx-auto d-block" %>
   <% end %>
 </div>
