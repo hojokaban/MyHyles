@@ -133,32 +133,40 @@ describe 'deviseの統合テスト', type: :system do
         #ユーザー情報の編集に成功
         fill_in 'user_name', with: "変更した名前"
         fill_in 'user_email', with: "changed@mail.com"
+        find("#check-if-edit-password").click
         fill_in 'user_password', with: "different"
         fill_in 'user_password_confirmation', with: "different"
         fill_in 'user_current_password', with: "password"
         click_button '変更を保存する', match: :first
+        sleep 2
         expect(page).to have_content 'アカウントが更新されました'
         #ユーザー情報の編集、パスワードが合っていない
         fill_in 'user_name', with: "変更した名前"
         fill_in 'user_email', with: "changed@mail.com"
+        find("#check-if-edit-password").click
         fill_in 'user_password', with: "different"
         fill_in 'user_password_confirmation', with: "difficult"
         fill_in 'user_current_password', with: "password"
         click_button '変更を保存する', match: :first
+        sleep 2
         expect(page).to have_selector 'li', text: 'パスワード（確認用）とパスワードの入力が一致しません'
         #ユーザー情報の編集、片方のパスワードのみ入力されている
         fill_in 'user_name', with: "変更した名前"
         fill_in 'user_email', with: "changed@mail.com"
+        find("#check-if-edit-password").click
         fill_in 'user_password', with: "different"
         fill_in 'user_password_confirmation', with: "  "
         click_button '変更を保存する', match: :first
+        sleep 2
         expect(page).to have_selector 'li', text: 'パスワード（確認用）とパスワードの入力が一致しません'
         #ユーザー情報の編集、現在のパスワードがない
         fill_in 'user_name', with: "変更した名前"
         fill_in 'user_email', with: "changed@mail.com"
+        find("#check-if-edit-password").click
         fill_in 'user_password', with: "different"
         fill_in 'user_password_confirmation', with: "difficult"
         click_button '変更を保存する', match: :first
+        sleep 2
         expect(page).to have_selector 'li', text: '現在のパスワードを入力してください'
       end
       it '誕生日の通知情報の編集' do
@@ -171,7 +179,6 @@ describe 'deviseの統合テスト', type: :system do
         click_button '変更を保存する', match: :first
         expect(page).to have_content '誕生日の通知の設定は366より小さい値にしてください'
         #誕生日の通知情報の編集に成功
-        choose '通知を出す'
         fill_in 'user_notice_before', with: 12
         click_button '変更を保存する', match: :first
         expect(page).to have_content 'アカウントが更新されました'
@@ -199,7 +206,7 @@ describe 'deviseの統合テスト', type: :system do
         find("#delete-0").click
         expect(page).to have_content 'タグが削除されました'
         #タグの追加
-        fill_in "user_tag", with: "tag4"
+        fill_in "new-tag", with: "tag4"
         click_button '新しいタグを追加'
         expect(page).to have_content 'タグが追加されました'
         #表示される
