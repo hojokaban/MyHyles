@@ -25,7 +25,7 @@
             |category| [category.name, category.id]}),
              {prompt: "カテゴリーを選択してください"}, {class:"form-control"} %>
       </div>
-      <div class="check_box mt-2" >
+      <div class="check_box mt-2" id="tag-checks">
         <%= f.label :tag_list, "タグ", class:"designed-label" %><br>
         <% current_user.tag_list.each do |tag| %>
           <div  class="d-inline-block mx-2">
