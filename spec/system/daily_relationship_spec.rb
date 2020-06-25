@@ -23,6 +23,7 @@ describe 'daily_relationshipsの統合テスト', type: :system do
     fill_in "hyle_daily_relationship_relationship_amount", with: 60
     expect(page).to have_content 'ヒュレーを最低１人追加してください'
     click_button 'このヒュレーを追加する'
+    sleep 1
     expect(page).to have_selector 'li', text: "ヒュレーを入力してください"
     #ヒュレー関係の追加に失敗(数値を入れない)
     select "test_hyle", from: 'hyle_daily_relationship[hyle_id]'
@@ -44,6 +45,7 @@ describe 'daily_relationshipsの統合テスト', type: :system do
     select another_hyle.name, from: 'hyle_daily_relationship[hyle_id]'
     fill_in "hyle_daily_relationship_relationship_amount", with: 50
     click_button 'このヒュレーを追加する'
+    sleep 2
     relation = HyleDailyRelationship.last
     expect(page).to have_selector 'td', text: another_hyle.name
     find("#delete-hyle-#{relation.id}").click
@@ -53,8 +55,8 @@ describe 'daily_relationshipsの統合テスト', type: :system do
     page.accept_confirm("この内容はあとで変更ができません。この内容で追加してもよろしいですか？") do
       click_link 'この内容で追加する'
     end
-    page
-    expect(page).to have_content '今日の関係が追加されました!' #たまにエラー
+    sleep 2
+    expect(page).to have_content '今日の関係が追加されました!'
     expect(page).to have_selector 'h2', text: 'メインページ'
   end
 end
