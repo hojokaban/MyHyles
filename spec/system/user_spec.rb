@@ -24,6 +24,7 @@ describe 'userの統合テスト', type: :system do
     expect(page).to have_selector 'span', text: "tag3"
     #関係記入画面に移動
     click_link "関係の記入画面に移動する"
+    sleep 2
     expect(page).to have_selector 'h2', text: "今日関わった人間関係を記録しましょう"
   end
   context "誕生日に関するテスト" do
