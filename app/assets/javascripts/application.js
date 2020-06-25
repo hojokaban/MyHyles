@@ -31,4 +31,19 @@
 
 $(function() {
   $('form input:file').uploadThumbs();
+  $('.edit-new-password').hide();
+  $('#edit-current-password').hide();
+  $("#not-edit-password").hide();
+  $("#check-if-edit-password").click(function(){
+    $(this).hide();
+    $('.edit-new-password').fadeIn();
+    $("#edit-current-password").fadeIn();
+    $("#not-edit-password").fadeIn();
+  });
+  $("#not-edit-password").click(function(){
+    $(this).hide();
+    $('.edit-new-password').fadeOut();
+    $("#edit-current-password").fadeOut();
+    $("#check-if-edit-password").show();
+  });
 });

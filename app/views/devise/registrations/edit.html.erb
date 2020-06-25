@@ -6,12 +6,18 @@
     <h3>ユーザー情報</h3>
     <div class="row edit-user align-items-center flex-column">
       <%= render 'devise/shared/user_info', f:f %>
+      <div class="mt-3" id="check-if-edit-password">
+        <h4>パスワードを変更する</h4>
+      </div>
       <%= render 'devise/shared/password_form', f:f %>
-      <div class="col-8 field">
+      <div class="col-8 field" id="edit-current-password">
         <%= f.label :current_password, "パスワードを変更する場合は現在のパスワードを入力してください" %><br />
-        <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control" %>
+        <%= f.password_field :current_password, autocomplete: "current-password", class:"password-form form-control" %>
       </div>
+      <div class="mt-3" id="not-edit-password">
+        <h4>パスワードを変更しない</h4>
       </div>
+    </div>
     <%= f.submit "変更を保存する", class:"btn btn-primary" %>
   </div>
 
