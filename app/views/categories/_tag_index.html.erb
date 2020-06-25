@@ -1,13 +1,13 @@
 
 
 <% current_user.tag_list.each_with_index do |tag, i| %>
-    <div class="tag-edit m-2 d-flex">
+    <div class="tag-edit m-2 d-flex" id="tag-<%=tag%>">
       <div class="tag-label mx-1" id="tag-label-<%=i%>">
         <span><%= tag %></span>
       </div>
       <div class="mx-1 delete" id="delete-<%=i%>">
         <%= button_to "削除", delete_tag_users_path(tag),
-          method: :patch, class:"btn btn-danger" %>
+          method: :patch, remote:true, class:"btn btn-danger" %>
       </div>
     </div>
 <% end %>

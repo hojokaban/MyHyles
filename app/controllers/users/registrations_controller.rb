@@ -51,17 +51,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if resource_updated
       flash.now[:success] = "アカウントが更新されました"
       bypass_sign_in resource, scope: resource_name if sign_in_after_change_password?
-      #respond_with resource, location: after_update_path_for(resource)
     else
       flash.now[:danger] = set_error_flash(resource) if resource.errors.any?
-      #respond_with resource, location: after_update_path_for(resource)
     end
   end
 
   def update_tag
       message = current_user.add_tag(params[:user][:tag])
-      message.class == String ? flash[:danger] = message : flash[:success] = "タグが追加されました!"
-      redirect_back(fallback_location: root_path)
+      message.class == String ? flash.now[:danger] = message : flash.now[:success] = "タグが追加されました!"
   end
 
   # DELETE /resource

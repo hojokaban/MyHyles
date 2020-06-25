@@ -18,9 +18,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    current_user.tag_list.remove(params[:tag])
+    @tag = params[:tag]
+    current_user.tag_list.remove(@tag)
     current_user.update(tag_list: current_user.tag_list)
-    flash[:success] = "タグが削除されました"
-    redirect_back(fallback_location: root_path)
+    flash.now[:success] = "タグが削除されました"
   end
 end
