@@ -6,4 +6,7 @@
       <%= render 'memories/memory_box', memory:memory %>
     </div>
   <% end %>
+  <div class="text-center page">
+    <%= will_paginate memories, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer, :previous_label => ' &lt 前へ', :next_label => '次へ &gt' %>
+  </div>
 </div>

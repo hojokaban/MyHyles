@@ -46,7 +46,7 @@ class HylesController < ApplicationController
     else
       @q = current_user.hyles.ransack(params[:q])
     end
-    @hyles = @q.result(distinct: true).paginate(page: params[:page], per_page: 10)
+    @hyles = @q.result(distinct: true).paginate(page: params[:page], per_page: 20)
     @title = "全ヒュレー"
     @hyles_count = @hyles.count
   end
@@ -59,7 +59,7 @@ class HylesController < ApplicationController
     else
       @q = Category.find(params[:id]).hyles.ransack(params[:q])
     end
-    @hyles = @q.result(distinct: true).paginate(page: params[:page], per_page: 10)
+    @hyles = @q.result(distinct: true).paginate(page: params[:page], per_page: 20)
     @hyles_count = @hyles.count
     render :index
   end
@@ -72,7 +72,7 @@ class HylesController < ApplicationController
     else
       @q = current_user.hyles.tagged_with(params[:id]).ransack(params[:q])
     end
-    @hyles = @q.result(distinct: true).paginate(page: params[:page], per_page: 10)
+    @hyles = @q.result(distinct: true).paginate(page: params[:page], per_page: 20)
     @hyles_count = @hyles.count
     render :index
   end

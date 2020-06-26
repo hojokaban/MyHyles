@@ -37,7 +37,7 @@ class MemoriesController < ApplicationController
   end
 
   def index
-    @memories = current_user.memories.order(date: :desc)
+    @memories = current_user.memories.order(date: :desc).paginate(page: params[:page], per_page: 20)
   end
 
   def destroy
