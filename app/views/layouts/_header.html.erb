@@ -6,7 +6,11 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
+    <% if !current_user.nil? && current_user.id == 2 %>
+      <div class="demo-user">
+        <h5 class="mb-0">このユーザーはデモユーザーです</h5>
+      </div>
+    <% end %>
     <div class="collapse navbar-collapse rounded" id="navbarSupportedContent" style="flex-grow: 0;z-index:10;">
       <ul class="navbar-nav mr-auto">
         <% if user_signed_in? %>
