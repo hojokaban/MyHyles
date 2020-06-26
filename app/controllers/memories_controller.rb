@@ -37,7 +37,7 @@ class MemoriesController < ApplicationController
   end
 
   def index
-    @memories = current_user.memories
+    @memories = current_user.memories.order(date: :desc)
   end
 
   def destroy
