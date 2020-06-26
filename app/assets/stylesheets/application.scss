@@ -22,7 +22,7 @@
 }
 /* フォント */
 h2, h3, h4, p, a, td, th, label{
-  font-family: 'Yu Mincho Light','YuMincho','Yu Mincho','游明朝体','ヒラギノ角ゴシック','Hiragino Sans';
+  font-family: 'MS UI Gothic','ヒラギノ丸ゴ ProN','Hiragino Maru Gothic ProN','ヒラギノ角ゴシック','Hiragino Sans',sans-serif;
 }
 a:link{
   text-decoration: none;
@@ -35,7 +35,10 @@ td{
   font-size: 1em;
 }
 h2{
+  text-shadow: 1px 2px 2px silver;
+  text-indent: 2em;
   font-size:2em;
+  font-weight: bold;
   color: navy;
 }
 h3{
@@ -94,7 +97,7 @@ img{
 }
 /* 背景 */
 .background{
-  background-color:#99FFFF;
+  background-color: rgba(180, 255, 255, 0.8);
   border-radius: 15px;
   margin: 2em auto;
   padding: 1em;
@@ -111,6 +114,13 @@ img{
 }
 .devise-links{
   float: right;
+}
+/* ロゴ */
+.logo{
+  background-image: image-url("logo4.png");
+  background-size: cover;
+  width: 120px;
+  height: 90px;
 }
 /* フラッシュ */
 #flash{
@@ -154,32 +164,35 @@ img{
 }
 /* ヘッダー */
 header{
-  height:60px;
-  background-color: #33CCFF;
-  #navbarSupportedContent ul{
-    @media (max-width: 991px) {
-      padding: 0 20px;
-      position: fixed;
-      top:3em;
-      right:1em;
-      background-color:#AAFFFF;
-      border-radius: 5px;
-    }
-  }
-  .dropdown-menu{
-    top: 2em;
-    right:1em;
-    background-color:#88FFFF;
-    border: none;
-    margin: 0 -2em 0;
-    .dropdown-item{
-      color: blue;
-      &:hover{
-        background-color:#55FFFF;
+  height:90px;
+  background-color: #003;
+  .navbar{
+    height: 90px;
+    #navbarSupportedContent ul{
+      @media (max-width: 991px) {
+        padding: 0 20px;
+        position: fixed;
+        top:3em;
+        right:1em;
+        background-color:#AAFFFF;
+        border-radius: 5px;
       }
     }
+    .dropdown-menu{
+      top: 2em;
+      right:1em;
+      background-color:#88FFFF;
+      border: none;
+      margin: 0 -2em 0;
+      .dropdown-item{
+        color: blue;
+        &:hover{
+          background-color:#55FFFF;
+        }
+      }
+    }
+    .nav-item{margin:0.5em 1em;}
   }
-  .nav-item{margin:0.5em 1em;}
 }
 /* ページ */
 .page ul{
@@ -189,7 +202,9 @@ header{
 body .container-fluid{
   padding: 3em 1em;
   min-height: 90vh;
-  background-color:#CCFFFF;
+  // background-color:#CCFFFF;
+  background-image: image-url("background.jpg");
+  background-size: cover;
   .row{
     margin:0 4%;
   }
@@ -251,5 +266,8 @@ body .container-fluid{
 }
 /* フッター */
 footer{
-background-color: #33CCFF;
+background-color: #003;
+  p{
+    color: white;
+  }
 }

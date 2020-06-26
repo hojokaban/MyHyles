@@ -2,36 +2,29 @@
 <footer class="page-footer font-small blue pt-4">
 
   <div class="text-center text-md-left">
-
     <div class="row">
-
-      <div class="col-md-6 mt-md-0 mt-3">
+      <div class="col-md-7 mt-md-0 mt-3">
         <h5 class="text-uppercase">My Hyles</h5>
-        <p>Here you can use rows and columns to organize your footer content.</p>
+        <p>
+          ヒュレーをどんどん追加して、あなただけの記録帳を作りましょう！
+        </p>
       </div>
-
       <hr class="clearfix w-100 d-md-none pb-3">
-
       <div class="col-md-3 mb-md-0 mb-3">
         <h5 class="text-uppercase">Links</h5>
         <ul class="list-unstyled">
-          <li>
-            <a href="#!">Link 1</a>
-          </li>
+          <li class="nav-item"><%= link_to "プロフィール", about_path %></li>
+          <li class="nav-item"><%= link_to "お問い合わせ", contact_path %></li>
+          <li class="nav-item"><%= link_to "ログイン", new_user_session_path %></li>
+          <li class="nav-item"><%= link_to "新規登録", new_user_registration_path %></li>
         </ul>
       </div>
-
-      <div class="col-md-3 mb-md-0 mb-3">
-        <h5 class="text-uppercase">Links</h5>
-        <ul class="list-unstyled">
-          <li>
-            <a href="#!">Link 1</a>
-          </li>
-        </ul>
+      <div class="col-md-2 mb-md-0 mb-3">
+        <%= link_to root_path, class:"navbar-brand mr-auto" do %>
+          <div class="logo"></div>
+        <% end %>
       </div>
-
     </div>
-
   </div>
 
   <div class="footer-copyright text-center py-3">
