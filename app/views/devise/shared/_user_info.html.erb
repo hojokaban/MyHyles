@@ -14,5 +14,5 @@
 
 <div class="col-8">
   <%= f.label :email, "メールアドレス" %><br />
-  <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+  <%= f.email_field :email, autofocus: true, autocomplete: "email",readonly: !current_user.nil?&&current_user.id == 2, class:"form-control" %>
 </div>

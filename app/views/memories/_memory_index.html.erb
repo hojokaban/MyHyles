@@ -2,7 +2,7 @@
 
 <div class="row flex-column">
   <% memories.each do |memory| %>
-    <div class="memory-box mt-3 col d-flex">
+    <div class="memory-box mt-3 col d-flex align-items-center">
       <%= render 'memories/memory_box', memory:memory %>
     </div>
   <% end %>
