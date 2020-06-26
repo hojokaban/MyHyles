@@ -8,9 +8,9 @@
   </div>
 </div>
 
-<% unless @hyle.memories.empty? %>
+<% unless @memories.empty? %>
   <div class="memory-index background">
     <h3><%= @hyle.name %>さんとの思い出</h3>
-    <%= render 'memories/memory_index', memories:@hyle.memories %>
+    <%= render 'memories/memory_index', memories:@memories %>
   </div>
 <% end %>
