@@ -1,16 +1,11 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-light justify-content-end py-0 px-2">
-    <%= link_to root_path, class:"navbar-brand mr-auto" do %>
+    <%= link_to root_path, class:"navbar-brand mr-auto p-0" do %>
       <div class="logo"></div>
     <% end %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <% if !current_user.nil? && current_user.id == 2 %>
-      <div class="demo-user">
-        <h5 class="mb-0">このユーザーはデモユーザーです</h5>
-      </div>
-    <% end %>
     <div class="collapse navbar-collapse rounded" id="navbarSupportedContent" style="flex-grow: 0;z-index:10;">
       <ul class="navbar-nav mr-auto">
         <% if user_signed_in? %>

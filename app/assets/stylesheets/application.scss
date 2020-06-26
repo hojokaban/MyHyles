@@ -164,7 +164,6 @@ img{
 }
 /* ヘッダー */
 header{
-  height:90px;
   background-color: #003;
   .navbar{
     height: 90px;
@@ -194,18 +193,14 @@ header{
       margin: 0 -2em 0;
       .dropdown-item{
         color: blue;
-        &:hover{
-          background-color:#55FFFF;
-        }
+        &:hover{background-color:#55FFFF}
       }
     }
     .nav-item{margin:0.5em 1em;}
   }
 }
 /* ページ */
-.page ul{
-  margin: 1em auto;
-}
+.page ul{margin: 1em auto}
 /* ボディ */
 body .container-fluid{
   padding: 3em 1em;
@@ -213,9 +208,7 @@ body .container-fluid{
   // background-color:#CCFFFF;
   background-image: image-url("background.jpg");
   background-size: cover;
-  .row{
-    margin:0 4%;
-  }
+  .row{margin:0 4%}
 }
 /* アバウト */
 .image img{
@@ -231,9 +224,7 @@ body .container-fluid{
   display:inline-block;
   color: white;
   border-radius: 5px;
-  &:hover{
-    color: #AAA;
-  }
+  &:hover{color: #AAA}
 }
 .tag-label{
   padding: 0.45em;
@@ -275,7 +266,5 @@ body .container-fluid{
 /* フッター */
 footer{
 background-color: #003;
-  p{
-    color: white;
-  }
+  p{color: white}
 }
