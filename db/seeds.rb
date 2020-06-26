@@ -1,7 +1,4 @@
-User.create!(name: "sample",
-            email: "sample@example.com",
-            password: "password",
-            confirmed_at: Time.current)
+# ワンピースシミュレーション
 luffy = User.create!(name: "モンキー・D・ルフィ",
             email: "luffy@example.com",
             password: "password",
@@ -107,3 +104,97 @@ memory4.hyle_memories.create!(hyle:usopp)
 memory4.hyle_memories.create!(hyle:chopper)
 memory4.hyle_memories.create!(hyle:robin)
 memory4.hyle_memories.create!(hyle:enel)
+
+
+
+
+
+
+# デモユーザー
+user = User.create!(name: "田中太郎",
+            email: "taro@example.com",
+            password: "password",
+            confirmed_at: Time.current,
+            tag_list: ["中学の頃","高校の頃","大学の頃","飲み仲間","愛人","幼なじみ","野球部"])
+
+categ1 = user.categories.create!(name: "家族")
+categ2 = user.categories.create!(name: "イツメン")
+categ3 = user.categories.create!(name: "友達")
+categ4 = user.categories.create!(name: "〇〇会社")
+categ5 = user.categories.create!(name: "SNS友達")
+categ6 = user.categories.create!(name: "先生")
+#家族
+father=user.hyles.create!(category: categ1,name: "田中仁",birthday: Date.parse("1970-11-11"),birthday_date:"1111")
+mother=user.hyles.create!(category: categ1,name: "田中まゆみ",birthday: Date.parse("1970-7-3"),birthday_date:"0703")
+bro=user.hyles.create!(category: categ1,name: "田中次郎",birthday: Date.parse("1999-4-1"),birthday_date:"0401")
+sis=user.hyles.create!(category: categ1,name: "田中あやか",birthday: Date.parse("2001-3-2"),birthday_date:"0302")
+granpa=user.hyles.create!(category: categ1,name: "田中誠司",birthday: Date.parse("1930-12-24"),birthday_date:"1224")
+granma=user.hyles.create!(category: categ1,name: "田中昌子",birthday: Date.parse("1930-2-6"),birthday_date:"0206")
+pet=user.hyles.create!(category: categ1,name: "ポチ",birthday: Date.parse("2005-3-9"),birthday_date:"0309")
+#イツメン
+koji=user.hyles.create!(category: categ2,name: "森山浩二",birthday: Date.parse("1996-1-1"),birthday_date:"0101",tag_list:["中学の頃","野球部"])
+haru=user.hyles.create!(category: categ2,name: "佐竹晴",birthday: Date.parse("1996-3-20"),birthday_date:"0320",tag_list:["幼なじみ","野球部","飲み仲間"])
+#友達
+hiroko=user.hyles.create!(category: categ3,name: "北浩子",birthday: Date.parse("1996-7-8"),birthday_date:"0708",tag_list:["大学の頃","愛人"])
+kenta=user.hyles.create!(category: categ3,name: "松谷健太",birthday: Date.parse("1996-5-2"),birthday_date:"0502",tag_list:["飲み仲間","野球部","高校の頃"])
+yuji=user.hyles.create!(category: categ3,name: "芝ゆうじ",birthday: Date.parse("1996-8-16"),birthday_date:"0816",tag_list:["中学の頃","兄弟"])
+mirai=user.hyles.create!(category: categ3,name: "百瀬未来",birthday: Date.parse("1996-11-23"),birthday_date:"1123",tag_list:["幼なじみ","兄弟","飲み仲間"])
+yuta=user.hyles.create!(category: categ3,name: "北見雄太",birthday: Date.parse("1996-8-10"),birthday_date:"0810",tag_list:["高校の頃","兄弟"])
+chika=user.hyles.create!(category: categ3,name: "大島千佳",birthday: Date.parse("1996-5-13"),birthday_date:"0513",tag_list:["高校の頃","野球部"])
+#〇〇会社
+kazuki=user.hyles.create!(category: categ4,name: "広島かずき",birthday: Date.parse("1989-9-21"),birthday_date:"0921")
+hayato=user.hyles.create!(category: categ4,name: "松前隼人",birthday: Date.parse("1992-12-21"),birthday_date:"1221",tag_list:["飲み仲間"])
+riku=user.hyles.create!(category: categ4,name: "南口淕",birthday: Date.parse("1993-7-21"),birthday_date:"0721",tag_list:["飲み仲間"])
+atsushi=user.hyles.create!(category: categ4,name: "世古敦",birthday: Date.parse("1993-1-21"),birthday_date:"0121",tag_list:["大学の頃"])
+taishi=user.hyles.create!(category: categ4,name: "上田太一",birthday: Date.parse("1993-12-1"),birthday_date:"1201")
+#SNS友達
+macky=user.hyles.create!(category: categ5,name: "マッキー宏",birthday: Date.parse("1991-8-8"),birthday_date:"0808")
+ayaaya=user.hyles.create!(category: categ5,name: "あやあや",birthday: nil)
+miminaga=user.hyles.create!(category: categ5,name: "耳なが族",birthday: nil)
+#先生
+kazuhiko=user.hyles.create!(category: categ6,name: "中島和彦",birthday: nil,tag_list:["中学の頃"])
+saki=user.hyles.create!(category: categ6,name: "三宅咲",birthday: nil,tag_list:["中学の頃"])
+teruo=user.hyles.create!(category: categ6,name: "大山輝雄",birthday: nil,tag_list:["高校の頃"])
+masao=user.hyles.create!(category: categ6,name: "山下正雄",birthday: nil,tag_list:["大学の頃"])
+#ラベル
+user.labels.create!(hyle:koji,name:"趣味",body:"麻雀")
+user.labels.create!(hyle:haru,name:"嫌いな食べ物",body:"トマト")
+user.labels.create!(hyle:hiroko,name:"アレルギー",body:"卵")
+user.labels.create!(hyle:kenta,name:"備考",body:"まだ2000円返してもらってない")
+user.labels.create!(hyle:yuta,name:"趣味",body:"漫画")
+#思い出
+memory1 = user.memories.create!(title:"2019年忘年会",date:Date.parse("2019-12-14"),description:"イツメンで日本食料理店「里」で忘年会！")
+memory1.hyle_memories.create!(hyle:koji)
+memory1.hyle_memories.create!(hyle:haru)
+memory2 = user.memories.create!(title:"皿を割り先生に叱られる",date:Date.parse("2010-5-1"),description:"給食の時間、皿を割って怒られた")
+memory2.hyle_memories.create!(hyle:saki)
+memory2.hyle_memories.create!(hyle:koji)
+memory2.hyle_memories.create!(hyle:yuji)
+memory3 = user.memories.create!(title:"修学旅行",date:Date.parse("2014-5-1"),description:"高校の修学旅行！最高に楽しかった！")
+memory3.hyle_memories.create!(hyle:teruo)
+memory3.hyle_memories.create!(hyle:yuta)
+memory3.hyle_memories.create!(hyle:chika)
+memory3.hyle_memories.create!(hyle:haru)
+memory4 = user.memories.create!(title:"告白成功！",date:Date.parse("2018-3-1"),description:"ひろちゃんに告白！成功！！")
+memory4.hyle_memories.create!(hyle:hiroko)
+memory4 = user.memories.create!(title:"銀婚式",date:Date.parse("2016-7-1"),description:"おじいちゃんおばあちゃんの銀婚式！いろんな親戚に会った。")
+memory4.hyle_memories.create!(hyle:father)
+memory4.hyle_memories.create!(hyle:mother)
+memory4.hyle_memories.create!(hyle:bro)
+memory4.hyle_memories.create!(hyle:sis)
+memory4.hyle_memories.create!(hyle:granpa)
+memory4.hyle_memories.create!(hyle:granma)
+#関係
+rel1=user.daily_relationships.create!(created_at:1.day.ago)
+rel1.hyle_daily_relationships.create!(hyle:father,relationship_amount:40)
+rel1.hyle_daily_relationships.create!(hyle:mother,relationship_amount:30)
+rel1.hyle_daily_relationships.create!(hyle:bro,relationship_amount:70)
+rel1.hyle_daily_relationships.create!(hyle:koji,relationship_amount:80)
+rel2=user.daily_relationships.create!(created_at:2.day.ago)
+rel2.hyle_daily_relationships.create!(hyle:father,relationship_amount:40)
+rel2.hyle_daily_relationships.create!(hyle:mother,relationship_amount:50)
+rel2.hyle_daily_relationships.create!(hyle:haru,relationship_amount:90)
+rel3=user.daily_relationships.create!(created_at:3.day.ago)
+rel3.hyle_daily_relationships.create!(hyle:hayato,relationship_amount:90)
+rel3.hyle_daily_relationships.create!(hyle:father,relationship_amount:20)
+rel3.hyle_daily_relationships.create!(hyle:kenta,relationship_amount:40)
