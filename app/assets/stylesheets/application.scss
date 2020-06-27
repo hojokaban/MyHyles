@@ -64,8 +64,8 @@ h5{
 .demo-user{
   position:absolute;
   top:100px;
-  left:0.5em;
-  z-index:1000;
+  right:0.5em;
+  z-index:2;
   background-color: #AAFFFF;
 }
 /* トップページ */
@@ -76,6 +76,8 @@ h5{
     height:auto;
   }
   .top-message{
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 1em;
     color: white;
     position:absolute;
     top: 50%;
@@ -129,6 +131,12 @@ img{
 .background{
   background-color: rgba(180, 255, 255, 0.8);
   border-radius: 15px;
+  margin: 2em auto;
+  padding: 1em;
+}
+.about-background{
+  background-color: rgba(160, 255, 160, 0.8);
+  border: double 4px #4F4;
   margin: 2em auto;
   padding: 1em;
 }
@@ -217,6 +225,7 @@ header{
       }
     }
     .dropdown-menu{
+      z-index:2;
       top: 2em;
       right:1em;
       background-color:#EEE;
@@ -285,13 +294,15 @@ body .container-fluid{
 }
 /* 思い出ボックス */
 .memory-box{
-  border-bottom: ridge 1px grey; 
+  border-bottom: ridge 2px #5BB;
   .title-date p{
     @media (max-width: 320px){
       display: none;
     }
   }
 }
+/* relationship */
+.one-relationship{border-bottom: ridge 2px #5BB}
 /* show */
 .show-info table{
   th{min-width: 7em}

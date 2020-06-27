@@ -1,7 +1,7 @@
 <!-- recieves daily_relationship-->
 
 <% daily_relationship.hyle_daily_relationships.each do |relationship| %>
-  <tr id="one-<%=relationship.id%>">
+  <tr class="one-relationship" id="one-<%=relationship.id%>">
     <%= render 'daily_relationships/one_relationship', relationship:relationship %>
   </tr>
 <% end %>
