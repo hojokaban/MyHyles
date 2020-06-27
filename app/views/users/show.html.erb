@@ -1,56 +1,58 @@
-<h2>メインページ</h2>
-<div class="row">
-  <div class="sidebar col-md-3 background">
-    <%= render 'layouts/sidebar' %>
-  </div>
-  <div class="main-page col-md-8">
-    <% unless current_user.has_done %>
-      <div class="background">
-          <div class="row link-relationship justify-content-center">
-            <h4>今日の人間関係を記録しましょう！</h4>
-            <%= link_to "関係の記入画面に移動する", new_users_daily_relationship_path, class:"btn btn-info" %>
-          </div>
-      </div>
-    <% end %>
-    <div class="background">
-      <h3>誕生日が近いヒュレー</h3>
-      <div class="birthday-hyle-index">
-        <% unless @birthday_hyles.present? %>
-          <h4><%= current_user.notice_before %>日以内に誕生日のヒュレーはいません</h4>
-        <% else %>
-          <h4><%= current_user.notice_before %>日以内に誕生日！</h4>
-          <%= render 'hyles/birthday_hyle_index', hyles:@birthday_hyles, today:@today %>
-        <% end %>
-      </div>
+<div class="wrapper">
+  <h2>メインページ</h2>
+  <div class="row">
+    <div class="sidebar col-md-3 background">
+      <%= render 'layouts/sidebar' %>
     </div>
-    <div class="background">
-      <h3>あなたに最も近いヒュレー</h3>
-      <div class="relationship-hyle-index">
-        <% unless @relationship_hyles.present? %>
-          <h4>まだ関係を計算できていません</h4>
-          <h4>まずは今日関わったヒュレーたちを記録してみましょう！</h4>
-        <% else %>
-          <h4>第1位!</h4>
-          <div class="hyle-box col">
-            <%= render 'hyles/relationship_hyle_box', hyle: @relationship_hyles.first %>
-          </div>
-          <h4>第2位!</h4>
-          <% if @relationship_hyles.count == 1 %>
-            <h4>なし</h4>
-          <% else %>
-            <div class="hyle-box col">
-              <%= render 'hyles/relationship_hyle_box', hyle: @relationship_hyles.second %>
+    <div class="main-page col-md-8">
+      <% unless current_user.has_done %>
+        <div class="background">
+            <div class="row link-relationship justify-content-center">
+              <h4>今日の人間関係を記録しましょう！</h4>
+              <%= link_to "関係の記入画面に移動する", new_users_daily_relationship_path, class:"btn btn-info" %>
             </div>
-          <% end %>
-          <h4>第3位!</h4>
-          <% if @relationship_hyles.count <= 2 %>
-            <h4>なし</h4>
+        </div>
+      <% end %>
+      <div class="background">
+        <h3>誕生日が近いヒュレー</h3>
+        <div class="birthday-hyle-index">
+          <% unless @birthday_hyles.present? %>
+            <h4><%= current_user.notice_before %>日以内に誕生日のヒュレーはいません</h4>
           <% else %>
-            <div class="hyle-box col">
-              <%= render 'hyles/relationship_hyle_box', hyle: @relationship_hyles.third %>
-            </div>
+            <h4><%= current_user.notice_before %>日以内に誕生日！</h4>
+            <%= render 'hyles/birthday_hyle_index', hyles:@birthday_hyles, today:@today %>
           <% end %>
-        <% end %>
+        </div>
+      </div>
+      <div class="background">
+        <h3>あなたに最も近いヒュレー</h3>
+        <div class="relationship-hyle-index">
+          <% unless @relationship_hyles.present? %>
+            <h4>まだ関係を計算できていません</h4>
+            <h4>まずは今日関わったヒュレーたちを記録してみましょう！</h4>
+          <% else %>
+            <h4>第1位!</h4>
+            <div class="hyle-box col">
+              <%= render 'hyles/relationship_hyle_box', hyle: @relationship_hyles.first %>
+            </div>
+            <h4>第2位!</h4>
+            <% if @relationship_hyles.count == 1 %>
+              <h4>なし</h4>
+            <% else %>
+              <div class="hyle-box col">
+                <%= render 'hyles/relationship_hyle_box', hyle: @relationship_hyles.second %>
+              </div>
+            <% end %>
+            <h4>第3位!</h4>
+            <% if @relationship_hyles.count <= 2 %>
+              <h4>なし</h4>
+            <% else %>
+              <div class="hyle-box col">
+                <%= render 'hyles/relationship_hyle_box', hyle: @relationship_hyles.third %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
