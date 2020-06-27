@@ -1,18 +1,20 @@
-<div class="background">
-  <h2>そのほか、お好みの情報を追加してみましょう！</h2>
-  <div id="hyle-show">
-    <%= render 'hyles/hyle_show.html.erb', hyle: @hyle %>
-  </div>
+<div class="wrapper">
+  <div class="background">
+    <h2>そのほか、お好みの情報を追加してみましょう！</h2>
+    <div id="hyle-show">
+      <%= render 'hyles/hyle_show.html.erb', hyle: @hyle %>
+    </div>
 
-  <div class="my-3" id="edit-label">
-    <%= render 'hyles/label_edit', hyle: @hyle %>
-  </div>
+    <div class="my-3" id="edit-label">
+      <%= render 'hyles/label_edit', hyle: @hyle %>
+    </div>
 
-  <div class="new-label">
-    <h4>新しいラベルを追加する</h4>
-    <%= render 'labels/label_new_form', label: @label, hyle: @hyle %>
-  </div>
-  <div class="d-flex">
-    <%= link_to "ラベルの追加を終える",users_hyle_path(@hyle), class:"btn btn-primary" %>
+    <div class="new-label">
+      <h4>新しいラベルを追加する</h4>
+      <%= render 'labels/label_new_form', label: @label, hyle: @hyle %>
+    </div>
+    <div class="d-flex">
+      <%= link_to "ラベルの追加を終える",users_hyle_path(@hyle), class:"btn btn-primary" %>
+    </div>
   </div>
 </div>

@@ -1,7 +1,9 @@
-<div class="edit-memory background">
-  <h2>思い出の編集</h2>
-    <%= form_with(model: @memory, url: users_memory_path, local: true, class:"form-group") do |f| %>
-      <%= render 'memory_info_form', memory: @memory, f:f, hyles:@memory.hyles %>
-      <%= f.submit '変更を保存する', class:"btn btn-primary" %>
-    <% end %>
+<div class="wrapper">
+  <div class="edit-memory background">
+    <h2>思い出の編集</h2>
+      <%= form_with(model: @memory, url: users_memory_path, local: true, class:"form-group") do |f| %>
+        <%= render 'memory_info_form', memory: @memory, f:f, hyles:@memory.hyles %>
+        <%= f.submit '変更を保存する', class:"btn btn-primary" %>
+      <% end %>
+  </div>
 </div>

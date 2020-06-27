@@ -1,70 +1,71 @@
-<h2>設定画面</h2>
-
-<%= form_with(model: resource, as: resource_name, url: registration_path(resource_name),
-        html: { method: :put, class:"form-group", id:"edit-user" }) do |f| %>
-  <div class="background margin-form">
-    <h3>ユーザー情報</h3>
-    <div class="row edit-user align-items-center flex-column">
-      <%= render 'devise/shared/user_info', f:f %>
-      <div class="mt-3" id="check-if-edit-password">
-        <h4>パスワードを変更する</h4>
+<div class="wrapper">
+  <h2>設定画面</h2>
+  <%= form_with(model: resource, as: resource_name, url: registration_path(resource_name),
+          html: { method: :put, class:"form-group", id:"edit-user" }) do |f| %>
+    <div class="background margin-form">
+      <h3>ユーザー情報</h3>
+      <div class="row edit-user align-items-center flex-column">
+        <%= render 'devise/shared/user_info', f:f %>
+        <div class="mt-3" id="check-if-edit-password">
+          <h4>パスワードを変更する</h4>
+        </div>
+        <div class="col-8 field edit-new-password">
+          <%= f.label :password, "新しいパスワード(6字以上)" %><br />
+          <%= f.password_field :password, autofocus: true, autocomplete: "new-password",readonly: current_user.id == 2, class:"password-form form-control" %>
+        </div>
+        <div class="col-8 field edit-new-password">
+          <%= f.label :password_confirmation, "新しいパスワード(確認用)" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password",readonly: current_user.id == 2, class:"password-form form-control" %>
+        </div>
+        <div class="col-8 field" id="edit-current-password">
+          <%= f.label :current_password, "パスワードを変更する場合は現在のパスワードを入力してください" %><br />
+          <%= f.password_field :current_password, autocomplete: "current-password",readonly: current_user.id == 2, class:"password-form form-control" %>
+        </div>
+        <div class="mt-3" id="not-edit-password">
+          <h4>パスワードを変更しない</h4>
+        </div>
       </div>
-      <div class="col-8 field edit-new-password">
-        <%= f.label :password, "新しいパスワード(6字以上)" %><br />
-        <%= f.password_field :password, autofocus: true, autocomplete: "new-password",readonly: current_user.id == 2, class:"password-form form-control" %>
-      </div>
-      <div class="col-8 field edit-new-password">
-        <%= f.label :password_confirmation, "新しいパスワード(確認用)" %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password",readonly: current_user.id == 2, class:"password-form form-control" %>
-      </div>
-      <div class="col-8 field" id="edit-current-password">
-        <%= f.label :current_password, "パスワードを変更する場合は現在のパスワードを入力してください" %><br />
-        <%= f.password_field :current_password, autocomplete: "current-password",readonly: current_user.id == 2, class:"password-form form-control" %>
-      </div>
-      <div class="mt-3" id="not-edit-password">
-        <h4>パスワードを変更しない</h4>
-      </div>
+      <%= f.submit "変更を保存する", class:"btn btn-primary" %>
     </div>
-    <%= f.submit "変更を保存する", class:"btn btn-primary" %>
+
+    <div class="background">
+      <h3>誕生日の近いヒュレー</h3>
+      <div class="row edit-birthday align-items-center flex-column">
+        <div class="notice-before my-1">
+          誕生日の <%= f.number_field :notice_before, class:"rounded", style:"width:3em;" %> 日前からメインページに表示
+        </div>
+      </div>
+      <%= f.submit "変更を保存する", class:"btn btn-primary" %>
+    </div>
+
+    <div class="background">
+      <h3>どのくらいの期間でヒュレーとの関わりを計算する？</h3>
+      <div class="row edit-frequency justify-content-center">
+        <div class="col my-2 col-9 col-sm-7 col-md-5">
+          <%= f.number_field :term , autocomplete: "current-password", class:"rounded", style:"width:3em;" %>ヶ月以内での関わりを計算
+        </div>
+      </div>
+      <%= f.submit "変更を保存する", class:"btn btn-primary" %>
+    </div>
+  <% end %>
+
+  <div class="background">
+    <h3>カテゴリー</h3>
+    <div class="row justify-content-center edit-category-form">
+        <%= render 'categories/category_edit_form', categories: @categories %>
+    </div>
+    <div class="row justify-content-center mt-3">
+        <%= render 'categories/category_new_form', category: @category %>
+    </div>
   </div>
 
   <div class="background">
-    <h3>誕生日の近いヒュレー</h3>
-    <div class="row edit-birthday align-items-center flex-column">
-      <div class="notice-before my-1">
-        誕生日の <%= f.number_field :notice_before, class:"rounded", style:"width:3em;" %> 日前からメインページに表示
-      </div>
+    <h3>タグ</h3>
+    <div class="row flex-wrap" id="tag-index">
+        <%= render 'categories/tag_index' %>
     </div>
-    <%= f.submit "変更を保存する", class:"btn btn-primary" %>
-  </div>
-
-  <div class="background">
-    <h3>どのくらいの期間でヒュレーとの関わりを計算する？</h3>
-    <div class="row edit-frequency justify-content-center">
-      <div class="col my-2 col-9 col-sm-7 col-md-5">
-        <%= f.number_field :term , autocomplete: "current-password", class:"rounded", style:"width:3em;" %>ヶ月以内での関わりを計算
-      </div>
+    <div class="row justify-content-center mt-3">
+        <%= render 'categories/tag_new_form' %>
     </div>
-    <%= f.submit "変更を保存する", class:"btn btn-primary" %>
-  </div>
-<% end %>
-
-<div class="background">
-  <h3>カテゴリー</h3>
-  <div class="row justify-content-center edit-category-form">
-      <%= render 'categories/category_edit_form', categories: @categories %>
-  </div>
-  <div class="row justify-content-center mt-3">
-      <%= render 'categories/category_new_form', category: @category %>
-  </div>
-</div>
-
-<div class="background">
-  <h3>タグ</h3>
-  <div class="row flex-wrap" id="tag-index">
-      <%= render 'categories/tag_index' %>
-  </div>
-  <div class="row justify-content-center mt-3">
-      <%= render 'categories/tag_new_form' %>
   </div>
 </div>

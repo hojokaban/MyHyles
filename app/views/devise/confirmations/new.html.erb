@@ -1,17 +1,19 @@
-<div class="background">
-  <h2>アカウント有効化メールの再送信</h2>
-  <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name),
-                      html: { method: :post }, class:"form-group") do |f| %>
-    <div class="row flex-column align-items-center margin-form">
-      <div class="col-8">
-        <%= f.label :email, "メールアドレス" %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email",
-          value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class:"form-control" %>
+<div class="wrapper">
+  <div class="background">
+    <h2>アカウント有効化メールの再送信</h2>
+    <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name),
+                        html: { method: :post }, class:"form-group") do |f| %>
+      <div class="row flex-column align-items-center margin-form">
+        <div class="col-8">
+          <%= f.label :email, "メールアドレス" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email",
+            value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class:"form-control" %>
+        </div>
       </div>
-    </div>
-    <%= f.submit "アカウント有効化メールを再送する", class:"btn btn-primary" %>
-  <% end %>
-</div>
-<div class="devise-links">
-  <%= render "devise/shared/links" %>
+      <%= f.submit "アカウント有効化メールを再送する", class:"btn btn-primary" %>
+    <% end %>
+  </div>
+  <div class="devise-links">
+    <%= render "devise/shared/links" %>
+  </div>
 </div>

@@ -60,6 +60,34 @@ h5{
 .message p{
   color:#2C7CFF;
 }
+/* demo */
+.demo-user{
+  position:absolute;
+  z-index:1000;
+  background-color: #AAFFFF;
+}
+/* トップページ */
+.top-visual{
+  position: relative;
+  img{
+    width:100%;
+    height:auto;
+  }
+  .top-message{
+    color: white;
+    position:absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    span{
+      font-weight: bold;
+      font-size: 3em;
+      border-bottom: 1px white solid;
+    }
+    p{
+    }
+  }
+}
 /* セレクト */
 select{
   padding-left: 0.5em;
@@ -203,12 +231,16 @@ header{
 .page ul{margin: 1em auto}
 /* ボディ */
 body .container-fluid{
-  padding: 3em 1em;
+  padding:0;
   min-height: 90vh;
-  // background-color:#CCFFFF;
-  background-image: image-url("background.jpg");
-  background-size: cover;
-  .row{margin:0 4%}
+  .wrapper{
+    background-image: image-url("background.jpg");
+    background-size: cover;
+    padding: 2em 1em;
+  }
+  .row{
+    margin:0 4%;
+  }
 }
 /* アバウト */
 .image img{

@@ -1,33 +1,34 @@
-<div class="edit-hyle background">
-  <h2><%= @hyle.name %></h2>
-  <%= form_with(model: @hyle, url: users_hyle_path, local: true, class:"form-group") do |f| %>
-    <%= render 'hyle_info_form', hyle: @hyle, f:f, categories:@categories %>
-    <%= f.submit '変更を保存する', class:"btn btn-primary" %>
+<div class="wrapper">
+  <div class="edit-hyle background">
+    <h2><%= @hyle.name %></h2>
+    <%= form_with(model: @hyle, url: users_hyle_path, local: true, class:"form-group") do |f| %>
+      <%= render 'hyle_info_form', hyle: @hyle, f:f, categories:@categories %>
+      <%= f.submit '変更を保存する', class:"btn btn-primary" %>
+    <% end %>
+  </div>
+
+  <% if @hyle.labels.present? %>
+    <div class="edit-label background">
+      <h4>ラベルを編集する</h4>
+      <%= render 'hyles/label_edit', hyle: @hyle %>
+    </div>
   <% end %>
-</div>
-
-<% if @hyle.labels.present? %>
-  <div class="edit-label background">
-    <h4>ラベルを編集する</h4>
-    <%= render 'hyles/label_edit', hyle: @hyle %>
+  <div class="new-label background">
+    <h4>新しいラベルを追加する</h4>
+    <%= render 'labels/label_new_form', label: @label, hyle: @hyle %>
   </div>
-<% end %>
 
-<div class="new-label background">
-  <h4>新しいラベルを追加する</h4>
-  <%= render 'labels/label_new_form', label: @label, hyle: @hyle %>
-</div>
-
-<div class="add-things row">
-  <div class="new-category col-md-5 background">
-    <h4>新しいカテゴリーを追加する</h4>
-    <%= render 'categories/category_new_form', category: @category %>
+  <div class="add-things row">
+    <div class="new-category col-md-5 background">
+      <h4>新しいカテゴリーを追加する</h4>
+      <%= render 'categories/category_new_form', category: @category %>
+    </div>
+    <div class="new-tag offset-md-2 col-md-5 background">
+      <h4>新しいタグを追加する</h4>
+      <%= render 'categories/tag_new_form' %>
+    </div>
   </div>
-  <div class="new-tag offset-md-2 col-md-5 background">
-    <h4>新しいタグを追加する</h4>
-    <%= render 'categories/tag_new_form' %>
+  <div class="row">
+    <%= link_to "ヒュレーの編集を終える",users_hyle_path(@hyle), class:"btn btn-primary" %>
   </div>
-</div>
-<div class="row">
-  <%= link_to "ヒュレーの編集を終える",users_hyle_path(@hyle), class:"btn btn-primary" %>
 </div>
