@@ -47,12 +47,12 @@
 ***
 
 ## 設計書
-- [ER図][https://drive.google.com/file/d/1SnWrrBd2hFv2Ih25OAmXVb4yZIE9kV1V/view?usp=sharing]
-- [テーブル定義書][https://docs.google.com/spreadsheets/d/1BwMTqY1DzT5gz-VQ38JaemUYnbEVAQx9ylgw6wHWT7U/edit?usp=sharing]
-- [アプリケーション詳細設計][https://docs.google.com/spreadsheets/d/10Umvf3Pd9QdVPzVvdAxReqG3qmbW-LbA1yWFzqhpD1A/edit?usp=sharing]
-- [UIFlows][https://drive.google.com/file/d/1yaRRL-8mHL5d_6Uev55LDRSbrSvO86s3/view?usp=sharing]
+- [ER図](https://drive.google.com/file/d/1SnWrrBd2hFv2Ih25OAmXVb4yZIE9kV1V/view?usp=sharing)
+- [テーブル定義書](https://docs.google.com/spreadsheets/d/1BwMTqY1DzT5gz-VQ38JaemUYnbEVAQx9ylgw6wHWT7U/edit?usp=sharing)
+- [アプリケーション詳細設計](https://docs.google.com/spreadsheets/d/10Umvf3Pd9QdVPzVvdAxReqG3qmbW-LbA1yWFzqhpD1A/edit?usp=sharing)
+- [UIFlows](https://drive.google.com/file/d/1yaRRL-8mHL5d_6Uev55LDRSbrSvO86s3/view?usp=sharing)
 
 ***
 
 ### 機能一覧
-[機能一覧リンク][https://docs.google.com/spreadsheets/d/1WFprAwDl8RyCGIhqR9M_Xi3pRGDa_9DM5wl9n4U4ie4/edit?usp=sharing]
+[機能一覧リンク](https://docs.google.com/spreadsheets/d/1WFprAwDl8RyCGIhqR9M_Xi3pRGDa_9DM5wl9n4U4ie4/edit?usp=sharing)
