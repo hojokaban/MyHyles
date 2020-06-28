@@ -22,7 +22,7 @@
       <%= f.submit "ログイン", class:"btn btn-primary" %>
     <% end %>
     <div class="demo-login row align-items-center flex-column">
-      <h5>アカウント登録せずに、このアプリケーションをデモ体験できます！</h5><br>
+      <h5>アカウント登録せずに、MyHylesをデモ体験できます！</h5><br>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), html:{id:"demo_user"}) do |f| %>
         <%= f.hidden_field :email, value: "taro@example.com", id:"demo_name" %>
         <%= f.hidden_field :password, value: "password", id:"demo_email" %>

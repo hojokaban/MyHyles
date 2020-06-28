@@ -1,12 +1,49 @@
 <div class="d-flex flex-column justify-content-center">
   <div class="top-visual text-center">
-    <img src=<%= asset_path("top2.jpg") %>>
+    <img src=<%= asset_path("top3.jpg") %>>
     <div class="top-message">
       <span>MyHyles</span>
       <p>
         親、兄弟、友達、先生、上司、部下、ライバル、恋人...<br>
         みんなあなたのHyle(ヒュレー)です
       </p>
+    </div>
+  </div>
+  <div class="wrapper">
+    <h3>ヒュレーって？</h3>
+    <div class="what-is-hyle? row align-items-center">
+      <div class="hyle-explanation col-sm-8">
+        <p>
+          古代ギリシアの哲学者アリストテレスは、「事物は全て形相(エイドス)と質量(ヒュレー)が結びついて成立している」という概念を提唱しました。
+          エイドスとは「それが何か」を指し、ヒュレーは「その素材」を表します。
+          机を例にとると、机のエイドスは「天板と脚からなる道具」であり、ヒュレーは「木材などの材料」です。<br />
+          それでは、自分自身をエイドスとした時に、私たちのヒュレーはなんでしょうか？<br />
+          細胞、日々の食事、今までの経験、など様々な捉え方ができますが、きっと「周りの人間関係」も私たちを作り上げている重要な要素の一つではないでしょうか。
+          MyHylesを使って、私たちを作り上げているヒュレーたちを記録していきましょう！
+        </p>
+      </div>
+      <div class="aristotle-image col-sm-4">
+        <img src=<%= asset_path("aristotle.png") %>>
+      </div>
+    </div>
+  </div>
+  <div class="next-wrapper">
+    <!-- <img src=<%#= asset_path("top2.jpg") %>> -->
+    <h3>何ができる？</h3>
+    <div class="row">
+      <div class="what-can-do col-md-5 row align-items-center flex-column">
+        <ul>
+          <li><img src=<%= asset_path("checkbox.png") %>>管理ができる</li>
+          <li><img src=<%= asset_path("checkbox.png") %>>思い出を残せる</li>
+          <li><img src=<%= asset_path("checkbox.png") %>>誕生日に気付ける</li>
+          <li><img src=<%= asset_path("checkbox.png") %>>誰とどのくらい関わっているかが分かる</li>
+        </ul>
+        <%= link_to "詳しくはこちら", about_path %>
+      </div>
+      <div class="demo-login col-md-7 row align-items-center flex-column mt-3 mt-md-0">
+        <h5>アカウント登録せずに、MyHylesをデモ体験できます！</h5><br>
+        <%= link_to "ログイン画面へ", new_user_session_path %>
+      </div>
     </div>
   </div>
 </div>

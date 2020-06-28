@@ -77,20 +77,34 @@ h5{
     height:auto;
   }
   .top-message{
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.3);
     padding: 1em;
-    color: white;
+    color: navy;
     position:absolute;
     top: 50%;
     left:50%;
     transform: translate(-50%, -50%);
+    @media (max-width: 570px){
+      span{font-size: 2em}
+      p{display:none}
+    }
     span{
       font-weight: bold;
       font-size: 3em;
-      border-bottom: 1px white solid;
+      font-style: italic;
+      border-bottom: 1px blue solid;
     }
-    p{
-    }
+  }
+}
+.aristotle-image img{
+  width:inherit;
+}
+.what-can-do ul{
+  list-style: none;
+  img{
+    width:1em;
+    height:1em;
+    margin-right:1em;
   }
 }
 /* セレクト */
@@ -252,6 +266,12 @@ body .container-fluid{
     padding: 3em 1em;
     min-height: 100vh;
     @media (max-width: 320px){padding-top:5em}
+  }
+  .next-wrapper{
+    background-image: image-url("top3.jpg");
+    background-size: cover;
+    //background-color: rgba(255, 255, 200, 0.2);
+    padding: 3em 1em;
   }
   .row{margin:0}
 }
