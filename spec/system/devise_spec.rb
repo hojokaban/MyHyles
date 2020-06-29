@@ -25,7 +25,7 @@ describe 'deviseの統合テスト', type: :system do
           mail.to deliver_to(user.email)
           mail.should have_body_text "#{user.name}さん、ようこそ!"
           #ログインをすると失敗する
-          click_link 'ログイン'
+          click_link 'ログイン', match: :first
           fill_in 'user_email', with: "testtest@example.com"
           fill_in 'user_password', with: "password"
           click_button 'ログイン'

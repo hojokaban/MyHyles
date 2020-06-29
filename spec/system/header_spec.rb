@@ -7,20 +7,20 @@ describe 'ヘッダーのテスト', type: :system do
 
   context "ログインしていない状態" do
     it 'トップページに遷移' do
-      find('.navbar-brand').click
-      expect(page).to have_selector 'h2', text: 'トップページです！'
+      find('.navbar .logo').click
+      expect(page).to have_selector 'p', text: 'みんなあなたのHyle(ヒュレー)です'
     end
     it 'このサイトについてに遷移' do
-      click_link 'プロフィール'
+      click_link 'プロフィール', match: :first
       sleep 2
       expect(page).to have_selector 'h2', text: 'MyHylesへようこそ！' #たまにエラー
     end
     it 'ログイン画面に遷移' do
-      click_link 'ログイン'
+      click_link 'ログイン', match: :first
       expect(page).to have_selector 'h2', text: 'ログイン'
     end
     it '新規登録画面に遷移' do
-      click_link '新規登録'
+      click_link '新規登録', match: :first
       expect(page).to have_selector 'h2', text: '新規登録'
     end
   end

@@ -30,7 +30,7 @@ describe 'hylesの統合テスト', type: :system do
         select "test_category", from: 'hyle[category_id]'
         click_button 'この内容で追加する'
         #ラベル追加ページに遷移
-        sleep 2
+        sleep 3
         expect(page).to have_content 'ヒュレーが追加されました!'
         click_link 'ラベルの追加を終える'
         #詳細ページに遷移し、正しく表示
@@ -84,7 +84,7 @@ describe 'hylesの統合テスト', type: :system do
         select "test_category", from: 'hyle[category_id]'
         click_button 'この内容で追加する'
         #ラベル追加ページに遷移
-        sleep 2
+        sleep 3
         expect(page).to have_content 'ヒュレーが追加されました!'
         click_link 'ラベルの追加を終える'
         #詳細ページに遷移し、正しく表示
@@ -127,6 +127,7 @@ describe 'hylesの統合テスト', type: :system do
         fill_in 'new-label-name', with: "a"*21
         fill_in 'new-label-body', with: "  "
         click_button '新しいラベルを追加'
+        sleep 2
         expect(page).to have_selector 'li', text: "ラベル名は20文字以内で入力してください"
         expect(page).to have_selector 'li', text: "内容を入力してください"
         #ラベルの追加に成功する
@@ -234,6 +235,7 @@ describe 'hylesの統合テスト', type: :system do
         page.accept_confirm("本当にこのヒュレーを削除しますか？") do
           click_link '削除する'
         end
+        sleep 2
         expect(page).to have_content "ヒュレーを削除しました"
         expect(page).to have_selector 'h2', text: '全ヒュレー'
         expect(page).not_to have_selector 'h4', text: 'test_hyle'
@@ -268,7 +270,8 @@ describe 'hylesの統合テスト', type: :system do
       end
       it 'タグ別ヒュレー一覧' do
         click_link 'tag1', match: :first
-        expect(page).to have_selector 'h2', text: "タグ別ヒュレー" #たまにエラー
+        sleep 2
+        expect(page).to have_selector 'h2', text: "タグ別ヒュレー"
         expect(page).to have_selector 'h4', text: "test_hyle"
         #タグの違うヒュレーは表示されない
         expect(page).not_to have_selector 'h4', text: "other_category_hyle"
