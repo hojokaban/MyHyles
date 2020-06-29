@@ -1,3 +1,13 @@
+class ErrorAvoid
+  def initialize
+    @url = "attachments/"
+  end
+
+  def matches?(request)
+    @url.include?(request.url)
+  end
+end
+
 Rails.application.routes.draw do
   devise_for :users, controllers: {
                                  :registrations => 'users/registrations',
@@ -25,5 +35,5 @@ Rails.application.routes.draw do
     end
   end
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
-  # get '*path', controller: 'application', action: 'render_404'
+  get '*path', controller: 'application', action: 'render_404', constraints: ErrorAvoid.new
 end
