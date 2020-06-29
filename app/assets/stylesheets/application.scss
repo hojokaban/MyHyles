@@ -70,41 +70,44 @@ h5{
   background-color: #AAFFFF;
 }
 /* トップページ */
-.top-visual{
-  position: relative;
-  img{
-    width:100%;
-    height:auto;
-  }
-  .top-message{
-    background-color: rgba(0, 0, 0, 0.3);
-    padding: 1em;
-    color: navy;
-    position:absolute;
-    top: 50%;
-    left:50%;
-    transform: translate(-50%, -50%);
-    @media (max-width: 570px){
-      span{font-size: 2em}
-      p{display:none}
+.top{
+  .wrapper{min-height:0!important}
+  .top-visual{
+    position: relative;
+    img{
+      width:100%;
+      height:auto;
     }
-    span{
-      font-weight: bold;
-      font-size: 3em;
-      font-style: italic;
-      border-bottom: 1px blue solid;
+    .top-message{
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 1em;
+      color: navy;
+      position:absolute;
+      top: 50%;
+      left:50%;
+      transform: translate(-50%, -50%);
+      @media (max-width: 570px){
+        span{font-size: 2em}
+        p{display:none}
+      }
+      span{
+        font-weight: bold;
+        font-size: 3em;
+        font-style: italic;
+        border-bottom: 1px blue solid;
+      }
     }
   }
-}
-.aristotle-image img{
-  width:inherit;
-}
-.what-can-do ul{
-  list-style: none;
-  img{
-    width:1em;
-    height:1em;
-    margin-right:1em;
+  .table-image img{
+    width:inherit;
+  }
+  .what-can-do ul{
+    list-style: none;
+    img{
+      width:1em;
+      height:1em;
+      margin-right:1em;
+    }
   }
 }
 /* セレクト */
@@ -259,7 +262,6 @@ header{
 /* ボディ */
 body .container-fluid{
   padding:0;
-  min-height: 90vh;
   .wrapper{
     background-image: image-url("background.jpg");
     background-size: cover;
