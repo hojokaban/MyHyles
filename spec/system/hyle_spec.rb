@@ -166,6 +166,7 @@ describe 'hylesの統合テスト', type: :system do
       end
     end
     context "ヒュレーの編集画面から詳細画面" do
+      let!(:other_category){create(:category, user:user)}
       before do
         visit edit_users_hyle_path(hyle)
       end
@@ -176,8 +177,10 @@ describe 'hylesの統合テスト', type: :system do
         expect(page).to have_selector 'li', text: '名前を入力してください'
         #ヒュレーの情報の編集に成功
         fill_in 'hyle_name', with: "編集したヒュレー"
+        select other_category.name, from: 'hyle[category_id]'
         click_button '変更を保存する'
         expect(page).to have_content 'ヒュレーが編集されました!'
+        expect(page).to have_select('hyle[category_id]', selected: other_category.name)
         click_link "ヒュレーの編集を終える"
         expect(page).to have_selector 'td', text: "編集したヒュレー"
         #ヒュレーのタグの編集
