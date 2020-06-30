@@ -35,5 +35,5 @@ Rails.application.routes.draw do
     end
   end
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
-  # get '*path', controller: 'application', action: 'render_404', constraints: ErrorAvoid.new
+  get '*path', controller: 'application', action: 'render_404', constraints: ErrorAvoid.new
 end
