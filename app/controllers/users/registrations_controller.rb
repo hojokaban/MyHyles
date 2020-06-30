@@ -4,6 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
   before_action :set_category, only: [:edit, :update]
+  before_action :prohabit_demo_user, only: [:update, :destroy, :update_tag]
 
   # GET /resource/sign_up
   def new

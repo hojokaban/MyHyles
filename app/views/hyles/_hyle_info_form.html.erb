@@ -22,7 +22,7 @@
       <div class="margin-form">
         <%= f.label :category, "カテゴリー(必須)" %>
         <%= f.select :category_id, options_for_select(categories.collect{
-            |category| [category.name, category.id]},hyle.category.id),
+            |category| [category.name, category.id]}, hyle.category.nil? ? {} : hyle.category.id),
              {prompt: "カテゴリーを選択してください"}, {class:"form-control"} %>
       </div>
       <div class="check_box mt-2" id="tag-checks">

@@ -1,5 +1,6 @@
 include ApplicationHelper
 class LabelsController < ApplicationController
+  before_action :prohabit_demo_user, only: [:create, :update, :destroy]
 
   def edit
     @label = Label.new

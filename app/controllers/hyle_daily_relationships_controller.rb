@@ -2,6 +2,7 @@ include ApplicationHelper
 class HyleDailyRelationshipsController < ApplicationController
 
   before_action :set_hyle_daily_relationship
+  before_action :prohabit_demo_user, only: [:create, :destroy]
 
   def create
     @daily_relationship = DailyRelationship.find(params[:daily_relationship_id])

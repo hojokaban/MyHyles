@@ -1,6 +1,8 @@
 include ApplicationHelper
 class UsersController < ApplicationController
 
+  before_action :prohabit_demo_user, only: [:update]
+
   def show
     @q = current_user.hyles.ransack(params[:q])
     @today = Date.current

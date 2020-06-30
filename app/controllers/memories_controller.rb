@@ -2,6 +2,7 @@ include ApplicationHelper
 class MemoriesController < ApplicationController
 
   before_action :set_memory, only: [:show, :edit, :update, :destroy]
+  before_action :prohabit_demo_user, only: [:create, :update, :destroy]
 
   def new
     @memory = Memory.new
