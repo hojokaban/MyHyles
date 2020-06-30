@@ -1,4 +1,9 @@
 module ApplicationHelper
+
+  def set_title(title = "")
+		title.blank? ? "MyHyles" : "MyHyles  | #{title}"
+	end
+
   def set_error_flash(resource)
       error_title = I18n.t("errors.messages.not_saved",
                  count: resource.errors.count,
