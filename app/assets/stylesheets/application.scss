@@ -278,7 +278,12 @@ body .container-fluid{
   .row{margin:0}
 }
 /* アバウト */
+.about-image img{
+  width:100%;
+  height:auto;
+}
 .image img{
+  max-width: 300px;
   width:100%;
   height:auto;
 }
