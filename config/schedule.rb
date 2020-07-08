@@ -9,7 +9,7 @@ set :chronic_options, hours24: true
 # Learn more: http://github.com/javan/whenever
 require File.expand_path(File.dirname(__FILE__) + "/environment")
 rails_env = Rails.env.to_sym
-set :environment, rails_env
+set :production, rails_env
 set :output, 'log/cron.log'
 every 1.day, at: jst('0:00') do
     begin
