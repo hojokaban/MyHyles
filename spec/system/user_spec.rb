@@ -7,7 +7,7 @@ describe 'userの統合テスト', type: :system do
   let(:hyle) { create(:test_hyle, user:user, category:category) }
   let(:label) {create(:test_label, user:user, hyle:hyle)}
   before do
-      login_as user, scope: :user
+    login_as user, scope: :user
   end
   it "メインページ" do
     visit users_path
@@ -75,6 +75,7 @@ describe 'userの統合テスト', type: :system do
       select forth_relationship.name, from: 'hyle_daily_relationship[hyle_id]' #たまにエラー出るけど連続で実行すれば通る
       fill_in "hyle_daily_relationship_relationship_amount", with: 100
       click_button 'このヒュレーを追加する'
+      sleep 2
       page.accept_confirm("この内容はあとで変更ができません。この内容で追加してもよろしいですか？") do
         click_link 'この内容で追加する'
       end
@@ -82,6 +83,7 @@ describe 'userの統合テスト', type: :system do
       second_relationship.reload
       third_relationship.reload
       forth_relationship.reload
+      sleep 2
       #上位3人が表示される
       within '.relationship-hyle-index' do
         expect(page).to have_selector 'h4', text: top_relationship.name

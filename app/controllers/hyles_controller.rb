@@ -5,9 +5,9 @@ class HylesController < ApplicationController
   before_action :prohabit_demo_user, only: [:create, :update, :destroy]
 
   def new
-      @hyle = Hyle.new
-      @category = Category.new
-      @categories = current_user.categories
+    @hyle = Hyle.new
+    @category = Category.new
+    @categories = current_user.categories
   end
 
   def create
@@ -37,7 +37,11 @@ class HylesController < ApplicationController
 
   def update
     @hyle.set_tag(params[:hyle][:tag_list]) if @hyle.valid? && params[:hyle][:tag_list].present?
-    @hyle.update(hyle_params) ? flash[:success]="ヒュレーが編集されました!" : flash[:danger]=set_error_flash(@hyle)
+    if @hyle.update(hyle_params)
+      flash[:success] = "ヒュレーが編集されました!"
+    else
+      flash[:danger] = set_error_flash(@hyle)
+    end
     redirect_back(fallback_location: root_path)
   end
 
@@ -81,7 +85,7 @@ class HylesController < ApplicationController
 
   def destroy
     @hyle.destroy
-    flash[:success]="ヒュレーを削除しました"
+    flash[:success] = "ヒュレーを削除しました"
     redirect_to users_hyles_path
   end
 
@@ -89,7 +93,7 @@ class HylesController < ApplicationController
 
     def hyle_params
       params.require(:hyle).permit(:category_id, :name,
-         :birthday_added, :birthday, :hyle_image, :tag_list)
+        :birthday_added, :birthday, :hyle_image, :tag_list)
     end
 
     def set_hyle
