@@ -1,4 +1,6 @@
 require 'active_support/core_ext/time'
+require File.expand_path(File.dirname(__FILE__) + "/environment")
+rails_env = ENV['RAILS_ENV'] || :development
 
 def jst(time)
   Time.zone = 'Asia/Tokyo'
@@ -6,12 +8,9 @@ def jst(time)
 end
 
 set :chronic_options, hours24: true
-# Learn more: http://github.com/javan/whenever
-require File.expand_path(File.dirname(__FILE__) + "/environment")
-rails_env = ENV['RAILS_ENV'] || :development
 set :environment, rails_env
 set :output, 'log/cron.log'
-ENV.each { |k, v| env(k, v) }
+# ENV.each { |k, v| env(k, v) }
 every 1.day, at: jst('0:00') do
     begin
         runner "Batch::Relationship.relationship"
