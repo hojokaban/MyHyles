@@ -23,7 +23,7 @@ describe 'deviseの統合テスト', type: :system do
           expect(page).to have_content 'アカウント有効化用のメールが送信されています'
           #メールの表示
           mail.to deliver_to(user.email)
-          mail.should have_body_text "#{user.name}さん、ようこそ!"
+          expect(mail).to have_body_text "#{user.name}さん、ようこそ!"
           #ログインをすると失敗する
           click_link 'ログイン', match: :first
           fill_in 'user_email', with: "testtest@example.com"
@@ -38,7 +38,7 @@ describe 'deviseの統合テスト', type: :system do
           click_button 'アカウント有効化メールを再送する'
           #メールの表示
           mail.to deliver_to(user.email)
-          mail.should have_body_text "#{user.name}さん、ようこそ!"
+          expect(mail).to have_body_text "#{user.name}さん、ようこそ!"
           click_email_link_matching(/http/, mail)
           #アカウントの有効化
           expect(page).to have_content 'メールアドレスが承認されました'
@@ -105,7 +105,7 @@ describe 'deviseの統合テスト', type: :system do
         #トップページへの遷移
         expect(page).to have_content 'パスワード再設定についてのメールが送信されます'
         #メールの表示
-        mail.should have_body_text "#{user.name}さん、こんにちは!"
+        expect(mail).to have_body_text "#{user.name}さん、こんにちは!"
         click_email_link_matching(/http/, mail)
         #パスワード編集画面へ遷移
         expect(page).to have_selector 'h2', text: 'パスワードの再設定'
