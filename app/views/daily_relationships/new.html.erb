@@ -12,8 +12,7 @@
     <%= form_with(model:@hyle_daily_relationship,
       url:users_daily_relationship_hyle_daily_relationships_path(@daily_relationship), class:"form-group") do |f| %>
       <div class="row">
-        <%= f.select :hyle_id, options_for_select(current_user.hyles.collect{
-          |hyle| [hyle.name, hyle.id]}),
+        <%= f.select :hyle_id, options_for_select(current_user.hyles.collect{|hyle| [hyle.name, hyle.id]}),
            {prompt: "ヒュレーを選択してください"}, {class:"form-control"} %>
         <%= f.number_field :relationship_amount, min: 1, max: 100, class:"form-control" %>
       </div>

@@ -5,8 +5,6 @@ class User < ApplicationRecord
   has_many :labels, dependent: :destroy
   has_many :memories, dependent: :destroy
   has_many :daily_relationships, dependent: :destroy
-# Include default devise modules. Others available are:
-# :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
        :recoverable, :rememberable, :validatable, :confirmable
 

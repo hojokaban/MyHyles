@@ -7,9 +7,9 @@ RSpec.describe HyleDailyRelationship, type: :model do
     let(:hyle){create(:test_hyle, user:user, category:category)}
     let(:daily_relationship){create(:daily_relationship, user:user)}
     before do
-        @hyle_daily_relationship = HyleDailyRelationship.create!(
-                        hyle: hyle,
-                        daily_relationship: daily_relationship)
+      @hyle_daily_relationship = HyleDailyRelationship.create!(
+                      hyle: hyle,
+                      daily_relationship: daily_relationship)
     end
     it "正しいヒュレー" do
         expect(@hyle_daily_relationship).to be_valid

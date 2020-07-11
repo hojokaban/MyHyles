@@ -8,10 +8,10 @@
     <div class="main-page col-md-8">
       <% unless current_user.has_done %>
         <div class="background">
-            <div class="row link-relationship justify-content-center">
-              <h4>今日の人間関係を記録しましょう！</h4>
-              <%= link_to "関係の記入画面に移動する", new_users_daily_relationship_path, class:"btn btn-info" %>
-            </div>
+          <div class="row link-relationship justify-content-center">
+            <h4>今日の人間関係を記録しましょう！</h4>
+            <%= link_to "関係の記入画面に移動する", new_users_daily_relationship_path, class:"btn btn-info" %>
+          </div>
         </div>
       <% end %>
       <div class="background">
