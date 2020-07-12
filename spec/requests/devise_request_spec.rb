@@ -23,11 +23,11 @@ describe "devise関連", type: :request do
 
   context "registrationコントローラーの機能" do
     it '正しく登録される' do
-       expect{
+      expect{
             post user_registration_path, params: {user: attributes_for(:user)}
-       }.to change(User, :count).by(1)
-       #登録後はトップページへリダイレクトされる
-       expect(response).to redirect_to(root_path)
+      }.to change(User, :count).by(1)
+      #登録後はトップページへリダイレクトされる
+      expect(response).to redirect_to(root_path)
     end
     context "ユーザーの編集について" do
       let(:user) { create(:test_user) }

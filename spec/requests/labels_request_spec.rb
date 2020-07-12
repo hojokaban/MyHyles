@@ -15,16 +15,16 @@ RSpec.describe "Labels", type: :request do
   it 'ラベル作成ができる' do
     expect{
       post users_labels_path, xhr: true, params:{label:{
-        name: "test",
-        body: "test body",
-        hyle_id: label.hyle.id
-        }}
+                                          name: "test",
+                                          body: "test body",
+                                          hyle_id: label.hyle.id
+                                          }}
     }.to change(Label, :count).by(1)
   end
   it 'ラベルが編集できる' do
     patch users_label_path(label), xhr: true, params:{label:{
-      name: "editted test",
-      body: "editted test body",
+                              name: "editted test",
+                              body: "editted test body",
       }}
     label.reload
     expect(label.name).to eq "editted test"
