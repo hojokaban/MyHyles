@@ -53,20 +53,20 @@
   <div class="background">
     <h3>カテゴリー</h3>
     <div class="row justify-content-center edit-category-form">
-        <%= render 'categories/category_edit_form', categories: @categories %>
+      <%= render 'categories/category_edit_form', categories: @categories %>
     </div>
     <div class="row justify-content-center mt-3">
-        <%= render 'categories/category_new_form', category: @category %>
+      <%= render 'categories/category_new_form', category: @category %>
     </div>
   </div>
 
   <div class="background">
     <h3>タグ</h3>
     <div class="row flex-wrap" id="tag-index">
-        <%= render 'categories/tag_index' %>
+      <%= render 'categories/tag_index' %>
     </div>
     <div class="row justify-content-center mt-3">
-        <%= render 'categories/tag_new_form' %>
+      <%= render 'categories/tag_new_form' %>
     </div>
   </div>
 </div>

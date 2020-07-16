@@ -2,7 +2,7 @@
 <div class="wrapper">
   <div class="background">
     <h2>パスワードの再設定</h2>
-    <%= form_for(resource, as: resource_name, url: user_password_path(resource_name),method: :put,
+    <%= form_for(resource, as: resource_name, url: user_password_path(resource_name), method: :put,
                                                         class:"form-group") do |f| %>
       <%= f.hidden_field :reset_password_token %>
       <div class="row align-items-center flex-column margin-form">
