@@ -14,6 +14,21 @@ class ApplicationController < ActionController::Base
     render template: 'errors/error_500', status: 500, layout: 'application', content_type: 'text/html'
   end
 
+  def artificial_batch
+    unless current_user.id == 2
+      flash[:danger] = "---"
+      redirect_back(fallback_location: root_path)
+    else
+      current_user.hyles.each do |hyle|
+        hyle.update(birthday_left: hyle.days_before(Date.current)) unless hyle.birthday.nil?
+        hyle.set_relationship
+      end
+      current_user.set_relationship_percentage
+      flash[:success] = "シークレット操作によりバッチ処理が完了しました"
+      redirect_back(fallback_location: root_path)
+    end
+  end
+
   protected
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name])

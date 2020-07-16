@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   root 'static_pages#top'
   get '/about', to: 'static_pages#about'
   get '/contact', to: 'static_pages#contact'
+  get '/artificial_batch', to: 'application#artificial_batch'
   resource :users, only: [:show] do
     patch '/:tag', to: 'users#update', as: 'delete_tag'
     resources :labels, only: [:edit, :create, :update, :destroy]
