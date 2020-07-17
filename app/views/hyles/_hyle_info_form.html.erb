@@ -1,10 +1,12 @@
 <!-- recieves hyle f categories -->
 <div class="row">
-  <div class="image col-md-6 mt-3 text-center">
+  <div class="image col-md-6 mt-3 text-center flex-column">
     <div class="previous-image">
       <%= attachment_image_tag hyle, :hyle_image, format:'jpg', class:"hyle-img", fallback:"no_image2.jpg", size:"300" %>
     </div>
-    <%= f.attachment_field :hyle_image, direct: true, class:"d-none", id:"file" %>
+    <div class="hidden-button">
+      <%= f.attachment_field :hyle_image, direct: true, class:"d-none", id:"file" %>
+    </div>
     <div class="btn btn-info my-2" id="img_field" onClick="$('#file').click()" >
       <span>画像を追加する</span>
     </div>
