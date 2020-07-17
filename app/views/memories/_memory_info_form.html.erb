@@ -5,7 +5,9 @@
     <div class="previous-image">
       <%= attachment_image_tag memory, :memory_image, format:'jpg', class:"memory-img", fallback:"no_image2.jpg", size:"300x300" %>
     </div>
-    <%= f.attachment_field :memory_image, class:"d-none", id:"file" %>
+    <div class="hidden-button">
+      <%= f.attachment_field :memory_image, class:"d-none", id:"file" %>
+    </div>
     <div class="btn btn-info my-2" id="img_field" onClick="$('#file').click()" >
       <span>画像を追加する</span>
     </div>
